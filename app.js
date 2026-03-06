@@ -1,17 +1,12 @@
 /**
- * START ALL-IN-ONE SYSTEM
- * This file starts both the Discord Bot and the Website at the same time.
- * Perfect for hosting on Render.com or other similar platforms.
+ * START BACKEND ONLY (Website Server + API)
+ * This file is used to bypass the 16-character limit in Pterodactyl.
  */
 
-console.log('--- STARTING REAR X TIER SYSTEM ---');
+console.log('--- STARTING REAR X WEBSITE BACKEND ---');
 
-// Start the Discord Bot
-console.log('🤖 Initializing Discord Bot...');
-require('./index.js');
-
-// Start the Website
-console.log('🌐 Initializing Website Server...');
+// Start ONLY the Website API
+// This will allow Vercel to fetch rankings and listen for Discord updates
 require('./website/server.js');
 
-console.log('--- ALL SYSTEMS ONLINE ---');
+console.log('--- BACKEND ONLINE ---');
