@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
     // Change this to your Render URL after hosting the backend (e.g. 'https://rear-x.onrender.com')
-    const API_BASE = '';
+    const API_BASE = 'https://rearxtier.onrender.com';
 
     // ─── DOM REFS ────────────────────────────────────────────────────────────
     const rankingsList = document.getElementById('rankingsList');
