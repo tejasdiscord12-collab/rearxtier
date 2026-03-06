@@ -1,0 +1,20 @@
+{
+    "name": "eglu-tier-bot",
+    "version": "1.0.0",
+    "description": "Discord bot for Minecraft PvP Tier List server",
+    "main": "index.js",
+    "scripts": {
+        "start": "node app.js",
+        "deploy": "node scripts/deploy-commands.js",
+        "web": "node website/server.js",
+        "sync": "node scripts/sync-database.js"
+    },
+    "dependencies": {
+        "better-sqlite3": "^11.5.0",
+        "cors": "^2.8.6",
+        "discord.js": "^14.13.0",
+        "dotenv": "^16.3.1",
+        "express": "^5.2.1",
+        "uuid": "^9.0.1"
+    }
+}

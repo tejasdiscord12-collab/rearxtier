@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REAR X | Tier Rankings</title>
+    <meta name="description"
+        content="Official Minecraft PvP Tier List for Rear X Network. View ranked players, categories, and live queue.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">⚔</div>
+                <span class="logo-text">REAR<span class="logo-x">X</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-item active" id="navRankings">
+                    <i class="fa-solid fa-trophy"></i>
+                    Rankings
+                </a>
+                <a href="https://discord.gg/BVhG9mXJkk" class="nav-item" target="_blank">
+                    <i class="fa-brands fa-discord"></i>
+                    Discord
+                </a>
+            </div>
+            <div class="nav-right">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="playerSearch" placeholder="Search player...">
+                </div>
+                <div class="live-pill">
+                    <span class="live-dot"></span>
+                    LIVE
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <div class="hero-section" id="heroSection">
+        <div class="hero-bg-gradient"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🏆 Official Tier List</div>
+            <h1 class="hero-title">REAR<span class="hero-x">X</span> TIERS</h1>
+            <p class="hero-sub">The most skilled Minecraft PvP players, ranked and verified by our testers.</p>
+            <div class="hero-stats" id="heroStats">
+                <div class="stat-card">
+                    <span class="stat-num" id="statPlayers">—</span>
+                    <span class="stat-label">PLAYERS RANKED</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-card">
+                    <span class="stat-num" id="statKits">8</span>
+                    <span class="stat-label">GAMEMODES</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-card">
+                    <span class="stat-num">LIVE</span>
+                    <span class="stat-label">STATUS</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-hint">
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <main class="container">
+
+        <!-- KIT FILTER SIDEBAR + CONTENT AREA -->
+        <div class="page-layout">
+
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">GAMEMODE</div>
+                    <div class="kit-list">
+                        <button class="kit-btn active" data-category="all">
+                            <div class="kit-btn-icon"><i class="fa-solid fa-trophy kit-svg-icon"
+                                    style="color:#ffb800"></i></div>
+                            <span>Overall</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="Nethpot">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/netherite_chestplate.png"
+                                    alt="Nethpot"></div>
+                            <span>Nethpot</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="Sword">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_sword.png"
+                                    alt="Sword"></div>
+                            <span>Sword</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="Axe">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_axe.png"
+                                    alt="Axe"></div>
+                            <span>Axe</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="Diapot">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_chestplate.png"
+                                    alt="Diapot"></div>
+                            <span>Diapot</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="UHC">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/golden_apple.png"
+                                    alt="UHC"></div>
+                            <span>UHC</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="SmpKit">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/ender_pearl.png"
+                                    alt="SmpKit"></div>
+                            <span>SmpKit</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="Crystal">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/end_crystal.png"
+                                    alt="Crystal"></div>
+                            <span>Crystal</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                        <button class="kit-btn" data-category="Mace">
+                            <div class="kit-btn-icon"><img
+                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21/assets/minecraft/textures/item/mace.png"
+                                    alt="Mace"></div>
+                            <span>Mace</span>
+                            <div class="kit-btn-active-bar"></div>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">SERVER</div>
+                    <div class="server-card">
+                        <div class="server-icon">⚔</div>
+                        <div class="server-info">
+                            <div class="server-name">RearMC</div>
+                            <div class="server-ip">play.rearmc.fun</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">TIER GUIDE</div>
+                    <div class="tier-guide">
+                        <div class="tg-row"><span class="tg-badge" style="background:#ffd700;color:#000">HT1</span><span
+                                class="tg-label">High Tier 1</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#ffe87a;color:#000">LT1</span><span
+                                class="tg-label">Low Tier 1</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#ff9d00;color:#000">HT2</span><span
+                                class="tg-label">High Tier 2</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#ffbc52;color:#000">LT2</span><span
+                                class="tg-label">Low Tier 2</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#ff6b00;color:#fff">HT3</span><span
+                                class="tg-label">High Tier 3</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#ff9c52;color:#000">LT3</span><span
+                                class="tg-label">Low Tier 3</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#a855f7;color:#fff">HT4</span><span
+                                class="tg-label">High Tier 4</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#c084fc;color:#000">LT4</span><span
+                                class="tg-label">Low Tier 4</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#3b82f6;color:#fff">HT5</span><span
+                                class="tg-label">High Tier 5</span></div>
+                        <div class="tg-row"><span class="tg-badge" style="background:#60a5fa;color:#000">LT5</span><span
+                                class="tg-label">Low Tier 5</span></div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- MAIN CONTENT -->
+            <div class="content-area">
+
+                <!-- RANKINGS VIEW -->
+                <div id="rankingsContainer">
+                    <div class="content-toolbar">
+                        <div class="content-title" id="contentTitle">
+                            <i class="fa-solid fa-trophy" style="color:#ffb800"></i>
+                            Overall Rankings
+                        </div>
+                    </div>
+
+                    <div id="tableHeader" class="table-header-row">
+                        <div class="th-rank">#</div>
+                        <div class="th-player">PLAYER</div>
+                        <div class="th-region">REGION</div>
+                        <div class="th-tiers">KITS</div>
+                    </div>
+
+                    <div id="rankingsList">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <span>Loading rankings...</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span class="footer-brand">REAR<span style="color:#ffb800">X</span> TIERS</span>
+            <span class="footer-sep">·</span>
+            <span class="footer-copy">© 2026 RearMC Network. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
