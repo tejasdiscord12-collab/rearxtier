@@ -43,7 +43,50 @@ const client = new Client({
 
 client.once(Events.ClientReady, async () => {
     console.log(`📡 Website Discord Listener loaded as ${client.user.tag}`);
-    console.log(`✅ Live-Sync active for results channel: ${config.RESULT_COMMAND_CHANNEL_ID}`);
+
+    // --- Catch-up Sync: Read last 100 messages to find existing players ---
+    const resultChannelId = config.RESULT_COMMAND_CHANNEL_ID;
+    console.log(`🔍 Scanning last 100 messages in channel ${resultChannelId} for existing tiers...`);
+
+    const channel = await client.channels.fetch(resultChannelId).catch(() => null);
+    if (channel) {
+        let totalCount = 0;
+        try {
+            const messages = await channel.messages.fetch({ limit: 100 });
+            for (const [id, msg] of messages) {
+                if (msg.embeds.length > 0) {
+                    for (const embed of msg.embeds) {
+                        const desc = embed.description;
+                        if (!desc) continue;
+
+                        const ignMatch = desc.match(/\*\*IGN:\*\*\s*[\r\n]+([^\r\n]+)/i);
+                        const userMatch = desc.match(/\*\*USER:\*\*\s*[\r\n]+<@!?(\d+)>/i);
+                        const tierMatch = desc.match(/\*\*TIER EARNED:\*\*\s*[\r\n]+([^\r\n]+)/i);
+                        const categoryMatch = desc.match(/\*\*GAMEMODE:\*\*\s*[\r\n]+([^\r\n]+)/i);
+                        const regionMatch = desc.match(/\*\*REGION:\*\*\s*[\r\n]+([^\r\n]+)/i);
+
+                        if (ignMatch && userMatch && tierMatch && categoryMatch) {
+                            const userId = userMatch[1].trim();
+                            const ign = ignMatch[1].trim();
+                            const tier = tierMatch[1].trim().replace(';', '');
+                            const category = categoryMatch[1].trim();
+                            const region = regionMatch ? regionMatch[1].trim() : 'Global';
+
+                            manager.updateUserTier(userId, ign, tier, category, region);
+                            totalCount++;
+                        }
+                    }
+                }
+            }
+            console.log(`✅ Successfully synced ${totalCount} historical tiers from Discord.`);
+        } catch (err) {
+            console.error('❌ Error during catch-up sync:', err);
+        }
+    } else {
+        console.error('❌ Could not find result channel for catch-up sync. Check RESULT_COMMAND_CHANNEL_ID.');
+    }
+
+    console.log(`✅ Live-Sync active for results channel: ${resultChannelId}`);
 });
 
 client.on(Events.MessageCreate, async message => {
