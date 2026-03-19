@@ -10,7 +10,7 @@ process.on('unhandledRejection', (reason, promise) => {
 
 process.on('uncaughtException', (err) => {
     console.error('Uncaught Exception:', err);
-    process.exit(1);
+    // process.exit(1); // Avoid crashing for non-fatal errors
 });
 
 console.log('📦 Loading configuration...');
@@ -113,14 +113,14 @@ function getKitFiles(kit) {
 }
 
 client.on(Events.InteractionCreate, async interaction => {
-    // 1. Slash Commands
-    if (interaction.isChatInputCommand()) {
-        try {
+    try {
+        // 1. Slash Commands
+        if (interaction.isChatInputCommand()) {
             const { commandName } = interaction;
             const staffId = getId('staff_role', 'STAFF_ROLE_ID');
             const testerId = getId('tester_role', 'TESTER_ROLE_ID');
 
-            console.log(`[DEBUG] Interaction: ${interaction.type} | ID: ${interaction.commandName} | User: ${interaction.user.tag}`);
+            console.log(`[DEBUG] Interaction: ${interaction.type} | ID: ${interaction.commandName || commandName} | User: ${interaction.user.tag}`);
 
             if (commandName === 'setup') {
                 await interaction.deferReply({ ephemeral: true });
@@ -726,6 +726,13 @@ client.on(Events.InteractionCreate, async interaction => {
                 return;
             }
 
+            if (commandName === 'tester-result') {
+                const leaderboard = db.getTesterLeaderboard();
+                const embed = embeds.testerLeaderboardEmbed(leaderboard);
+                await interaction.reply({ embeds: [embed] });
+                return;
+            }
+
             if (commandName === 'result') {
                 const userId = interaction.user.id;
                 const now = Date.now();
@@ -764,6 +771,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
                     // Update Database
                     db.updateUserTier(user.id, ign, newTier, category, region);
+                    db.logTest(tester.id, user.id, ign, category, newTier);
 
                     const channelIds = db.getResultChannels();
 
@@ -918,15 +926,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 await interaction.reply({ content: `✅ Removed ${target} from the queue.`, ephemeral: true });
                 updateLiveQueue(interaction.guild);
             }
-        } catch (error) {
-            console.error('[CRITICAL] Interaction handler error:', error);
-            if (!interaction.replied && !interaction.deferred) {
-                await interaction.reply({ content: 'An unexpected error occurred.', ephemeral: true }).catch(() => { });
-            } else {
-                await interaction.editReply({ content: 'An unexpected error occurred.' }).catch(() => { });
-            }
         }
-    }
 
     // 2. Buttons
     if (interaction.isButton()) {
@@ -1227,11 +1227,24 @@ client.on(Events.InteractionCreate, async interaction => {
             await interaction.reply({ embeds: [embed], ephemeral: true });
         }
     }
+} catch (error) {
+        console.error('[CRITICAL] Global Interaction handler error:', error);
+        try {
+            if (interaction.isRepliable()) {
+                if (!interaction.replied && !interaction.deferred) {
+                    await interaction.reply({ content: 'An unexpected error occurred.', ephemeral: true }).catch(() => { });
+                } else {
+                    await interaction.editReply({ content: 'An unexpected error occurred.' }).catch(() => { });
+                }
+            }
+        } catch (e) { }
+    }
 });
 
 // 4. Prefix Commands (!)
 client.on(Events.MessageCreate, async message => {
-    if (message.author.bot || !message.content.startsWith('!')) return;
+    try {
+        if (message.author.bot || !message.content.startsWith('!')) return;
 
     const args = message.content.slice(1).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -1539,6 +1552,9 @@ client.on(Events.MessageCreate, async message => {
         }
         message.reply(`✅ Attempted to sync **${count}** kit panels.`);
     }
+} catch (error) {
+    console.error('[CRITICAL] Prefix handler error:', error);
+}
 });
 
 // --- Automatic Sync Listener ---
@@ -1625,32 +1641,43 @@ async function updateKitPanel(guild, kit) {
     const msgId = db.getSetting(`kit_msg_${kitLower}`);
     const channelId = db.getSetting(`kit_channel_${kitLower}`) || db.getWaitlistChannel(kit);
 
-    if (!msgId || !channelId) {
-        console.log(`[DEBUG] Missing panel config for ${kit}: msg=${msgId}, channel=${channelId}`);
+    if (!channelId) {
+        console.log(`[DEBUG] Skipping kit panel update for ${kit}: No channel configured.`);
         return;
     }
 
     const channel = guild.channels.cache.get(channelId);
     if (!channel) return;
 
+    const q = db.getQueue().filter(u => u.category.toUpperCase() === kit.toUpperCase());
+    const testerId = db.getSetting(`kit_tester_${kitLower}`);
+    const testers = testerId ? [testerId] : [];
+    const isOpen = db.isQueueOpen() && db.getSetting(`kit_tester_${kitLower}`); // Ensure kit has a tester to be considered open for display
+
+    const embed = isOpen ? embeds.kitQueueOpenEmbed(kit, q, testers) : embeds.kitQueueClosedEmbed(kit);
+
     try {
-        const msg = await channel.messages.fetch(msgId);
-        const q = db.getQueue().filter(u => u.category.toUpperCase() === kit.toUpperCase());
-        const testerId = db.getSetting(`kit_tester_${kitLower}`);
-        const testers = testerId ? [testerId] : [];
-        const isOpen = db.isQueueOpen(); // Check if this specific kit or global queue is open
-
-        const files = getKitFiles(kit);
-        let embed;
-        if (isOpen) {
-            embed = embeds.kitQueueOpenEmbed(kit, q, testers);
+        if (msgId) {
+            try {
+                const msg = await channel.messages.fetch(msgId);
+                await msg.edit({ embeds: [embed] });
+                console.log(`[DEBUG] Updated ${kit} panel (Status: ${isOpen ? 'Open' : 'Closed'}).`);
+            } catch (e) {
+                if (e.code === 10008) {
+                    // Unknown Message - clean stale ID and create new
+                    console.log(`[DEBUG] Kit panel message for ${kit} was deleted. Creating new one.`);
+                    const newMsg = await channel.send({ embeds: [embed] });
+                    db.updateSetting(`kit_msg_${kitLower}`, newMsg.id);
+                } else {
+                    throw e;
+                }
+            }
         } else {
-            embed = embeds.kitQueueClosedEmbed(kit);
+            // No msg ID exists, create new
+            const newMsg = await channel.send({ embeds: [embed] });
+            db.updateSetting(`kit_msg_${kitLower}`, newMsg.id);
+            console.log(`[DEBUG] Created new ${kit} panel.`);
         }
-
-        await msg.edit({ embeds: [embed] });
-        console.log(`[DEBUG] Updated ${kit} panel (Status: ${isOpen ? 'Open' : 'Closed'}).`);
-        console.log(`[DEBUG] Updated ${kit} panel with ${q.length} players.`);
     } catch (e) {
         console.error(`Failed to update kit panel for ${kit}:`, e);
     }

@@ -51,6 +51,16 @@ client.once('ready', async () => {
     }
 
     console.log(`\n🎉 Sync complete! Added/Updated ${totalCount} tier entries.`);
+
+    // --- AUTO-EXPORT FOR WEBSITE ---
+    const fs = require('fs');
+    const path = require('path');
+    const tiers = db.getAllTiers();
+    const publicPath = path.join(__dirname, '../website/public/players.json');
+    fs.writeFileSync(publicPath, JSON.stringify(tiers, null, 4));
+    console.log(`📡 Exported ${tiers.length} players to ${publicPath} for the website!`);
+    // -------------------------------
+
     process.exit(0);
 });
 

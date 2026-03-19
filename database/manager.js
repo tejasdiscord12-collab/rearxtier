@@ -64,6 +64,16 @@ db.exec(`
         key TEXT PRIMARY KEY,
         value TEXT
     );
+    
+    CREATE TABLE IF NOT EXISTS test_logs (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        tester_id TEXT,
+        player_id TEXT,
+        ign TEXT,
+        category TEXT,
+        tier TEXT,
+        timestamp INTEGER
+    );
 `);
 
 // Initialize default settings
@@ -93,7 +103,12 @@ module.exports = {
         db.prepare("DELETE FROM queue WHERE UPPER(category) = UPPER(?)").run(category);
     },
     getQueue: () => {
-        return db.prepare("SELECT user_id, category, join_time FROM queue ORDER BY join_time ASC").all();
+        return db.prepare(`
+            SELECT q.user_id, q.category, q.join_time, u.minecraft_ign 
+            FROM queue q
+            LEFT JOIN users u ON q.user_id = u.user_id
+            ORDER BY q.join_time ASC
+        `).all();
     },
     getQueuePosition: (userId) => {
         const queue = db.prepare("SELECT user_id FROM queue ORDER BY join_time ASC").all();
@@ -210,5 +225,23 @@ module.exports = {
             db.prepare("DELETE FROM users WHERE user_id = ?").run(userId);
         }
         return result.changes > 0;
+    },
+    logTest: (testerId, playerId, ign, category, tier, timestamp = null) => {
+        db.prepare(`
+            INSERT INTO test_logs (tester_id, player_id, ign, category, tier, timestamp)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `).run(testerId, playerId, ign, category, tier, timestamp || Date.now());
+    },
+    getTesterStats: (testerId) => {
+        return db.prepare("SELECT COUNT(*) as count FROM test_logs WHERE tester_id = ?").get(testerId);
+    },
+    getTesterLeaderboard: () => {
+        return db.prepare(`
+            SELECT tester_id, COUNT(*) as test_count 
+            FROM test_logs 
+            GROUP BY tester_id 
+            ORDER BY test_count DESC 
+            LIMIT 10
+        `).all();
     }
 };

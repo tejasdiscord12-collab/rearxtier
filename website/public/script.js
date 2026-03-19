@@ -1,19 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
-    // Change this to your Render URL after hosting the backend (e.g. 'https://rear-x.onrender.com')
-    const API_BASE = 'http://gp-wings.rearmc.fun:25568';
+    const API_BASE = '';
+    let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
 
     // ─── DOM REFS ────────────────────────────────────────────────────────────
     const rankingsList = document.getElementById('rankingsList');
     const playerSearch = document.getElementById('playerSearch');
     const kitButtons = document.querySelectorAll('.kit-btn');
     const navRankings = document.getElementById('navRankings');
+    const navQueue = document.getElementById('navQueue');
     const rankingsContainer = document.getElementById('rankingsContainer');
+    const queueContainer = document.getElementById('queueContainer');
     const tableHeader = document.getElementById('tableHeader');
     const contentTitle = document.getElementById('contentTitle');
     const statPlayers = document.getElementById('statPlayers');
     const navbar = document.getElementById('navbar');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const sidebar = document.querySelector('.sidebar');
 
     // ─── KIT ICONS ───────────────────────────────────────────────────────────
     const KIT_ICONS = {
@@ -30,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const KIT_DISPLAY = {
         'nethpot': 'Nethpot', 'sword': 'Sword', 'uhc': 'UHC',
         'axe': 'Axe', 'crystal': 'Crystal', 'smpkit': 'SmpKit',
-        'diapot': 'Diapot', 'mace': 'Mace'
+        'diapot': 'Diapot', 'mace': 'Mace', 'crystal': 'Crystal'
     };
 
     const TIER_VALUES = {
@@ -87,22 +91,38 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'Combat Initiate';
     }
     function normalizeCategory(cat) {
-        const c = cat.toLowerCase();
-        if (c === 'npot' || c === 'nethpot') return 'nethpot';
+        if (!cat) return 'sword';
+        const c = cat.toLowerCase().trim();
+        if (c.includes('neth') || c.includes('pot')) return 'nethpot';
         if (c.includes('smp')) return 'smpkit';
-        if (c === 'swords') return 'sword';
-        return c;
+        if (c === 'swords' || c === 'sword') return 'sword';
+        if (c === 'cpvp' || c === 'crystal') return 'crystal';
+        if (c.includes('axe')) return 'axe';
+        if (c.includes('uhc')) return 'uhc';
+        if (c.includes('mace')) return 'mace';
+        return 'sword';
     }
 
     // ─── FETCH ───────────────────────────────────────────────────────────────
     async function fetchRankings() {
         try {
-            const res = await fetch(`${API_BASE}/api/tiers`);
+            const res = await fetch(`./players.json`);
             allData = await res.json();
             statPlayers.textContent = allData.length;
             renderRankings(allData);
         } catch (e) {
+            console.error('Fetch error:', e);
             rankingsList.innerHTML = '<div class="loading-state">Failed to load rankings.</div>';
+        }
+    }
+
+    async function fetchQueue() {
+        try {
+            const res = await fetch(`./queue.json`);
+            const { queue, isOpen } = await res.json();
+            renderQueue(queue, isOpen);
+        } catch (e) {
+            renderQueue([], false); // Default if file doesn't exist yet
         }
     }
 
@@ -293,7 +313,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── NAV CLICK ────────────────────────────────────────────────────────────
     navRankings.addEventListener('click', e => {
         e.preventDefault();
+        currentView = 'rankings';
+        navRankings.classList.add('active');
+        navQueue.classList.remove('active');
+        rankingsContainer.style.display = 'block';
+        queueContainer.style.display = 'none';
         renderRankings(allData);
+    });
+
+    navQueue.addEventListener('click', e => {
+        e.preventDefault();
+        currentView = 'queue';
+        navQueue.classList.add('active');
+        navRankings.classList.remove('active');
+        rankingsContainer.style.display = 'none';
+        queueContainer.style.display = 'block';
+        fetchQueue();
     });
 
     // ─── SEARCH ───────────────────────────────────────────────────────────────
@@ -382,7 +417,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const cleanTier = (t.tier || '').toUpperCase().replace(';', '').trim();
             const displayCat = KIT_DISPLAY[t.category.toLowerCase()] || t.category;
             const icon = KIT_ICONS[Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase())] || KIT_ICONS['Sword'];
-            return `<div class="modal-kit-row"><img src="${icon}" alt="${displayCat}"><span class="modal-kit-name">${displayCat}</span><span class="modal-kit-tier np-tier-${cleanTier.toLowerCase()}">${cleanTier}</span></div>`;
+            return `
+                <div class="modal-kit-row">
+                    <img src="${icon}" alt="${displayCat}">
+                    <span class="modal-kit-name">${displayCat}</span>
+                    <span class="modal-kit-tier np-tier-${cleanTier.toLowerCase()}">${cleanTier}</span>
+                    <button class="remove-tier-btn" data-userid="${player.user_id}" data-category="${t.category}">
+                        <i class="fa-solid fa-trash"></i> Remove
+                    </button>
+                </div>`;
         }).join('') || '<p style="color:var(--text-muted);font-size:0.85rem">No kits rated yet.</p>';
 
         const bestVal = getBestTierValue(player.tiers || []);
@@ -449,6 +492,41 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 30000);
 
     fetchRankings();
+    
+    function renderQueue(queue, isOpen) {
+        const qCount = document.getElementById('statQueueCount');
+        if (qCount) qCount.textContent = queue.length;
+
+        const qStatusText = document.getElementById('queueStatusText');
+        if (qStatusText) qStatusText.textContent = isOpen ? 'QUEUE OPEN' : 'QUEUE CLOSED';
+
+        const qList = document.getElementById('queueList');
+        if (!qList) return;
+
+        if (queue.length === 0) {
+            qList.innerHTML = '<div class="tcp-empty">The queue is currently empty.</div>';
+            return;
+        }
+
+        qList.innerHTML = queue.map((q, i) => {
+            const time = new Date(q.join_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return `
+                <div class="player-row" style="height: 50px; padding: 0 15px;">
+                    <div class="rank-box" style="width: 30px;">${i + 1}</div>
+                    <div class="col-player">
+                        <span style="font-weight: 700;">${q.minecraft_ign || 'Member'}</span>
+                        <span style="font-size: 0.7rem; color: var(--text-muted); margin-left: 10px;">Joined ${time}</span>
+                    </div>
+                    <div class="col-region" style="width: auto;">
+                        <span class="region-badge region-AS">${q.category}</span>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    setInterval(fetchQueue, 10000);
+    fetchQueue();
 
     // Row click → open modal
     rankingsList.addEventListener('click', e => {
@@ -464,4 +542,84 @@ document.addEventListener('DOMContentLoaded', () => {
         })).sort((a, b) => b.bestVal - a.bestVal || (b.tiers || []).length - (a.tiers || []).length);
         if (sorted[idx]) openModal(sorted[idx], idx + 1);
     });
+
+    // ─── ADMIN LOGIC ──────────────────────────────────────────────────────────
+    const adminModal = document.getElementById('adminModal');
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const adminModalClose = document.getElementById('adminModalClose');
+    const adminLoginSubmit = document.getElementById('adminLoginSubmit');
+    const adminPasswordInput = document.getElementById('adminPassword');
+
+    if (ADMIN_TOKEN) document.body.classList.add('is-admin');
+
+    adminLoginBtn?.addEventListener('click', () => {
+        adminModal.classList.add('modal-open');
+    });
+
+    adminModalClose?.addEventListener('click', () => {
+        adminModal.classList.remove('modal-open');
+    });
+
+    adminLoginSubmit?.addEventListener('click', async () => {
+        const password = adminPasswordInput.value;
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password })
+            });
+            const data = await res.json();
+            if (data.success) {
+                ADMIN_TOKEN = data.token;
+                localStorage.setItem('adminToken', ADMIN_TOKEN);
+                document.body.classList.add('is-admin');
+                adminModal.classList.remove('modal-open');
+                showToast('Logged in as Admin', 'success');
+            } else {
+                showToast('Invalid password', 'error');
+            }
+        } catch (e) {
+            showToast('Login failed', 'error');
+        }
+    });
+
+    // Handle Tier Removal
+    document.addEventListener('click', async e => {
+        const btn = e.target.closest('.remove-tier-btn');
+        if (!btn) return;
+
+        const { userid, category } = btn.dataset;
+        if (!confirm(`Are you sure you want to remove the ${category} tier for this player?`)) return;
+
+        try {
+            const res = await fetch(`${API_BASE}/api/admin/remove-tier`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ userId: userid, category, token: ADMIN_TOKEN })
+            });
+            const data = await res.json();
+            if (data.success) {
+                showToast('Tier removed successfully', 'success');
+                closeModal();
+                fetchRankings(); // Refresh list
+            } else {
+                showToast(data.error || 'Failed to remove tier', 'error');
+            }
+        } catch (e) {
+            showToast('Connection error', 'error');
+        }
+    });
+
+    // Mobile Menu Button Logic
+    mobileMenuBtn?.addEventListener('click', () => {
+        if (sidebar) {
+            sidebar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Add a brief highlight to the sidebar
+            sidebar.style.boxShadow = '0 0 20px var(--primary)';
+            setTimeout(() => { sidebar.style.boxShadow = ''; }, 1000);
+        }
+    });
+
+    // Handle touch device specific behavior
+    document.addEventListener('touchstart', function () { }, { passive: true });
 });

@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REAR X | Tier Rankings</title>
+    <title>RearMc | Tier Rankings</title>
     <meta name="description"
-        content="Official Minecraft PvP Tier List for Rear X Network. View ranked players, categories, and live queue.">
+        content="Official Minecraft PvP Tier List for RearMc Network. View ranked players, categories, and live queue.">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -22,16 +22,16 @@
         <div class="nav-container">
             <div class="logo">
                 <div class="logo-icon">⚔</div>
-                <span class="logo-text">REAR<span class="logo-x">X</span></span>
+                <span class="logo-text">Rear<span class="logo-x">Mc</span></span>
             </div>
             <div class="nav-links">
                 <a href="#" class="nav-item active" id="navRankings">
                     <i class="fa-solid fa-trophy"></i>
                     Rankings
                 </a>
-                <a href="https://discord.gg/BVhG9mXJkk" class="nav-item" target="_blank">
-                    <i class="fa-brands fa-discord"></i>
-                    Discord
+                <a href="#" class="nav-item" id="navQueue">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    Queue
                 </a>
             </div>
             <div class="nav-right">
@@ -43,6 +43,12 @@
                     <span class="live-dot"></span>
                     LIVE
                 </div>
+                <button id="adminLoginBtn" class="admin-btn-nav">
+                    <i class="fa-solid fa-lock"></i>
+                </button>
+                <button id="mobileMenuBtn" class="mobile-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
     </nav>
@@ -53,7 +59,7 @@
         <div class="hero-particles" id="heroParticles"></div>
         <div class="hero-content">
             <div class="hero-badge">🏆 Official Tier List</div>
-            <h1 class="hero-title">REAR<span class="hero-x">X</span> TIERS</h1>
+            <h1 class="hero-title">Rear<span class="hero-x">Mc</span> TIERS</h1>
             <p class="hero-sub">The most skilled Minecraft PvP players, ranked and verified by our testers.</p>
             <div class="hero-stats" id="heroStats">
                 <div class="stat-card">
@@ -64,6 +70,11 @@
                 <div class="stat-card">
                     <span class="stat-num" id="statKits">8</span>
                     <span class="stat-label">GAMEMODES</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-card">
+                    <span class="stat-num" id="statQueueCount">0</span>
+                    <span class="stat-label">IN QUEUE</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-card">
@@ -217,6 +228,31 @@
                     </div>
                 </div>
 
+                <!-- QUEUE VIEW -->
+                <div id="queueContainer" style="display: none;">
+                    <div class="queue-header-banner" id="queueStatusBanner">
+                        <div class="qb-indicator">
+                            <span class="status-dot"></span>
+                            <span id="queueStatusText">LOADING...</span>
+                        </div>
+                        <p class="qb-sub">The official testing queue for RearMc. Join via Discord to get ranked.</p>
+                    </div>
+
+                    <div class="content-toolbar">
+                        <div class="content-title">
+                            <i class="fa-solid fa-clock-rotate-left" style="color:#ffb800"></i>
+                            Live Waiting List
+                        </div>
+                    </div>
+
+                    <div id="queueList">
+                        <div class="loading-state">
+                            <div class="loading-spinner"></div>
+                            <span>Loading queue...</span>
+                        </div>
+                    </div>
+                </div>
+
 
 
             </div>
@@ -225,11 +261,29 @@
 
     <footer class="site-footer">
         <div class="footer-inner">
-            <span class="footer-brand">REAR<span style="color:#ffb800">X</span> TIERS</span>
+            <span class="footer-brand">Rear<span style="color:#ffb800">Mc</span> TIERS</span>
             <span class="footer-sep">·</span>
             <span class="footer-copy">© 2026 RearMC Network. All rights reserved.</span>
         </div>
     </footer>
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="player-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card admin-modal-card">
+            <button class="modal-close" id="adminModalClose"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="admin-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h2 class="modal-name">Admin Login</h2>
+                <p class="modal-subtitle">Access restricted to authorized testers.</p>
+                <div class="modal-divider"></div>
+                <div class="admin-form">
+                    <input type="password" id="adminPassword" placeholder="Enter Admin Password..." class="admin-input">
+                    <button id="adminLoginSubmit" class="admin-submit-btn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

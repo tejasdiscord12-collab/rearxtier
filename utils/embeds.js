@@ -86,8 +86,8 @@ module.exports = {
 
         return embed;
     },
-    evaluationEmbed: (thumbnail = null) => {
-        const embed = new EmbedBuilder()
+    evaluationEmbed: () => {
+        return new EmbedBuilder()
             .setTitle('Evaluation Testing Waitlist & Roles')
             .setColor(0x2b2d31)
             .setDescription(
@@ -99,9 +99,6 @@ module.exports = {
                 `• **Username:** The name of the account you will be testing on.`
             )
             .setFooter({ text: '🪓 Failure to provide authentic information will result in a denied test.' });
-
-        if (thumbnail) embed.setThumbnail(thumbnail);
-        return embed;
     },
     registrationSuccessEmbed: (user, ign, region, accountType, uuid) => {
         return new EmbedBuilder()
@@ -168,6 +165,32 @@ module.exports = {
             .setTimestamp();
 
         if (thumbnail) embed.setThumbnail(thumbnail);
+        return embed;
+    },
+    testerLeaderboardEmbed: (leaderboard) => {
+        const embed = new EmbedBuilder()
+            .setTitle('🏆 TESTER LEADERBOARD')
+            .setColor(0xF1C40F) // Gold
+            .setDescription('Top testers and their total tests performed.')
+            .setTimestamp()
+            .setFooter({ text: 'RearMC • Tester Statistics' });
+
+        if (leaderboard.length === 0) {
+            embed.setDescription('No tests have been recorded yet.');
+        } else {
+            let description = '';
+            leaderboard.forEach((data, index) => {
+                const trophy = index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '👤';
+                description += `${trophy} **#${index + 1}** <@${data.tester_id}> — \`${data.test_count}\` tests\n`;
+            });
+            embed.setDescription(description);
+            
+            // Highlight Top 1
+            if (leaderboard[0]) {
+                embed.addFields({ name: '🌟 Top Tester', value: `<@${leaderboard[0].tester_id}> is leading with \`${leaderboard[0].test_count}\` tests!` });
+            }
+        }
+
         return embed;
     }
 };

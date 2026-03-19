@@ -1,0 +1,30 @@
+name: Deploy to Pterodactyl
+
+on:
+  push:
+    branches:
+      - main  # This triggers automation whenever you push to the 'main' branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+
+      - name: 🚀 Sync files to Pterodactyl via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.SFTP_SERVER }}
+          username: ${{ secrets.SFTP_USERNAME }}
+          password: ${{ secrets.SFTP_PASSWORD }}
+          port: ${{ secrets.SFTP_PORT }}
+          protocol: sftp
+          local-dir: ./
+          server-dir: /
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/bot_database.db
+            **/.env

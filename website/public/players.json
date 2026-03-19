@@ -1,0 +1,28 @@
+[
+    {
+        "user_id": "1",
+        "minecraft_ign": "ExamplePlayer",
+        "region": "AS",
+        "tiers": [
+            {
+                "category": "Nethpot",
+                "tier": "HT1"
+            },
+            {
+                "category": "Sword",
+                "tier": "LT2"
+            }
+        ]
+    },
+    {
+        "user_id": "2",
+        "minecraft_ign": "RearMc_Admin",
+        "region": "EU",
+        "tiers": [
+            {
+                "category": "Axe",
+                "tier": "HT1"
+            }
+        ]
+    }
+]

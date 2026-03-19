@@ -7,6 +7,7 @@ const commands = [
     new SlashCommandBuilder().setName('apply-test').setDescription('Send the test application message'),
     new SlashCommandBuilder().setName('queue').setDescription('View the current queue'),
     new SlashCommandBuilder().setName('next').setDescription('Call the next player'),
+    new SlashCommandBuilder().setName('tester-result').setDescription('View the tester leaderboard and statistics'),
     new SlashCommandBuilder().setName('result')
         .setDescription('Post a test result')
         .addSubcommand(sub =>
