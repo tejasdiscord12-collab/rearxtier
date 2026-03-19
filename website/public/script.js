@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
+    const GIST_ID = '0583dadbe079dbae6e0a5ac18bcac33b';
+    const GIST_API_URL = `https://api.github.com/gists/${GIST_ID}`;
     const API_BASE = 'http://eu1i7.hexonode.com:26113';
     let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
 
@@ -34,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const KIT_DISPLAY = {
         'nethpot': 'Nethpot', 'sword': 'Sword', 'uhc': 'UHC',
         'axe': 'Axe', 'crystal': 'Crystal', 'smpkit': 'SmpKit',
-        'diapot': 'Diapot', 'mace': 'Mace', 'crystal': 'Crystal'
+        'diapot': 'Diapot', 'mace': 'Mace'
     };
 
     const TIER_VALUES = {
@@ -52,37 +54,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── NAV SCROLL ──────────────────────────────────────────────────────────
     window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 20);
+        navbar?.classList.toggle('scrolled', window.scrollY > 20);
     });
-
-    // ─── PARTICLES ───────────────────────────────────────────────────────────
-    const particleContainer = document.getElementById('heroParticles');
-    if (particleContainer) {
-        for (let i = 0; i < 30; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.cssText = `
-                left: ${Math.random() * 100}%;
-                bottom: ${Math.random() * 30}%;
-                width: ${Math.random() * 3 + 1}px;
-                height: ${Math.random() * 3 + 1}px;
-                animation-duration: ${Math.random() * 6 + 4}s;
-                animation-delay: ${Math.random() * 5}s;
-                opacity: ${Math.random() * 0.6 + 0.2};
-            `;
-            particleContainer.appendChild(p);
-        }
-    }
 
     // ─── HELPERS ─────────────────────────────────────────────────────────────
     function getTierVal(tier) {
         return TIER_VALUES[tier?.toUpperCase().replace(';', '').trim()] || 0;
     }
     function getBestTierValue(tiers) {
-        return tiers.reduce((best, t) => Math.max(best, getTierVal(t.tier)), 0);
+        return (tiers || []).reduce((best, t) => Math.max(best, getTierVal(t.tier)), 0);
     }
     function getPoints(tiers) {
-        return tiers.reduce((sum, t) => sum + getTierVal(t.tier), 0);
+        return (tiers || []).reduce((sum, t) => sum + getTierVal(t.tier), 0);
     }
     function getTitle(bestVal) {
         if (bestVal >= 90) return 'Combat Grandmaster';
@@ -106,30 +89,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── FETCH ───────────────────────────────────────────────────────────────
     async function fetchRankings() {
         try {
-            const res = await fetch(`${API_BASE}/api/tiers`);
-            allData = await res.json();
-            statPlayers.textContent = allData.length;
+            console.log("🔍 Syncing rankings via Gist API...");
+            const res = await fetch(`${GIST_API_URL}?cache_bust=${Date.now()}`, { cache: 'no-store' });
+            if (!res.ok) throw new Error(`API Error ${res.status}`);
+            
+            const gistData = await res.json();
+            const playersFile = gistData.files['players.json'];
+            if (!playersFile || !playersFile.content) throw new Error("Rankings file missing.");
+
+            allData = JSON.parse(playersFile.content);
+            if (statPlayers) statPlayers.textContent = allData.length;
             renderRankings(allData);
         } catch (e) {
-            console.error('Fetch error:', e);
-            rankingsList.innerHTML = '<div class="loading-state">Failed to load rankings.</div>';
+            console.error('❌ Fetch Error:', e);
+            if (rankingsList) rankingsList.innerHTML = `<div class="loading-state"><span>Failed to load rankings: ${e.message}</span></div>`;
         }
     }
 
     async function fetchQueue() {
         try {
-            const res = await fetch(`${API_BASE}/api/queue`);
-            const { queue, isOpen } = await res.json();
-            renderQueue(queue, isOpen);
-        } catch (e) {
-            renderQueue([], false); // Default if file doesn't exist yet
-        }
+            const res = await fetch(`${GIST_API_URL}?cache_bust=${Date.now()}`, { cache: 'no-store' });
+            if (!res.ok) return;
+            const gistData = await res.json();
+            const queueFile = gistData.files['queue.json'];
+            if (queueFile?.content) {
+                const data = JSON.parse(queueFile.content);
+                renderQueue(data.queue || [], data.isOpen || false);
+            }
+        } catch (e) { }
     }
 
-
-
-    // ─── RENDER RANKINGS ──────────────────────────────────────────────────────
+    // ─── RENDER ──────────────────────────────────────────────────────────────
     function renderRankings(players) {
+        if (!rankingsList) return;
         rankingsList.innerHTML = '';
 
         if (!players || players.length === 0) {
@@ -138,20 +130,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const playersWithData = players.map(p => {
-            const bestVal = getBestTierValue(p.tiers || []);
-            return { ...p, points: getPoints(p.tiers || []), bestVal, title: getTitle(bestVal) };
+            const bestVal = getBestTierValue(p.tiers);
+            return { ...p, bestVal, title: getTitle(bestVal) };
         });
 
         if (currentCategory === 'all') {
             tableHeader.style.display = 'flex';
             contentTitle.innerHTML = '<i class="fa-solid fa-trophy" style="color:#ffb800"></i> Overall Rankings';
 
-            const sorted = [...playersWithData].sort((a, b) => {
-                if (b.bestVal !== a.bestVal) return b.bestVal - a.bestVal;
-                return b.tiers.length - a.tiers.length;
-            });
-
-            // Show Top 3 Podium
+            const sorted = [...playersWithData].sort((a, b) => b.bestVal - a.bestVal || (b.tiers || []).length - (a.tiers || []).length);
             renderPodium(sorted.slice(0, 3));
 
             sorted.forEach((player, index) => {
@@ -159,15 +146,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const row = document.createElement('div');
                 row.className = `player-row${isTop3 ? ' top-rank' : ''} row-${index + 1}`;
 
-                // Deduplicate & sort tiers
                 const processedTiers = (player.tiers || []).reduce((acc, current) => {
                     let cat = normalizeCategory(current.category);
                     const existing = acc.find(t => normalizeCategory(t.category) === cat);
-                    if (!existing) {
-                        acc.push({ ...current, category: cat });
-                    } else if (getTierVal(current.tier) > getTierVal(existing.tier)) {
-                        Object.assign(existing, { ...current, category: cat });
-                    }
+                    if (!existing) acc.push({ ...current, category: cat });
+                    else if (getTierVal(current.tier) > getTierVal(existing.tier)) Object.assign(existing, { ...current, category: cat });
                     return acc;
                 }, []).sort((a, b) => getTierVal(b.tier) - getTierVal(a.tier));
 
@@ -175,393 +158,204 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
                     const colorClass = `tier-color-${cleanTier}`;
                     const displayCat = KIT_DISPLAY[t.category.toLowerCase()] || t.category;
-                    const iconKey = Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase());
-                    const iconSrc = iconKey ? KIT_ICONS[iconKey] : KIT_ICONS['Sword'];
+                    const icon = KIT_ICONS[Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase())] || KIT_ICONS['Sword'];
                     return `
                         <div class="tier-item ${colorClass}">
-                            <div class="tier-circle">
-                                <img src="${iconSrc}" alt="${displayCat}" style="width:14px;height:14px;image-rendering:pixelated;">
-                            </div>
+                            <div class="tier-circle"><img src="${icon}" alt="${displayCat}" style="width:14px;height:14px;"></div>
                             <span class="tier-badge-label">${cleanTier}</span>
-                            <div class="tier-tooltip">
-                                <strong>${displayCat}</strong>
-                                <span>${cleanTier}</span>
-                            </div>
                         </div>`;
                 }).join('');
 
-                // Nameplate popup tiers
-                const nameplateKitsHtml = processedTiers.map(t => {
-                    const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
-                    const displayCat = KIT_DISPLAY[t.category.toLowerCase()] || t.category;
-                    const iconKey = Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase());
-                    const iconSrc = iconKey ? KIT_ICONS[iconKey] : KIT_ICONS['Sword'];
-                    return `<div class="np-kit">
-                        <img src="${iconSrc}" alt="${displayCat}">
-                        <span class="np-kit-name">${displayCat}</span>
-                        <span class="np-kit-tier np-tier-${cleanTier.toLowerCase()}">${cleanTier}</span>
-                    </div>`;
-                }).join('');
-
-                const region = (player.region || 'AS').toUpperCase();
                 row.innerHTML = `
-                    <div class="rank-box"><span class="rank-text">${index + 1}.</span></div>
+                    <div class="col-rank">${index + 1}</div>
                     <div class="col-player">
-                        <div class="player-card">
-                            <div class="avatar-wrapper">
-                                <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/48" alt="${player.minecraft_ign}">
-                            </div>
-                            <div>
-                                <div class="player-name">${player.minecraft_ign}</div>
-                                <div class="player-title">
-                                    <span class="title-icon">❖</span> ${player.title}
-                                </div>
-                            </div>
+                        <img class="rank-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/32" alt="${player.minecraft_ign}">
+                        <div class="player-info">
+                            <span class="player-ign">${player.minecraft_ign}</span>
+                            <span class="player-title">${player.title}</span>
                         </div>
                     </div>
                     <div class="col-region">
-                        <span class="region-badge region-${region}">${region}</span>
+                        <span class="region-badge region-${(player.region || 'AS').toUpperCase().split('/')[0]}">${player.region || 'AS'}</span>
                     </div>
-                    <div class="col-tiers">
-                        <div class="tiers-list">${tiersHtml}</div>
-                    </div>
-                    <div class="player-nameplate">
-                        <div class="np-top">
-                            <img class="np-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/96" alt="${player.minecraft_ign}">
-                            <div class="np-info">
-                                <div class="np-name">${player.minecraft_ign}</div>
-                                <div class="np-title">${player.title}</div>
-                                <div class="np-meta">
-                                    <span class="region-badge region-${region}">${region}</span>
-                                    <span class="np-rank-num">#${index + 1} Overall</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="np-kits">${nameplateKitsHtml}</div>
-                    </div>`;
+                    <div class="col-tiers">${tiersHtml}</div>
+                `;
                 rankingsList.appendChild(row);
             });
-
         } else {
-            // KIT VIEW — columns
-            document.getElementById('podiumSection')?.remove();
-            tableHeader.style.display = 'none';
-            const kitName = KIT_DISPLAY[currentCategory.toLowerCase()] || currentCategory;
-            contentTitle.innerHTML = `<i class="fa-solid fa-layer-group" style="color:#ffb800"></i> ${kitName} — Tier List`;
+            tableHeader.style.display = 'flex';
+            const dispName = KIT_DISPLAY[currentCategory] || currentCategory;
+            contentTitle.innerHTML = `<img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" class="title-kit-icon"> ${dispName} Rankings`;
 
-            const filterCat = normalizeCategory(currentCategory);
-
-            const tierGroups = {};
-            HIERARCHY.forEach(t => tierGroups[t] = []);
-
-            playersWithData.forEach(player => {
-                const relevant = (player.tiers || []).filter(t => normalizeCategory(t.category) === filterCat);
-                if (relevant.length > 0) {
-                    const best = relevant.reduce((b, c) => getTierVal(c.tier) > getTierVal(b.tier) ? c : b);
-                    const clean = best.tier.toUpperCase().replace(';', '').trim();
-                    if (tierGroups[clean]) tierGroups[clean].push(player);
-                }
-            });
-
-            const COLUMNS = [
-                { name: 'Tier 1', bg: '#7a5a1a', sub: ['HT1', 'LT1'], icon: '🥇' },
-                { name: 'Tier 2', bg: '#3a3d48', sub: ['HT2', 'LT2'], icon: '🥈' },
-                { name: 'Tier 3', bg: '#6b3a1a', sub: ['HT3', 'LT3'], icon: '🥉' },
-                { name: 'Tier 4', bg: '#2a1a3d', sub: ['HT4', 'LT4'], icon: '🎯' },
-                { name: 'Tier 5', bg: '#172038', sub: ['HT5', 'LT5'], icon: '⚡' }
-            ];
-
-            const grid = document.createElement('div');
-            grid.className = 'tier-cols-grid';
-
-            COLUMNS.forEach(col => {
-                const colDiv = document.createElement('div');
-                colDiv.className = 'tier-column';
-
-                let playersHtml = '';
-                col.sub.forEach(tierLabel => {
-                    const group = tierGroups[tierLabel] || [];
-                    const color = `var(--t-${tierLabel.toLowerCase()})`;
-                    group.forEach(p => {
-                        playersHtml += `
-                            <div class="tcp-row tier-player-head" style="border-left:3px solid ${color}">
-                                <img class="tcp-avatar" src="https://mc-heads.net/avatar/${p.minecraft_ign}/48" alt="${p.minecraft_ign}">
-                                <span class="tcp-name">${p.minecraft_ign}</span>
-                                <span class="tcp-arrow"><i class="fa-solid fa-angles-up"></i></span>
-                                <div class="tier-player-tooltip">
-                                    <strong>${p.minecraft_ign}</strong>
-                                    <span>${p.region || 'AS'} · ${tierLabel}</span>
-                                </div>
-                            </div>`;
-                    });
+            const filtered = playersWithData.filter(p => (p.tiers || []).some(t => normalizeCategory(t.category) === currentCategory))
+                .sort((a, b) => {
+                    const tA = a.tiers.find(t => normalizeCategory(t.category) === currentCategory);
+                    const tB = b.tiers.find(t => normalizeCategory(t.category) === currentCategory);
+                    return getTierVal(tB.tier) - getTierVal(tA.tier);
                 });
 
-                colDiv.innerHTML = `
-                    <div class="tier-col-header" style="background:${col.bg}">
-                        <span class="col-icon">${col.icon}</span>${col.name}
-                    </div>
-                    <div class="tier-col-body">
-                        ${playersHtml || '<div class="tcp-empty">—</div>'}
-                    </div>`;
-                grid.appendChild(colDiv);
-            });
+            renderPodium(filtered.slice(0, 3));
+            filtered.forEach((player, index) => {
+                const isTop3 = index < 3;
+                const row = document.createElement('div');
+                row.className = `player-row${isTop3 ? ' top-rank' : ''} row-${index + 1}`;
+                const t = player.tiers.find(ti => normalizeCategory(ti.category) === currentCategory);
+                const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
 
-            rankingsList.appendChild(grid);
+                row.innerHTML = `
+                    <div class="col-rank">${index + 1}</div>
+                    <div class="col-player">
+                        <img class="rank-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/32" alt="${player.minecraft_ign}">
+                        <div class="player-info">
+                            <span class="player-ign">${player.minecraft_ign}</span>
+                            <span class="player-title">${player.title}</span>
+                        </div>
+                    </div>
+                    <div class="col-region">
+                        <span class="region-badge region-${(player.region || 'AS').toUpperCase().split('/')[0]}">${player.region || 'AS'}</span>
+                    </div>
+                    <div class="col-tiers">
+                        <div class="tier-item tier-color-${cleanTier}">
+                            <div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="kit" style="width:14px;height:14px;"></div>
+                            <span class="tier-badge-label">${cleanTier}</span>
+                        </div>
+                    </div>
+                `;
+                rankingsList.appendChild(row);
+            });
         }
     }
 
-    // ─── NAV CLICK ────────────────────────────────────────────────────────────
-    navRankings.addEventListener('click', e => {
-        e.preventDefault();
+    function renderPodium(top3) {
+        document.querySelector('.podium-container')?.remove();
+        if (!top3 || top3.length === 0) return;
+        const podium = document.createElement('div');
+        podium.className = 'podium-container';
+        const order = [top3[1], top3[0], top3[2]].filter(Boolean);
+        podium.innerHTML = `<div class="podium-inner">
+            ${order.map((p) => {
+                const rank = top3.indexOf(p) + 1;
+                const h = [75, 100, 55][rank - 1];
+                const medals = ['🥇', '🥈', '🥉'];
+                return `<div class="podium-spot rank-${rank}">
+                        ${rank === 1 ? '<div class="podium-crown">👑</div>' : ''}
+                        <img class="podium-avatar" src="https://mc-heads.net/avatar/${p.minecraft_ign}/96" alt="${p.minecraft_ign}">
+                        <div class="podium-ign">${p.minecraft_ign}</div>
+                        <div class="podium-block" style="height:${h}px"><span>${medals[rank - 1]}</span></div>
+                    </div>`;
+            }).join('')}
+        </div>`;
+        document.querySelector('.content-toolbar')?.insertAdjacentElement('afterend', podium);
+    }
+
+    function renderQueue(queue, isOpen) {
+        const qCount = document.getElementById('statQueueCount');
+        if (qCount) qCount.textContent = queue.length;
+        const qStatus = document.getElementById('queueStatusText');
+        if (qStatus) qStatus.textContent = isOpen ? 'QUEUE OPEN' : 'QUEUE CLOSED';
+        const qList = document.getElementById('queueList');
+        if (!qList) return;
+        if (queue.length === 0) {
+            qList.innerHTML = '<div class="tcp-empty">The queue is currently empty.</div>';
+            return;
+        }
+        qList.innerHTML = queue.map((q, i) => `
+            <div class="player-row" style="height: 50px; padding: 0 15px;">
+                <div class="rank-box" style="width: 30px;">${i + 1}</div>
+                <div class="col-player"><span style="font-weight:700;">${q.minecraft_ign}</span></div>
+                <div class="col-region"><span class="region-badge region-AS">${q.category}</span></div>
+            </div>`).join('');
+    }
+
+    // ─── MODAL ───────────────────────────────────────────────────────────────
+    function openModal(player, rank) {
+        const modal = document.createElement('div');
+        modal.className = 'player-modal modal-open';
+        const processed = (player.tiers || []).sort((a,b) => getTierVal(b.tier) - getTierVal(a.tier));
+        const bestTier = processed[0]?.tier.toUpperCase().replace(';', '') || 'N/A';
+
+        modal.innerHTML = `
+            <div class="modal-backdrop" onclick="this.parentElement.remove()"></div>
+            <div class="modal-card">
+                <button class="modal-close" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
+                <div class="modal-body">
+                    <img class="modal-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/128" alt="player">
+                    <h2 class="modal-name">${player.minecraft_ign}</h2>
+                    <p class="modal-subtitle">${player.title || 'Player'} • ${player.region || 'AS'}</p>
+                    <div class="modal-stats">
+                        <div class="ms-card"><span class="ms-num">${player.tiers?.length || 0}</span><span class="ms-label">KITS</span></div>
+                        <div class="ms-card"><span class="ms-num">${bestTier}</span><span class="ms-label">BEST</span></div>
+                    </div>
+                    <div class="modal-divider"></div>
+                    <div class="modal-tiers-grid">
+                        ${(player.tiers || []).map(t => {
+                            const ct = t.tier.toUpperCase().replace(';', '').trim();
+                            const cat = normalizeCategory(t.category);
+                            return `<div class="mt-card tier-color-${ct}">
+                                <div class="mt-kit">${KIT_DISPLAY[cat] || cat}</div>
+                                <div class="mt-tier">${ct}</div>
+                                ${ADMIN_TOKEN ? `<button class="remove-tier-btn" data-userid="${player.user_id}" data-category="${t.category}"><i class="fa-solid fa-trash"></i></button>` : ''}
+                            </div>`;
+                        }).join('')}
+                    </div>
+                </div>
+            </div>`;
+        document.body.appendChild(modal);
+    }
+
+    // ─── LISTENERS ───────────────────────────────────────────────────────────
+    kitButtons.forEach(btn => btn.addEventListener('click', () => {
+        kitButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentCategory = btn.dataset.category;
+        renderRankings(allData);
+        window.scrollTo({ top: 400, behavior: 'smooth' });
+    }));
+
+    playerSearch?.addEventListener('input', e => {
+        const q = e.target.value.toLowerCase();
+        renderRankings(allData.filter(p => p.minecraft_ign.toLowerCase().includes(q)));
+    });
+
+    navRankings?.addEventListener('click', () => {
         currentView = 'rankings';
         navRankings.classList.add('active');
         navQueue.classList.remove('active');
         rankingsContainer.style.display = 'block';
         queueContainer.style.display = 'none';
-        renderRankings(allData);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    navQueue.addEventListener('click', e => {
-        e.preventDefault();
+    navQueue?.addEventListener('click', () => {
         currentView = 'queue';
         navQueue.classList.add('active');
         navRankings.classList.remove('active');
         rankingsContainer.style.display = 'none';
         queueContainer.style.display = 'block';
-        fetchQueue();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ─── SEARCH ───────────────────────────────────────────────────────────────
-    playerSearch.addEventListener('input', e => {
-        const term = e.target.value.toLowerCase();
-        const filtered = allData.filter(p => p.minecraft_ign.toLowerCase().includes(term));
-        renderRankings(filtered);
-    });
-
-    // ─── KIT FILTER ───────────────────────────────────────────────────────────
-    kitButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            kitButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentCategory = btn.dataset.category;
-
-            if (currentCategory === 'all') {
-                renderRankings(allData);
-            } else {
-                const filterCat = normalizeCategory(currentCategory);
-                const filtered = allData.filter(p =>
-                    (p.tiers || []).some(t => normalizeCategory(t.category) === filterCat)
-                );
-                renderRankings(filtered);
-            }
-        });
-    });
-
-    // ─── KEYBOARD SHORTCUT ( / = search, Esc = close modal ) ─────────────────
-    document.addEventListener('keydown', e => {
-        if (e.key === '/' && document.activeElement !== playerSearch) {
-            e.preventDefault();
-            playerSearch.focus();
-            playerSearch.select();
-        }
-        if (e.key === 'Escape') { closeModal(); playerSearch.blur(); }
-    });
-
-    // ─── ANIMATED COUNTER ─────────────────────────────────────────────────────
-    function animateCount(el, target) {
-        let start = null;
-        const dur = 900;
-        const step = ts => {
-            if (!start) start = ts;
-            const p = Math.min((ts - start) / dur, 1);
-            el.textContent = Math.floor(p * target);
-            if (p < 1) requestAnimationFrame(step);
-            else el.textContent = target;
-        };
-        requestAnimationFrame(step);
-    }
-
-    // ─── TOAST NOTIFICATION ───────────────────────────────────────────────────
-    function showToast(msg, type = 'info') {
-        document.querySelector('.live-toast')?.remove();
-        const t = document.createElement('div');
-        t.className = `live-toast toast-${type}`;
-        t.innerHTML = `<i class="fa-solid fa-${type === 'success' ? 'circle-check' : 'rotate'}"></i> ${msg}`;
-        document.body.appendChild(t);
-        setTimeout(() => t.classList.add('toast-visible'), 10);
-        setTimeout(() => { t.classList.remove('toast-visible'); setTimeout(() => t.remove(), 400); }, 3200);
-    }
-
-    // ─── PLAYER PROFILE MODAL ─────────────────────────────────────────────────
-    const modal = document.createElement('div');
-    modal.id = 'playerModal';
-    modal.className = 'player-modal';
-    modal.innerHTML = `<div class="modal-backdrop"></div><div class="modal-card"><button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button><div id="modalContent"></div></div>`;
-    document.body.appendChild(modal);
-
-    document.getElementById('modalClose').addEventListener('click', closeModal);
-    modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
-
-    function closeModal() { modal.classList.remove('modal-open'); document.body.classList.remove('modal-active'); }
-
-    function openModal(player, rank) {
-        const processedTiers = (player.tiers || []).reduce((acc, cur) => {
-            const cat = normalizeCategory(cur.category);
-            const ex = acc.find(t => normalizeCategory(t.category) === cat);
-            if (!ex) acc.push({ ...cur, category: cat });
-            else if (getTierVal(cur.tier) > getTierVal(ex.tier)) Object.assign(ex, { ...cur, category: cat });
-            return acc;
-        }, []).sort((a, b) => getTierVal(b.tier) - getTierVal(a.tier));
-
-        const kitsHtml = processedTiers.map(t => {
-            const cleanTier = (t.tier || '').toUpperCase().replace(';', '').trim();
-            const displayCat = KIT_DISPLAY[t.category.toLowerCase()] || t.category;
-            const icon = KIT_ICONS[Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase())] || KIT_ICONS['Sword'];
-            return `
-                <div class="modal-kit-row">
-                    <img src="${icon}" alt="${displayCat}">
-                    <span class="modal-kit-name">${displayCat}</span>
-                    <span class="modal-kit-tier np-tier-${cleanTier.toLowerCase()}">${cleanTier}</span>
-                    <button class="remove-tier-btn" data-userid="${player.user_id}" data-category="${t.category}">
-                        <i class="fa-solid fa-trash"></i> Remove
-                    </button>
-                </div>`;
-        }).join('') || '<p style="color:var(--text-muted);font-size:0.85rem">No kits rated yet.</p>';
-
-        const bestVal = getBestTierValue(player.tiers || []);
-        const region = (player.region || 'AS').toUpperCase();
-
-        document.getElementById('modalContent').innerHTML = `
-            <div class="modal-header">
-                <img class="modal-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/128" alt="${player.minecraft_ign}">
-                <div class="modal-glow"></div>
-                <div class="modal-rank-badge">#${rank}</div>
-            </div>
-            <div class="modal-body">
-                <h2 class="modal-name">${player.minecraft_ign}</h2>
-                <div class="modal-subtitle">${getTitle(bestVal)}</div>
-                <div class="modal-tags">
-                    <span class="region-badge region-${region}">${region}</span>
-                    <span class="modal-tag-kits"><i class="fa-solid fa-layer-group"></i> ${processedTiers.length} Kit${processedTiers.length !== 1 ? 's' : ''}</span>
-                </div>
-                <div class="modal-divider"></div>
-                <div class="modal-kits-title">RATED KITS</div>
-                <div class="modal-kits">${kitsHtml}</div>
-            </div>`;
-        modal.classList.add('modal-open');
-        document.body.classList.add('modal-active');
-    }
-
-    // ─── TOP 3 PODIUM ─────────────────────────────────────────────────────────
-    function renderPodium(top3) {
-        document.getElementById('podiumSection')?.remove();
-        if (!top3 || top3.length < 1) return;
-
-        const order = [top3[1], top3[0], top3[2]].filter(Boolean);
-        const podium = document.createElement('div');
-        podium.id = 'podiumSection';
-        podium.className = 'podium-section';
-        podium.innerHTML = `<div class="podium-title">🏆 Top Players</div><div class="podium-stage">
-            ${order.map((p) => {
-            const rank = top3.indexOf(p) + 1;
-            const h = [75, 100, 55][rank - 1];
-            const medals = ['🥇', '🥈', '🥉'];
-            return `<div class="podium-spot rank-${rank}">
-                    ${rank === 1 ? '<div class="podium-crown">👑</div>' : ''}
-                    <img class="podium-avatar" src="https://mc-heads.net/avatar/${p.minecraft_ign}/96" alt="${p.minecraft_ign}">
-                    <div class="podium-ign">${p.minecraft_ign}</div>
-                    <div class="podium-block" style="height:${h}px"><span>${medals[rank - 1]}</span></div>
-                </div>`;
-        }).join('')}
-        </div>`;
-        const toolbar = document.querySelector('.content-toolbar');
-        if (toolbar) toolbar.insertAdjacentElement('afterend', podium);
-    }
-
-    setInterval(async () => {
-        try {
-            const res = await fetch(`${API_BASE}/api/tiers`);
-            const data = await res.json();
-            if (JSON.stringify(data) !== JSON.stringify(allData)) {
-                allData = data;
-                animateCount(statPlayers, allData.length);
-                renderRankings(allData);
-                showToast('Rankings updated live!', 'success');
-            }
-        } catch (e) { }
-    }, 30000);
-
-    fetchRankings();
-    
-    function renderQueue(queue, isOpen) {
-        const qCount = document.getElementById('statQueueCount');
-        if (qCount) qCount.textContent = queue.length;
-
-        const qStatusText = document.getElementById('queueStatusText');
-        if (qStatusText) qStatusText.textContent = isOpen ? 'QUEUE OPEN' : 'QUEUE CLOSED';
-
-        const qList = document.getElementById('queueList');
-        if (!qList) return;
-
-        if (queue.length === 0) {
-            qList.innerHTML = '<div class="tcp-empty">The queue is currently empty.</div>';
-            return;
-        }
-
-        qList.innerHTML = queue.map((q, i) => {
-            const time = new Date(q.join_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            return `
-                <div class="player-row" style="height: 50px; padding: 0 15px;">
-                    <div class="rank-box" style="width: 30px;">${i + 1}</div>
-                    <div class="col-player">
-                        <span style="font-weight: 700;">${q.minecraft_ign || 'Member'}</span>
-                        <span style="font-size: 0.7rem; color: var(--text-muted); margin-left: 10px;">Joined ${time}</span>
-                    </div>
-                    <div class="col-region" style="width: auto;">
-                        <span class="region-badge region-AS">${q.category}</span>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
-
-    setInterval(fetchQueue, 10000);
-    fetchQueue();
-
-    // Row click → open modal
-    rankingsList.addEventListener('click', e => {
+    rankingsList?.addEventListener('click', e => {
         const row = e.target.closest('.player-row');
         if (!row) return;
         const rows = [...rankingsList.querySelectorAll('.player-row')];
         const idx = rows.indexOf(row);
-        if (idx === -1) return;
-        const sorted = [...allData].map(p => ({
-            ...p,
-            bestVal: getBestTierValue(p.tiers || []),
-            title: getTitle(getBestTierValue(p.tiers || []))
-        })).sort((a, b) => b.bestVal - a.bestVal || (b.tiers || []).length - (a.tiers || []).length);
+        let sorted;
+        if (currentCategory === 'all') {
+            sorted = [...allData].sort((a,b) => getBestTierValue(b.tiers) - getBestTierValue(a.tiers) || (b.tiers||[]).length - (a.tiers||[]).length);
+        } else {
+            sorted = allData.filter(p => (p.tiers||[]).some(t => normalizeCategory(t.category) === currentCategory))
+                    .sort((a,b) => getTierVal(b.tiers.find(t=>normalizeCategory(t.category)===currentCategory).tier) - getTierVal(a.tiers.find(t=>normalizeCategory(t.category)===currentCategory).tier));
+        }
         if (sorted[idx]) openModal(sorted[idx], idx + 1);
     });
 
-    // ─── ADMIN LOGIC ──────────────────────────────────────────────────────────
-    const adminModal = document.getElementById('adminModal');
-    const adminLoginBtn = document.getElementById('adminLoginBtn');
-    const adminModalClose = document.getElementById('adminModalClose');
-    const adminLoginSubmit = document.getElementById('adminLoginSubmit');
-    const adminPasswordInput = document.getElementById('adminPassword');
+    // ─── ADMIN ───────────────────────────────────────────────────────────────
+    document.getElementById('adminLoginBtn')?.addEventListener('click', () => document.getElementById('adminModal')?.classList.add('modal-open'));
+    document.getElementById('adminModalClose')?.addEventListener('click', () => document.getElementById('adminModal')?.classList.remove('modal-open'));
 
-    if (ADMIN_TOKEN) document.body.classList.add('is-admin');
-
-    adminLoginBtn?.addEventListener('click', () => {
-        adminModal.classList.add('modal-open');
-    });
-
-    adminModalClose?.addEventListener('click', () => {
-        adminModal.classList.remove('modal-open');
-    });
-
-    adminLoginSubmit?.addEventListener('click', async () => {
-        const password = adminPasswordInput.value;
+    document.getElementById('adminLoginSubmit')?.addEventListener('click', async () => {
+        const password = document.getElementById('adminPassword')?.value;
         try {
             const res = await fetch(`${API_BASE}/api/admin/login`, {
                 method: 'POST',
@@ -570,56 +364,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             const data = await res.json();
             if (data.success) {
-                ADMIN_TOKEN = data.token;
-                localStorage.setItem('adminToken', ADMIN_TOKEN);
-                document.body.classList.add('is-admin');
-                adminModal.classList.remove('modal-open');
-                showToast('Logged in as Admin', 'success');
-            } else {
-                showToast('Invalid password', 'error');
+                localStorage.setItem('adminToken', data.token);
+                location.reload();
             }
-        } catch (e) {
-            showToast('Login failed', 'error');
-        }
+        } catch (e) { }
     });
 
-    // Handle Tier Removal
-    document.addEventListener('click', async e => {
-        const btn = e.target.closest('.remove-tier-btn');
-        if (!btn) return;
+    if (ADMIN_TOKEN) document.body.classList.add('is-admin');
 
-        const { userid, category } = btn.dataset;
-        if (!confirm(`Are you sure you want to remove the ${category} tier for this player?`)) return;
-
-        try {
-            const res = await fetch(`${API_BASE}/api/admin/remove-tier`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ userId: userid, category, token: ADMIN_TOKEN })
-            });
-            const data = await res.json();
-            if (data.success) {
-                showToast('Tier removed successfully', 'success');
-                closeModal();
-                fetchRankings(); // Refresh list
-            } else {
-                showToast(data.error || 'Failed to remove tier', 'error');
-            }
-        } catch (e) {
-            showToast('Connection error', 'error');
-        }
-    });
-
-    // Mobile Menu Button Logic
-    mobileMenuBtn?.addEventListener('click', () => {
-        if (sidebar) {
-            sidebar.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            // Add a brief highlight to the sidebar
-            sidebar.style.boxShadow = '0 0 20px var(--primary)';
-            setTimeout(() => { sidebar.style.boxShadow = ''; }, 1000);
-        }
-    });
-
-    // Handle touch device specific behavior
-    document.addEventListener('touchstart', function () { }, { passive: true });
+    // ─── INITIAL LOAD ────────────────────────────────────────────────────────
+    fetchRankings();
+    fetchQueue();
+    setInterval(fetchRankings, 30000);
+    setInterval(fetchQueue, 10000);
 });
