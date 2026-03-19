@@ -161,24 +161,38 @@ document.addEventListener('DOMContentLoaded', () => {
                     const icon = KIT_ICONS[Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase())] || KIT_ICONS['Sword'];
                     return `
                         <div class="tier-item ${colorClass}">
-                            <div class="tier-circle"><img src="${icon}" alt="${displayCat}" style="width:14px;height:14px;"></div>
+                            <div class="tier-circle"><img src="${icon}" alt="${displayCat}"></div>
                             <span class="tier-badge-label">${cleanTier}</span>
+                            <div class="tier-tooltip">
+                                <strong>${displayCat}</strong>
+                                <span>Tier ${cleanTier}</span>
+                            </div>
                         </div>`;
                 }).join('');
 
+                const regionCode = (player.region || 'AS').toUpperCase().split('/')[0];
+
                 row.innerHTML = `
-                    <div class="col-rank">${index + 1}</div>
+                    <div class="col-rank">
+                        <div class="rank-box"><span class="rank-text">${index + 1}</span></div>
+                    </div>
                     <div class="col-player">
-                        <img class="rank-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/32" alt="${player.minecraft_ign}">
-                        <div class="player-info">
-                            <span class="player-ign">${player.minecraft_ign}</span>
-                            <span class="player-title">${player.title}</span>
+                        <div class="player-card">
+                            <div class="avatar-wrapper">
+                                <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42" alt="${player.minecraft_ign}">
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">${player.minecraft_ign}</div>
+                                <div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-region">
-                        <span class="region-badge region-${(player.region || 'AS').toUpperCase().split('/')[0]}">${player.region || 'AS'}</span>
+                        <span class="region-badge region-${regionCode}">${player.region || 'AS'}</span>
                     </div>
-                    <div class="col-tiers">${tiersHtml}</div>
+                    <div class="col-tiers">
+                        <div class="tiers-list">${tiersHtml}</div>
+                    </div>
                 `;
                 rankingsList.appendChild(row);
             });
@@ -201,23 +215,36 @@ document.addEventListener('DOMContentLoaded', () => {
                 row.className = `player-row${isTop3 ? ' top-rank' : ''} row-${index + 1}`;
                 const t = player.tiers.find(ti => normalizeCategory(ti.category) === currentCategory);
                 const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
+                const regionCode = (player.region || 'AS').toUpperCase().split('/')[0];
 
                 row.innerHTML = `
-                    <div class="col-rank">${index + 1}</div>
+                    <div class="col-rank">
+                        <div class="rank-box"><span class="rank-text">${index + 1}</span></div>
+                    </div>
                     <div class="col-player">
-                        <img class="rank-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/32" alt="${player.minecraft_ign}">
-                        <div class="player-info">
-                            <span class="player-ign">${player.minecraft_ign}</span>
-                            <span class="player-title">${player.title}</span>
+                        <div class="player-card">
+                            <div class="avatar-wrapper">
+                                <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42" alt="${player.minecraft_ign}">
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">${player.minecraft_ign}</div>
+                                <div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-region">
-                        <span class="region-badge region-${(player.region || 'AS').toUpperCase().split('/')[0]}">${player.region || 'AS'}</span>
+                        <span class="region-badge region-${regionCode}">${player.region || 'AS'}</span>
                     </div>
                     <div class="col-tiers">
-                        <div class="tier-item tier-color-${cleanTier}">
-                            <div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="kit" style="width:14px;height:14px;"></div>
-                            <span class="tier-badge-label">${cleanTier}</span>
+                         <div class="tiers-list">
+                            <div class="tier-item tier-color-${cleanTier}">
+                                <div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="kit"></div>
+                                <span class="tier-badge-label">${cleanTier}</span>
+                                <div class="tier-tooltip">
+                                    <strong>${dispName}</strong>
+                                    <span>Tier ${cleanTier}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 `;
@@ -227,12 +254,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderPodium(top3) {
-        document.querySelector('.podium-container')?.remove();
+        document.querySelector('.podium-section')?.remove();
         if (!top3 || top3.length === 0) return;
+
         const podium = document.createElement('div');
-        podium.className = 'podium-container';
+        podium.className = 'podium-section';
+        podium.id = 'podiumSection';
         const order = [top3[1], top3[0], top3[2]].filter(Boolean);
-        podium.innerHTML = `<div class="podium-inner">
+        
+        podium.innerHTML = `<div class="podium-title">🏆 Top Players</div><div class="podium-stage">
             ${order.map((p) => {
                 const rank = top3.indexOf(p) + 1;
                 const h = [75, 100, 55][rank - 1];
@@ -245,14 +275,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>`;
             }).join('')}
         </div>`;
-        document.querySelector('.content-toolbar')?.insertAdjacentElement('afterend', podium);
+        const toolbar = document.querySelector('.content-toolbar');
+        if (toolbar) toolbar.insertAdjacentElement('afterend', podium);
     }
 
     function renderQueue(queue, isOpen) {
         const qCount = document.getElementById('statQueueCount');
         if (qCount) qCount.textContent = queue.length;
-        const qStatus = document.getElementById('queueStatusText');
-        if (qStatus) qStatus.textContent = isOpen ? 'QUEUE OPEN' : 'QUEUE CLOSED';
+        const qStatusText = document.getElementById('queueStatusText');
+        if (qStatusText) qStatusText.textContent = isOpen ? 'QUEUE OPEN' : 'QUEUE CLOSED';
+        document.getElementById('queueStatusBanner')?.classList.toggle('open', isOpen);
+        
         const qList = document.getElementById('queueList');
         if (!qList) return;
         if (queue.length === 0) {
@@ -260,9 +293,16 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         qList.innerHTML = queue.map((q, i) => `
-            <div class="player-row" style="height: 50px; padding: 0 15px;">
-                <div class="rank-box" style="width: 30px;">${i + 1}</div>
-                <div class="col-player"><span style="font-weight:700;">${q.minecraft_ign}</span></div>
+            <div class="player-row" style="height: 60px;">
+                <div class="col-rank">
+                    <div class="rank-box"><span class="rank-text">${i + 1}</span></div>
+                </div>
+                <div class="col-player">
+                    <div class="player-card">
+                        <div class="avatar-wrapper"><img src="https://mc-heads.net/avatar/${q.minecraft_ign}/32"></div>
+                        <div class="player-name">${q.minecraft_ign}</div>
+                    </div>
+                </div>
                 <div class="col-region"><span class="region-badge region-AS">${q.category}</span></div>
             </div>`).join('');
     }
