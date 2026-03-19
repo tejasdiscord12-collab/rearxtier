@@ -150,7 +150,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
                     const colorClass = `tier-color-${cleanTier}`;
                     const displayCat = KIT_DISPLAY[t.category.toLowerCase()] || t.category;
-                    const icon = KIT_ICONS[Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase())] || KIT_ICONS['Sword'];
+                    const iconName = Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase());
+                    const icon = KIT_ICONS[iconName] || KIT_ICONS['Sword'];
                     return `
                         <div class="tier-item ${colorClass}">
                             <div class="tier-circle"><img src="${icon}" alt="${displayCat}"></div>
@@ -163,28 +164,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).join('');
 
                 const regionCode = (player.region || 'AS').toUpperCase().split('/')[0];
-
                 row.innerHTML = `
-                    <div class="col-rank">
-                        <div class="rank-box"><span class="rank-text">${index + 1}</span></div>
-                    </div>
+                    <div class="col-rank"><div class="rank-box"><span class="rank-text">${index + 1}</span></div></div>
                     <div class="col-player">
                         <div class="player-card">
-                            <div class="avatar-wrapper">
-                                <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42" alt="${player.minecraft_ign}">
-                            </div>
+                            <div class="avatar-wrapper"><img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42"></div>
                             <div class="player-info">
                                 <div class="player-name">${player.minecraft_ign}</div>
                                 <div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-region">
-                        <span class="region-badge region-${regionCode}">${player.region || 'AS'}</span>
-                    </div>
-                    <div class="col-tiers">
-                        <div class="tiers-list">${tiersHtml}</div>
-                    </div>
+                    <div class="col-region"><span class="region-badge region-${regionCode}">${player.region || 'AS'}</span></div>
+                    <div class="col-tiers"><div class="tiers-list">${tiersHtml}</div></div>
                 `;
                 rankingsList.appendChild(row);
             });
@@ -201,6 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
             renderPodium(filtered.slice(0, 3));
+
             filtered.forEach((player, index) => {
                 const isTop3 = index < 3;
                 const row = document.createElement('div');
@@ -210,32 +203,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 const regionCode = (player.region || 'AS').toUpperCase().split('/')[0];
 
                 row.innerHTML = `
-                    <div class="col-rank">
-                        <div class="rank-box"><span class="rank-text">${index + 1}</span></div>
-                    </div>
+                    <div class="col-rank"><div class="rank-box"><span class="rank-text">${index + 1}</span></div></div>
                     <div class="col-player">
                         <div class="player-card">
-                            <div class="avatar-wrapper">
-                                <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42" alt="${player.minecraft_ign}">
-                            </div>
+                            <div class="avatar-wrapper"><img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42"></div>
                             <div class="player-info">
                                 <div class="player-name">${player.minecraft_ign}</div>
                                 <div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-region">
-                        <span class="region-badge region-${regionCode}">${player.region || 'AS'}</span>
-                    </div>
+                    <div class="col-region"><span class="region-badge region-${regionCode}">${player.region || 'AS'}</span></div>
                     <div class="col-tiers">
-                         <div class="tiers-list">
+                        <div class="tiers-list">
                             <div class="tier-item tier-color-${cleanTier}">
-                                <div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="kit"></div>
+                                <div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}"></div>
                                 <span class="tier-badge-label">${cleanTier}</span>
-                                <div class="tier-tooltip">
-                                    <strong>${dispName}</strong>
-                                    <span>Tier ${cleanTier}</span>
-                                </div>
                             </div>
                         </div>
                     </div>
