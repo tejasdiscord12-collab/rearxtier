@@ -73,8 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'Combat Initiate';
     }
     function normalizeCategory(cat) {
-        if (!cat) return 'sword';
+        if (!cat || cat === 'all') return 'all';
         const c = cat.toLowerCase().trim();
+        if (c === 'all') return 'all';
         if (c.includes('neth') || c === 'npot' || c === 'nethpot' || c.includes('pot')) return 'nethpot';
         if (c.includes('smp')) return 'smpkit';
         if (c === 'swords' || c === 'sword') return 'sword';
