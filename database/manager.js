@@ -3,6 +3,66 @@ const path = require('path');
 const fs = require('fs');
 
 const dbPath = path.join(__dirname, 'bot_database.db');
+const playersJsonPath = path.join(__dirname, '../website/public/players.json');
+const queueJsonPath = path.join(__dirname, '../website/public/queue.json');
+
+const config = require('../utils/config');
+const GIST_ID = '0583dadbe079dbae6e0a5ac18bcac33b';
+const GITHUB_TOKEN = config.GITHUB_TOKEN;
+
+const saveJson = () => {
+    try {
+        const users = db.prepare("SELECT * FROM users").all();
+        const playerTiers = db.prepare("SELECT * FROM player_tiers").all();
+        const exportTiers = users.map(user => ({
+            ...user,
+            tiers: playerTiers.filter(t => t.user_id === user.user_id)
+        }));
+        
+        const queue = db.prepare(`
+            SELECT q.user_id, q.category, q.join_time, u.minecraft_ign 
+            FROM queue q
+            LEFT JOIN users u ON q.user_id = u.user_id
+            ORDER BY q.join_time ASC
+        `).all();
+        const isOpen = db.prepare("SELECT value FROM settings WHERE key = 'queue_open'").get()?.value === 'true';
+        
+        const playersContent = JSON.stringify(exportTiers, null, 4);
+        const queueContent = JSON.stringify({ queue, isOpen }, null, 4);
+
+        // Save locally just in case
+        fs.writeFileSync(playersJsonPath, playersContent);
+        fs.writeFileSync(queueJsonPath, queueContent);
+
+        // SYNC TO GITHUB (HTTPS Bridge)
+        const https = require('https');
+        const data = JSON.stringify({
+            files: {
+                "players.json": { content: playersContent },
+                "queue.json": { content: queueContent }
+            }
+        });
+
+        const req = https.request({
+            hostname: 'api.github.com',
+            port: 443,
+            path: `/gists/${GIST_ID}`,
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Bearer ${GITHUB_TOKEN}`,
+                'User-Agent': 'NodeJS',
+                'Content-Type': 'application/json',
+                'Content-Length': data.length
+            }
+        });
+        req.on('error', (e) => console.error('❌ Gist Sync Error:', e));
+        req.write(data);
+        req.end();
+
+    } catch (e) {
+        console.error('❌ Failed to export JSON files:', e);
+    }
+};
 
 let db;
 try {
@@ -87,10 +147,12 @@ module.exports = {
     },
     setQueueStatus: (status) => {
         db.prepare("UPDATE settings SET value = ? WHERE key = 'queue_open'").run(status ? 'true' : 'false');
+        saveJson();
     },
     addToQueue: (userId, category, joinTime) => {
         try {
             db.prepare("INSERT INTO queue (user_id, category, join_time) VALUES (?, ?, ?)").run(userId, category, joinTime);
+            saveJson();
             return true;
         } catch (e) {
             return false;
@@ -98,9 +160,11 @@ module.exports = {
     },
     removeFromQueue: (userId) => {
         db.prepare("DELETE FROM queue WHERE user_id = ?").run(userId);
+        saveJson();
     },
     clearQueueCategory: (category) => {
         db.prepare("DELETE FROM queue WHERE UPPER(category) = UPPER(?)").run(category);
+        saveJson();
     },
     getQueue: () => {
         return db.prepare(`
@@ -147,7 +211,7 @@ module.exports = {
         }
         return false;
     },
-    updateUserTier: (userId, ign, tier, category, region = 'Global') => {
+    updateUserTier: (userId, ign, tier, category, region = 'Global', doSave = true) => {
         // 1. Update/Insert User
         db.prepare(`
             INSERT INTO users (user_id, minecraft_ign, region)
@@ -165,6 +229,7 @@ module.exports = {
                 tier = excluded.tier,
                 timestamp = excluded.timestamp
         `).run(userId, category, tier, Date.now());
+        if (doSave) saveJson();
     },
     getUser: (userId) => {
         return db.prepare("SELECT * FROM users WHERE user_id = ?").get(userId);
@@ -178,6 +243,7 @@ module.exports = {
                 region = excluded.region,
                 account_type = excluded.account_type
         `).run(userId, ign, region, accountType);
+        saveJson();
     },
     updateWaitlistTimestamp: (userId) => {
         db.prepare("UPDATE users SET last_waitlist_timestamp = ? WHERE user_id = ?").run(Date.now(), userId);
@@ -224,6 +290,7 @@ module.exports = {
         if (remaining.c === 0) {
             db.prepare("DELETE FROM users WHERE user_id = ?").run(userId);
         }
+        saveJson();
         return result.changes > 0;
     },
     logTest: (testerId, playerId, ign, category, tier, timestamp = null) => {
@@ -243,5 +310,6 @@ module.exports = {
             ORDER BY test_count DESC 
             LIMIT 10
         `).all();
-    }
+    },
+    saveJson: saveJson
 };

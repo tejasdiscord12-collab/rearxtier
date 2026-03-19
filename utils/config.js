@@ -14,7 +14,8 @@ const config = {
     NETHPOT_QUEUE_CHANNEL_ID: process.env.NETHPOT_QUEUE_CHANNEL_ID,
     LOGS_CHANNEL_ID: process.env.LOGS_CHANNEL_ID,
     RESULT_COMMAND_CHANNEL_ID: process.env.RESULT_COMMAND_CHANNEL_ID || '1477991158054518865',
-    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'admin123'
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD || 'admin123',
+    GITHUB_TOKEN: process.env.GITHUB_TOKEN
 };
 
 if (!config.TOKEN) {
