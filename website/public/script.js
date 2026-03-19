@@ -134,7 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
             return { ...p, bestVal, title: getTitle(bestVal) };
         });
 
-        if (currentCategory === 'all') {
+        const normalizedCurrent = normalizeCategory(currentCategory);
+
+        if (normalizedCurrent === 'all') {
             tableHeader.style.display = 'flex';
             contentTitle.innerHTML = '<i class="fa-solid fa-trophy" style="color:#ffb800"></i> Overall Rankings';
 
@@ -198,13 +200,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } else {
             tableHeader.style.display = 'flex';
-            const dispName = KIT_DISPLAY[currentCategory] || currentCategory;
+            const dispName = KIT_DISPLAY[normalizedCurrent] || normalizedCurrent;
             contentTitle.innerHTML = `<img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" class="title-kit-icon"> ${dispName} Rankings`;
 
-            const filtered = playersWithData.filter(p => (p.tiers || []).some(t => normalizeCategory(t.category) === currentCategory))
+            const filtered = playersWithData.filter(p => (p.tiers || []).some(t => normalizeCategory(t.category) === normalizedCurrent))
                 .sort((a, b) => {
-                    const tA = a.tiers.find(t => normalizeCategory(t.category) === currentCategory);
-                    const tB = b.tiers.find(t => normalizeCategory(t.category) === currentCategory);
+                    const tA = a.tiers.find(t => normalizeCategory(t.category) === normalizedCurrent);
+                    const tB = b.tiers.find(t => normalizeCategory(t.category) === normalizedCurrent);
                     return getTierVal(tB.tier) - getTierVal(tA.tier);
                 });
 
