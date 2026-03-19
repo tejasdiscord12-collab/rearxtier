@@ -1,8 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
-    const GIST_ID = '0583dadbe079dbae6e0a5ac18bcac33b';
-    const GIST_API_URL = `https://api.github.com/gists/${GIST_ID}`;
+    const GIST_RAW_BASE = 'https://gist.githubusercontent.com/tejasdiscord12-collab/0583dadbe079dbae6e0a5ac18bcac33b/raw/';
     const API_BASE = 'http://eu1i7.hexonode.com:26113';
     let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
 
@@ -89,15 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── FETCH ───────────────────────────────────────────────────────────────
     async function fetchRankings() {
         try {
-            console.log("🔍 Syncing rankings via Gist API...");
-            const res = await fetch(`${GIST_API_URL}?cache_bust=${Date.now()}`, { cache: 'no-store' });
-            if (!res.ok) throw new Error(`API Error ${res.status}`);
-            
-            const gistData = await res.json();
-            const playersFile = gistData.files['players.json'];
-            if (!playersFile || !playersFile.content) throw new Error("Rankings file missing.");
-
-            allData = JSON.parse(playersFile.content);
+            console.log("🔍 Syncing rankings via Raw Gist...");
+            const res = await fetch(`${GIST_RAW_BASE}players.json?v=${Date.now()}`, { cache: 'no-store' });
+            if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
+            allData = await res.json();
             if (statPlayers) statPlayers.textContent = allData.length;
             renderRankings(allData);
         } catch (e) {
@@ -108,14 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchQueue() {
         try {
-            const res = await fetch(`${GIST_API_URL}?cache_bust=${Date.now()}`, { cache: 'no-store' });
+            const res = await fetch(`${GIST_RAW_BASE}queue.json?v=${Date.now()}`, { cache: 'no-store' });
             if (!res.ok) return;
-            const gistData = await res.json();
-            const queueFile = gistData.files['queue.json'];
-            if (queueFile?.content) {
-                const data = JSON.parse(queueFile.content);
-                renderQueue(data.queue || [], data.isOpen || false);
-            }
+            const data = await res.json();
+            renderQueue(data.queue || [], data.isOpen || false);
         } catch (e) { }
     }
 
@@ -215,7 +205,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isTop3 = index < 3;
                 const row = document.createElement('div');
                 row.className = `player-row${isTop3 ? ' top-rank' : ''} row-${index + 1}`;
-                const t = player.tiers.find(ti => normalizeCategory(ti.category) === currentCategory);
+                const t = player.tiers.find(ti => normalizeCategory(ti.category) === normalizedCurrent);
                 const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
                 const regionCode = (player.region || 'AS').toUpperCase().split('/')[0];
 
@@ -309,114 +299,49 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`).join('');
     }
 
-    // ─── MODAL ───────────────────────────────────────────────────────────────
-    function openModal(player, rank) {
-        const modal = document.createElement('div');
-        modal.className = 'player-modal modal-open';
-        const processed = (player.tiers || []).sort((a,b) => getTierVal(b.tier) - getTierVal(a.tier));
-        const bestTier = processed[0]?.tier.toUpperCase().replace(';', '') || 'N/A';
+    // ─── EVENTS ──────────────────────────────────────────────────────────────
+    navRankings?.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentView = 'rankings';
+        rankingsContainer.style.display = 'block';
+        queueContainer.style.display = 'none';
+        navRankings.classList.add('active');
+        navQueue.classList.remove('active');
+    });
 
-        modal.innerHTML = `
-            <div class="modal-backdrop" onclick="this.parentElement.remove()"></div>
-            <div class="modal-card">
-                <button class="modal-close" onclick="this.parentElement.parentElement.remove()"><i class="fa-solid fa-xmark"></i></button>
-                <div class="modal-body">
-                    <img class="modal-avatar" src="https://mc-heads.net/avatar/${player.minecraft_ign}/128" alt="player">
-                    <h2 class="modal-name">${player.minecraft_ign}</h2>
-                    <p class="modal-subtitle">${player.title || 'Player'} • ${player.region || 'AS'}</p>
-                    <div class="modal-stats">
-                        <div class="ms-card"><span class="ms-num">${player.tiers?.length || 0}</span><span class="ms-label">KITS</span></div>
-                        <div class="ms-card"><span class="ms-num">${bestTier}</span><span class="ms-label">BEST</span></div>
-                    </div>
-                    <div class="modal-divider"></div>
-                    <div class="modal-tiers-grid">
-                        ${(player.tiers || []).map(t => {
-                            const ct = t.tier.toUpperCase().replace(';', '').trim();
-                            const cat = normalizeCategory(t.category);
-                            return `<div class="mt-card tier-color-${ct}">
-                                <div class="mt-kit">${KIT_DISPLAY[cat] || cat}</div>
-                                <div class="mt-tier">${ct}</div>
-                                ${ADMIN_TOKEN ? `<button class="remove-tier-btn" data-userid="${player.user_id}" data-category="${t.category}"><i class="fa-solid fa-trash"></i></button>` : ''}
-                            </div>`;
-                        }).join('')}
-                    </div>
-                </div>
-            </div>`;
-        document.body.appendChild(modal);
-    }
+    navQueue?.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentView = 'queue';
+        rankingsContainer.style.display = 'none';
+        queueContainer.style.display = 'block';
+        navQueue.classList.add('active');
+        navRankings.classList.remove('active');
+    });
 
-    // ─── LISTENERS ───────────────────────────────────────────────────────────
     kitButtons.forEach(btn => btn.addEventListener('click', () => {
         kitButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentCategory = btn.dataset.category;
         renderRankings(allData);
-        window.scrollTo({ top: 400, behavior: 'smooth' });
+        if (window.innerWidth <= 900) sidebar.classList.remove('active');
     }));
 
-    playerSearch?.addEventListener('input', e => {
-        const q = e.target.value.toLowerCase();
-        renderRankings(allData.filter(p => p.minecraft_ign.toLowerCase().includes(q)));
+    playerSearch?.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = allData.filter(p => p.minecraft_ign.toLowerCase().includes(term));
+        renderRankings(filtered);
     });
 
-    navRankings?.addEventListener('click', () => {
-        currentView = 'rankings';
-        navRankings.classList.add('active');
-        navQueue.classList.remove('active');
-        rankingsContainer.style.display = 'block';
-        queueContainer.style.display = 'none';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    mobileMenuBtn?.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
     });
 
-    navQueue?.addEventListener('click', () => {
-        currentView = 'queue';
-        navQueue.classList.add('active');
-        navRankings.classList.remove('active');
-        rankingsContainer.style.display = 'none';
-        queueContainer.style.display = 'block';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    rankingsList?.addEventListener('click', e => {
-        const row = e.target.closest('.player-row');
-        if (!row) return;
-        const rows = [...rankingsList.querySelectorAll('.player-row')];
-        const idx = rows.indexOf(row);
-        let sorted;
-        if (currentCategory === 'all') {
-            sorted = [...allData].sort((a,b) => getBestTierValue(b.tiers) - getBestTierValue(a.tiers) || (b.tiers||[]).length - (a.tiers||[]).length);
-        } else {
-            sorted = allData.filter(p => (p.tiers||[]).some(t => normalizeCategory(t.category) === currentCategory))
-                    .sort((a,b) => getTierVal(b.tiers.find(t=>normalizeCategory(t.category)===currentCategory).tier) - getTierVal(a.tiers.find(t=>normalizeCategory(t.category)===currentCategory).tier));
-        }
-        if (sorted[idx]) openModal(sorted[idx], idx + 1);
-    });
-
-    // ─── ADMIN ───────────────────────────────────────────────────────────────
-    document.getElementById('adminLoginBtn')?.addEventListener('click', () => document.getElementById('adminModal')?.classList.add('modal-open'));
-    document.getElementById('adminModalClose')?.addEventListener('click', () => document.getElementById('adminModal')?.classList.remove('modal-open'));
-
-    document.getElementById('adminLoginSubmit')?.addEventListener('click', async () => {
-        const password = document.getElementById('adminPassword')?.value;
-        try {
-            const res = await fetch(`${API_BASE}/api/admin/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password })
-            });
-            const data = await res.json();
-            if (data.success) {
-                localStorage.setItem('adminToken', data.token);
-                location.reload();
-            }
-        } catch (e) { }
-    });
-
-    if (ADMIN_TOKEN) document.body.classList.add('is-admin');
-
-    // ─── INITIAL LOAD ────────────────────────────────────────────────────────
+    // ─── INITIALIZE ───────────────────────────────────────────────────────────
     fetchRankings();
     fetchQueue();
-    setInterval(fetchRankings, 30000);
-    setInterval(fetchQueue, 10000);
+    setInterval(() => {
+        fetchRankings();
+        fetchQueue();
+    }, 60000);
+
 });
