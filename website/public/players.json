@@ -1,27 +1,3129 @@
 [
     {
-        "user_id": "1",
-        "minecraft_ign": "ExamplePlayer",
+        "user_id": "1347518733182173204",
+        "minecraft_ign": "ZyrexStriker",
         "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
         "tiers": [
             {
-                "category": "Nethpot",
-                "tier": "HT1"
+                "user_id": "1347518733182173204",
+                "category": "Sword",
+                "tier": "LT5",
+                "timestamp": 1773834077722
             },
             {
-                "category": "Sword",
-                "tier": "LT2"
+                "user_id": "1347518733182173204",
+                "category": "Nethpot",
+                "tier": "LT4",
+                "timestamp": 1773834077721
             }
         ]
     },
     {
-        "user_id": "2",
-        "minecraft_ign": "RearMc_Admin",
-        "region": "EU",
+        "user_id": "1413557942631792651",
+        "minecraft_ign": "PUMBA_PLAYS",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
         "tiers": [
             {
+                "user_id": "1413557942631792651",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834077720
+            },
+            {
+                "user_id": "1413557942631792651",
+                "category": "Sword",
+                "tier": "LT4",
+                "timestamp": 1773834077719
+            },
+            {
+                "user_id": "1413557942631792651",
+                "category": "Nethpot",
+                "tier": "LT4",
+                "timestamp": 1773834077718
+            }
+        ]
+    },
+    {
+        "user_id": "1457740656222142697",
+        "minecraft_ign": "KaisalMC",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1457740656222142697",
+                "category": "Npot",
+                "tier": "HT4",
+                "timestamp": 1773834077716
+            },
+            {
+                "user_id": "1457740656222142697",
+                "category": "Sword",
+                "tier": "LT4",
+                "timestamp": 1773834079950
+            }
+        ]
+    },
+    {
+        "user_id": "1303946153053786212",
+        "minecraft_ign": "RiggThePigg",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1303946153053786212",
+                "category": "Npot",
+                "tier": "LT3",
+                "timestamp": 1773834077715
+            }
+        ]
+    },
+    {
+        "user_id": "1344205919847972935",
+        "minecraft_ign": "soh4il",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1344205919847972935",
+                "category": "Npot",
+                "tier": "Ht3",
+                "timestamp": 1773834077714
+            }
+        ]
+    },
+    {
+        "user_id": "1410647405249957898",
+        "minecraft_ign": "Vinash_Kai",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1410647405249957898",
+                "category": "Sword",
+                "tier": "LT4",
+                "timestamp": 1773834077712
+            }
+        ]
+    },
+    {
+        "user_id": "1442368364142919734",
+        "minecraft_ign": "Ilovechuchi",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1442368364142919734",
+                "category": "Nethpot",
+                "tier": "LT4",
+                "timestamp": 1773834077711
+            }
+        ]
+    },
+    {
+        "user_id": "1232261529752178719",
+        "minecraft_ign": "SmartyPlayzZ",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1232261529752178719",
+                "category": "Nethpot",
+                "tier": "HT5",
+                "timestamp": 1773834077710
+            }
+        ]
+    },
+    {
+        "user_id": "1419409149229535293",
+        "minecraft_ign": "BetterDevilxD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1419409149229535293",
+                "category": "Nethpot",
+                "tier": "HT3",
+                "timestamp": 1773834077709
+            }
+        ]
+    },
+    {
+        "user_id": "1308352936891387904",
+        "minecraft_ign": "Zoxcy_Playz",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1308352936891387904",
+                "category": "Nethpot",
+                "tier": "LT4",
+                "timestamp": 1773834077708
+            },
+            {
+                "user_id": "1308352936891387904",
+                "category": "Sword",
+                "tier": "LT4",
+                "timestamp": 1773834079949
+            }
+        ]
+    },
+    {
+        "user_id": "880086193348431872",
+        "minecraft_ign": "Aarnav",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "880086193348431872",
+                "category": "Nethpot",
+                "tier": "HT4",
+                "timestamp": 1773834077707
+            },
+            {
+                "user_id": "880086193348431872",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773917360481
+            },
+            {
+                "user_id": "880086193348431872",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773834079917
+            }
+        ]
+    },
+    {
+        "user_id": "1393507884008083487",
+        "minecraft_ign": "itzDrak4n",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1393507884008083487",
+                "category": "Nethpot",
+                "tier": "HT5",
+                "timestamp": 1773834077706
+            },
+            {
+                "user_id": "1393507884008083487",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834078974
+            }
+        ]
+    },
+    {
+        "user_id": "1312632266026913853",
+        "minecraft_ign": "Madhav_OG",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1312632266026913853",
+                "category": "Nethpot",
+                "tier": "LT4",
+                "timestamp": 1773834077705
+            },
+            {
+                "user_id": "1312632266026913853",
+                "category": "cpvp",
+                "tier": "Ht5",
+                "timestamp": 1773917360474
+            },
+            {
+                "user_id": "1312632266026913853",
+                "category": "NethPOT",
+                "tier": "LT4",
+                "timestamp": 1773917360483
+            },
+            {
+                "user_id": "1312632266026913853",
+                "category": "CPVP",
+                "tier": "LT4",
+                "timestamp": 1773917360470
+            }
+        ]
+    },
+    {
+        "user_id": "842354456036638731",
+        "minecraft_ign": "Vinash_Kai",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "842354456036638731",
+                "category": "Nethpot",
+                "tier": "Ht4",
+                "timestamp": 1773834077704
+            }
+        ]
+    },
+    {
+        "user_id": "1471931345029693491",
+        "minecraft_ign": "vishal18",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1471931345029693491",
+                "category": "Sword",
+                "tier": "Ht5",
+                "timestamp": 1773834077703
+            },
+            {
+                "user_id": "1471931345029693491",
+                "category": "Nethpot",
+                "tier": "Lt5",
+                "timestamp": 1773834077702
+            }
+        ]
+    },
+    {
+        "user_id": "1478787400070336706",
+        "minecraft_ign": "Fabro_PlayzZ",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1478787400070336706",
+                "category": "Nethpot",
+                "tier": "HT5",
+                "timestamp": 1773834077700
+            },
+            {
+                "user_id": "1478787400070336706",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773834079035
+            }
+        ]
+    },
+    {
+        "user_id": "1326070339918237762",
+        "minecraft_ign": "Mr_IQ23",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1326070339918237762",
+                "category": "Nethpot",
+                "tier": "HT4",
+                "timestamp": 1773834077699
+            }
+        ]
+    },
+    {
+        "user_id": "894886079411404800",
+        "minecraft_ign": "InfernalGhoul",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "894886079411404800",
+                "category": "Sword",
+                "tier": "Ht4",
+                "timestamp": 1773834077697
+            },
+            {
+                "user_id": "894886079411404800",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360443
+            }
+        ]
+    },
+    {
+        "user_id": "1374328424755105866",
+        "minecraft_ign": "NotHypedOk",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1374328424755105866",
+                "category": "Sword",
+                "tier": "LT5",
+                "timestamp": 1773834077696
+            }
+        ]
+    },
+    {
+        "user_id": "1047888722558988350",
+        "minecraft_ign": "a",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 1772715345452,
+        "tiers": [
+            {
+                "user_id": "1047888722558988350",
+                "category": "Sword",
+                "tier": "Ht4",
+                "timestamp": 1773834079952
+            },
+            {
+                "user_id": "1047888722558988350",
+                "category": "nethpot",
+                "tier": "HT0",
+                "timestamp": 1772727708761
+            },
+            {
+                "user_id": "1047888722558988350",
+                "category": "a",
+                "tier": "a",
+                "timestamp": 1773834080665
+            }
+        ]
+    },
+    {
+        "user_id": "1136178414030704732",
+        "minecraft_ign": "TejasPAPA",
+        "region": "AS/AU",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 1772716887053,
+        "tiers": []
+    },
+    {
+        "user_id": "1339605392187068478",
+        "minecraft_ign": "DipuPlayz_",
+        "region": "NA",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1339605392187068478",
+                "category": "NETHPOT",
+                "tier": "lt4",
+                "timestamp": 1773834080659
+            },
+            {
+                "user_id": "1339605392187068478",
+                "category": "Mace",
+                "tier": "LT4",
+                "timestamp": 1773834079977
+            },
+            {
+                "user_id": "1339605392187068478",
+                "category": "DIAPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079975
+            }
+        ]
+    },
+    {
+        "user_id": "1471603841827868824",
+        "minecraft_ign": "Vedant_XD7777",
+        "region": "As",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 1772718106016,
+        "tiers": [
+            {
+                "user_id": "1471603841827868824",
+                "category": "Sword",
+                "tier": "LT5",
+                "timestamp": 1773834080666
+            }
+        ]
+    },
+    {
+        "user_id": "1460229148134867048",
+        "minecraft_ign": "AstroThunder_xd",
+        "region": "As",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 1772718169478,
+        "tiers": [
+            {
+                "user_id": "1460229148134867048",
+                "category": "Sword",
+                "tier": "LT4",
+                "timestamp": 1773834080667
+            }
+        ]
+    },
+    {
+        "user_id": "1349046039616819285",
+        "minecraft_ign": "DEEShuxD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1349046039616819285",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834080630
+            },
+            {
+                "user_id": "1349046039616819285",
                 "category": "Axe",
-                "tier": "HT1"
+                "tier": "HT5",
+                "timestamp": 1773834080661
+            },
+            {
+                "user_id": "1349046039616819285",
+                "category": "UHC",
+                "tier": "HT5",
+                "timestamp": 1773834080619
+            },
+            {
+                "user_id": "1349046039616819285",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079920
+            },
+            {
+                "user_id": "1349046039616819285",
+                "category": "Diapot",
+                "tier": "LT4",
+                "timestamp": 1773834079921
+            }
+        ]
+    },
+    {
+        "user_id": "1235505548825460766",
+        "minecraft_ign": "Shenron_XD",
+        "region": "AS/AU",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": []
+    },
+    {
+        "user_id": "1225060441924046921",
+        "minecraft_ign": "SpidroPlayzZz_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1225060441924046921",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1773834079868
+            }
+        ]
+    },
+    {
+        "user_id": "1402322318704775168",
+        "minecraft_ign": "GodxZyr0",
+        "region": "AS/AU",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": []
+    },
+    {
+        "user_id": "1223653976113938573",
+        "minecraft_ign": "ankushl",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1223653976113938573",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1773917360477
+            }
+        ]
+    },
+    {
+        "user_id": "1268538286339522675",
+        "minecraft_ign": "BuraN0Quit",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1268538286339522675",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1773917360472
+            }
+        ]
+    },
+    {
+        "user_id": "1458978966604873883",
+        "minecraft_ign": "Tocix_Me",
+        "region": "AS/AU",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": []
+    },
+    {
+        "user_id": "1354410734985150557",
+        "minecraft_ign": "LinhPulse2txUwU",
+        "region": "AS/AU",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": []
+    },
+    {
+        "user_id": "1478325136913600644",
+        "minecraft_ign": "Ankuz",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1478325136913600644",
+                "category": "AS",
+                "tier": "AS",
+                "timestamp": 1773834080669
+            },
+            {
+                "user_id": "1478325136913600644",
+                "category": "NETHPOT",
+                "tier": "LT3",
+                "timestamp": 1773917360459
+            }
+        ]
+    },
+    {
+        "user_id": "1384557368662163458",
+        "minecraft_ign": "Zerroxy",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1384557368662163458",
+                "category": "Npot",
+                "tier": "LT5",
+                "timestamp": 1773834080632
+            },
+            {
+                "user_id": "1384557368662163458",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079897
+            },
+            {
+                "user_id": "1384557368662163458",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079008
+            },
+            {
+                "user_id": "1384557368662163458",
+                "category": "sword",
+                "tier": "lt5",
+                "timestamp": 1773917360453
+            }
+        ]
+    },
+    {
+        "user_id": "1284466668566872165",
+        "minecraft_ign": "RHINO_PLAYZZ",
+        "region": "AS/AU",
+        "total_points": 0,
+        "account_type": "Cracked",
+        "last_waitlist_timestamp": 0,
+        "tiers": []
+    },
+    {
+        "user_id": "1096813675068796952",
+        "minecraft_ign": "MrSakyu859",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1096813675068796952",
+                "category": "Swords",
+                "tier": "Lt5",
+                "timestamp": 1773834080623
+            },
+            {
+                "user_id": "1096813675068796952",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773917360477
+            },
+            {
+                "user_id": "1096813675068796952",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079902
+            },
+            {
+                "user_id": "1096813675068796952",
+                "category": "SWORD",
+                "tier": "LT5",
+                "timestamp": 1773917360418
+            },
+            {
+                "user_id": "1096813675068796952",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1773917360422
+            }
+        ]
+    },
+    {
+        "user_id": "1377513737220784210",
+        "minecraft_ign": "Gannekajuice020",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1377513737220784210",
+                "category": "Nethpot",
+                "tier": "LT4",
+                "timestamp": 1773834080625
+            },
+            {
+                "user_id": "1377513737220784210",
+                "category": "Axe",
+                "tier": "HT5",
+                "timestamp": 1773834080651
+            },
+            {
+                "user_id": "1377513737220784210",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834079962
+            }
+        ]
+    },
+    {
+        "user_id": "1243442422353100853",
+        "minecraft_ign": "MrFensoX",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1243442422353100853",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773834080626
+            },
+            {
+                "user_id": "1243442422353100853",
+                "category": "Crystal",
+                "tier": "LT4",
+                "timestamp": 1773834080618
+            },
+            {
+                "user_id": "1243442422353100853",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773917360476
+            },
+            {
+                "user_id": "1243442422353100853",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079890
+            }
+        ]
+    },
+    {
+        "user_id": "1426601073560391802",
+        "minecraft_ign": "IAm_Rittzy",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1426601073560391802",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834080627
+            },
+            {
+                "user_id": "1426601073560391802",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079032
+            },
+            {
+                "user_id": "1426601073560391802",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079896
+            }
+        ]
+    },
+    {
+        "user_id": "1260562864230502472",
+        "minecraft_ign": "CozzyT3_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1260562864230502472",
+                "category": "Diapot",
+                "tier": "HT5",
+                "timestamp": 1773834080628
+            }
+        ]
+    },
+    {
+        "user_id": "1301832081755602965",
+        "minecraft_ign": "Rohaanyrre",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1301832081755602965",
+                "category": "Npot",
+                "tier": "LT4",
+                "timestamp": 1773834080634
+            },
+            {
+                "user_id": "1301832081755602965",
+                "category": "NETHPOT",
+                "tier": "ht4",
+                "timestamp": 1773834079972
+            },
+            {
+                "user_id": "1301832081755602965",
+                "category": "Axe",
+                "tier": "LT4",
+                "timestamp": 1773834079938
+            },
+            {
+                "user_id": "1301832081755602965",
+                "category": "Sword",
+                "tier": "LT4",
+                "timestamp": 1773834079014
+            }
+        ]
+    },
+    {
+        "user_id": "1374402927481061389",
+        "minecraft_ign": "DEADLYRAUNAK",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1374402927481061389",
+                "category": "Diapot",
+                "tier": "HT5",
+                "timestamp": 1773834080635
+            },
+            {
+                "user_id": "1374402927481061389",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360444
+            },
+            {
+                "user_id": "1374402927481061389",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834080644
+            },
+            {
+                "user_id": "1374402927481061389",
+                "category": "Axe",
+                "tier": "HT5",
+                "timestamp": 1773834080648
+            },
+            {
+                "user_id": "1374402927481061389",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079859
+            },
+            {
+                "user_id": "1374402927481061389",
+                "category": "NethPOT",
+                "tier": "Ht5",
+                "timestamp": 1773917360482
+            },
+            {
+                "user_id": "1374402927481061389",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360443
+            }
+        ]
+    },
+    {
+        "user_id": "1476549187092086904",
+        "minecraft_ign": "NexusAarib",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1476549187092086904",
+                "category": "NEthpot",
+                "tier": "HT5",
+                "timestamp": 1773834080636
+            },
+            {
+                "user_id": "1476549187092086904",
+                "category": "Npot",
+                "tier": "LT4",
+                "timestamp": 1773834079887
+            },
+            {
+                "user_id": "1476549187092086904",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079901
+            }
+        ]
+    },
+    {
+        "user_id": "1127814636222287912",
+        "minecraft_ign": "arnav_javaop",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1127814636222287912",
+                "category": "Sword",
+                "tier": "lt4",
+                "timestamp": 1773834080639
+            },
+            {
+                "user_id": "1127814636222287912",
+                "category": "Axe",
+                "tier": "HT5",
+                "timestamp": 1773834080649
+            },
+            {
+                "user_id": "1127814636222287912",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773834079892
+            }
+        ]
+    },
+    {
+        "user_id": "1165598409110077503",
+        "minecraft_ign": "yashpcxd",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1165598409110077503",
+                "category": "Nethpot",
+                "tier": "HT5",
+                "timestamp": 1773834080640
+            },
+            {
+                "user_id": "1165598409110077503",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1773834079880
+            }
+        ]
+    },
+    {
+        "user_id": "1229431557643567176",
+        "minecraft_ign": "Ryukv4_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1229431557643567176",
+                "category": "Nethpot",
+                "tier": "HT4",
+                "timestamp": 1773834080642
+            },
+            {
+                "user_id": "1229431557643567176",
+                "category": "NETHPOT",
+                "tier": "LT3",
+                "timestamp": 1773834079947
+            }
+        ]
+    },
+    {
+        "user_id": "1384586354335289525",
+        "minecraft_ign": "shivangrgh",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1384586354335289525",
+                "category": "SMP KIT",
+                "tier": "LT4",
+                "timestamp": 1773834080643
+            },
+            {
+                "user_id": "1384586354335289525",
+                "category": "SMP",
+                "tier": "Lt4",
+                "timestamp": 1773834080658
+            },
+            {
+                "user_id": "1384586354335289525",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834080663
+            },
+            {
+                "user_id": "1384586354335289525",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360461
+            }
+        ]
+    },
+    {
+        "user_id": "897013239244812299",
+        "minecraft_ign": "senpaikedaddy",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "897013239244812299",
+                "category": "Nethpot",
+                "tier": "ht4",
+                "timestamp": 1773834080645
+            }
+        ]
+    },
+    {
+        "user_id": "1105502117994709052",
+        "minecraft_ign": "ShallowX",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1105502117994709052",
+                "category": "Nethpot",
+                "tier": "lt3",
+                "timestamp": 1773834080652
+            }
+        ]
+    },
+    {
+        "user_id": "1006551310142804110",
+        "minecraft_ign": "Sofabhaiiyt",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1006551310142804110",
+                "category": "Axe",
+                "tier": "LT4",
+                "timestamp": 1773834080655
+            },
+            {
+                "user_id": "1006551310142804110",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079931
+            }
+        ]
+    },
+    {
+        "user_id": "1451505043701497937",
+        "minecraft_ign": "SARANSH_TAXAK",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1451505043701497937",
+                "category": "Axe",
+                "tier": "LT5",
+                "timestamp": 1773834080657
+            },
+            {
+                "user_id": "1451505043701497937",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079940
+            },
+            {
+                "user_id": "1451505043701497937",
+                "category": "crystal",
+                "tier": "HT5",
+                "timestamp": 1773917360467
+            }
+        ]
+    },
+    {
+        "user_id": "1083425176168964166",
+        "minecraft_ign": "Alric_Plays",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1083425176168964166",
+                "category": "Sword",
+                "tier": "Ht4",
+                "timestamp": 1773834080668
+            }
+        ]
+    },
+    {
+        "user_id": "983286571677646910",
+        "minecraft_ign": "Iglascy071_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "983286571677646910",
+                "category": "SMP KIT",
+                "tier": "LT4",
+                "timestamp": 1773834080620
+            },
+            {
+                "user_id": "983286571677646910",
+                "category": "UHC",
+                "tier": "LT4",
+                "timestamp": 1773834080613
+            },
+            {
+                "user_id": "983286571677646910",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773834079879
+            },
+            {
+                "user_id": "983286571677646910",
+                "category": "Axe",
+                "tier": "HT4",
+                "timestamp": 1773834079933
+            }
+        ]
+    },
+    {
+        "user_id": "1445823934246289561",
+        "minecraft_ign": "LIVEGAMER_xD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1445823934246289561",
+                "category": "Nethpot",
+                "tier": "HT5",
+                "timestamp": 1773834080621
+            }
+        ]
+    },
+    {
+        "user_id": "1008801040730173480",
+        "minecraft_ign": "Blocky_G",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1008801040730173480",
+                "category": "NETHPOT",
+                "tier": "HT4 strong",
+                "timestamp": 1773834080615
+            },
+            {
+                "user_id": "1008801040730173480",
+                "category": "UHC",
+                "tier": "LT3",
+                "timestamp": 1773834079925
+            }
+        ]
+    },
+    {
+        "user_id": "1474764771353165825",
+        "minecraft_ign": "Xyr01x",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1474764771353165825",
+                "category": "NETHPOT",
+                "tier": "lt4",
+                "timestamp": 1773834080611
+            },
+            {
+                "user_id": "1474764771353165825",
+                "category": "Diapot",
+                "tier": "HT4",
+                "timestamp": 1773834079967
+            },
+            {
+                "user_id": "1474764771353165825",
+                "category": "cpvp",
+                "tier": "lt4",
+                "timestamp": 1773834079905
+            },
+            {
+                "user_id": "1474764771353165825",
+                "category": "Axe",
+                "tier": "LT4",
+                "timestamp": 1773834079944
+            }
+        ]
+    },
+    {
+        "user_id": "1183103747925213218",
+        "minecraft_ign": "SansISOP",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1183103747925213218",
+                "category": "UHC",
+                "tier": "LT5",
+                "timestamp": 1773834080609
+            }
+        ]
+    },
+    {
+        "user_id": "1212100850563162144",
+        "minecraft_ign": "DipuPlayz_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1212100850563162144",
+                "category": "Diapot",
+                "tier": "LT5",
+                "timestamp": 1773834079970
+            },
+            {
+                "user_id": "1212100850563162144",
+                "category": "Axe",
+                "tier": "HT5",
+                "timestamp": 1773834079945
+            },
+            {
+                "user_id": "1212100850563162144",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834078967
+            }
+        ]
+    },
+    {
+        "user_id": "1358360720697196658",
+        "minecraft_ign": "8Tms__",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1358360720697196658",
+                "category": "NETHPOT",
+                "tier": "lt4",
+                "timestamp": 1773834079965
+            }
+        ]
+    },
+    {
+        "user_id": "1305824058369249352",
+        "minecraft_ign": "_ITz_Falcon_MC",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1305824058369249352",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773834079960
+            },
+            {
+                "user_id": "1305824058369249352",
+                "category": "CPVP",
+                "tier": "HT5",
+                "timestamp": 1773917360469
+            },
+            {
+                "user_id": "1305824058369249352",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360420
+            }
+        ]
+    },
+    {
+        "user_id": "1354711532340252814",
+        "minecraft_ign": "TejasGenZ",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1354711532340252814",
+                "category": "Sword",
+                "tier": "LT3",
+                "timestamp": 1773917360414
+            }
+        ]
+    },
+    {
+        "user_id": "1453834169988812843",
+        "minecraft_ign": "NotSdBhau",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1453834169988812843",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773834079030
+            }
+        ]
+    },
+    {
+        "user_id": "1312399442120540282",
+        "minecraft_ign": "ArmoFire777",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1312399442120540282",
+                "category": "NETHPOT",
+                "tier": "ht4",
+                "timestamp": 1773834079034
+            },
+            {
+                "user_id": "1312399442120540282",
+                "category": "sword",
+                "tier": "ht5",
+                "timestamp": 1773917360421
+            }
+        ]
+    },
+    {
+        "user_id": "1218981502159683634",
+        "minecraft_ign": "Ayan1673",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1218981502159683634",
+                "category": "Nethpot",
+                "tier": "HT4",
+                "timestamp": 1773834079036
+            },
+            {
+                "user_id": "1218981502159683634",
+                "category": "NETHPOT",
+                "tier": "lt5",
+                "timestamp": 1773834079915
+            }
+        ]
+    },
+    {
+        "user_id": "1423654132350455859",
+        "minecraft_ign": "PheonixXD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1423654132350455859",
+                "category": "cpvp",
+                "tier": "Ht5",
+                "timestamp": 1773834079037
+            }
+        ]
+    },
+    {
+        "user_id": "1464926412656873604",
+        "minecraft_ign": "ForgeFlare_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1464926412656873604",
+                "category": "cpvp",
+                "tier": "Ht5",
+                "timestamp": 1773917360481
+            },
+            {
+                "user_id": "1464926412656873604",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360437
+            },
+            {
+                "user_id": "1464926412656873604",
+                "category": "Crystal",
+                "tier": "LT4",
+                "timestamp": 1773917360455
+            }
+        ]
+    },
+    {
+        "user_id": "1319564029672292413",
+        "minecraft_ign": "organ_eater24",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1319564029672292413",
+                "category": "nethpot",
+                "tier": "lt4",
+                "timestamp": 1773834079851
+            }
+        ]
+    },
+    {
+        "user_id": "1211231110457991212",
+        "minecraft_ign": "Sxynex",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1211231110457991212",
+                "category": "Nethpot",
+                "tier": "lt4",
+                "timestamp": 1773834079853
+            }
+        ]
+    },
+    {
+        "user_id": "1377532798331785226",
+        "minecraft_ign": "VORTEX___",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1377532798331785226",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079854
+            },
+            {
+                "user_id": "1377532798331785226",
+                "category": "Diapot",
+                "tier": "LT5",
+                "timestamp": 1773834079924
+            },
+            {
+                "user_id": "1377532798331785226",
+                "category": "Axe",
+                "tier": "HT5",
+                "timestamp": 1773834079937
+            },
+            {
+                "user_id": "1377532798331785226",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079946
+            },
+            {
+                "user_id": "1377532798331785226",
+                "category": "Sword",
+                "tier": "HT5",
+                "timestamp": 1773834079019
+            }
+        ]
+    },
+    {
+        "user_id": "1060816404535857233",
+        "minecraft_ign": "AcidPlayz_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1060816404535857233",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773834079856
+            }
+        ]
+    },
+    {
+        "user_id": "1328991825280630827",
+        "minecraft_ign": "ShivamStrafe",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1328991825280630827",
+                "category": "nethpot",
+                "tier": "lt4",
+                "timestamp": 1773834079858
+            },
+            {
+                "user_id": "1328991825280630827",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079023
+            }
+        ]
+    },
+    {
+        "user_id": "1362457685219610684",
+        "minecraft_ign": "MrViratXd",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1362457685219610684",
+                "category": "Axe",
+                "tier": "HT5",
+                "timestamp": 1773834079861
+            },
+            {
+                "user_id": "1362457685219610684",
+                "category": "Sword",
+                "tier": "LT4",
+                "timestamp": 1773834079863
+            },
+            {
+                "user_id": "1362457685219610684",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834079866
+            }
+        ]
+    },
+    {
+        "user_id": "1377858823104233516",
+        "minecraft_ign": "MutthiLaal",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1377858823104233516",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773834079867
+            }
+        ]
+    },
+    {
+        "user_id": "1462439556593750027",
+        "minecraft_ign": "ZOROO_GAMER",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1462439556593750027",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773917360480
+            },
+            {
+                "user_id": "1462439556593750027",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834078997
+            },
+            {
+                "user_id": "1462439556593750027",
+                "category": "cpvp",
+                "tier": "Lt5",
+                "timestamp": 1773834078962
+            },
+            {
+                "user_id": "1462439556593750027",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360428
+            }
+        ]
+    },
+    {
+        "user_id": "1462467939868348625",
+        "minecraft_ign": "Pvp_playzZ",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1462467939868348625",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834079870
+            }
+        ]
+    },
+    {
+        "user_id": "1464923588095381668",
+        "minecraft_ign": "_DeadlyKiller_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1464923588095381668",
+                "category": "cpvp",
+                "tier": "lt4",
+                "timestamp": 1773917360490
+            },
+            {
+                "user_id": "1464923588095381668",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1773917360454
+            }
+        ]
+    },
+    {
+        "user_id": "1478073705069285569",
+        "minecraft_ign": "Nothypedok",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1478073705069285569",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834079873
+            }
+        ]
+    },
+    {
+        "user_id": "1313736739495608363",
+        "minecraft_ign": "Bokuism99",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1313736739495608363",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834079876
+            }
+        ]
+    },
+    {
+        "user_id": "1364865805891932251",
+        "minecraft_ign": "Raizz_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1364865805891932251",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834079877
+            },
+            {
+                "user_id": "1364865805891932251",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834078996
+            }
+        ]
+    },
+    {
+        "user_id": "912346446664171520",
+        "minecraft_ign": "VigilantVoid",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "912346446664171520",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834079883
+            }
+        ]
+    },
+    {
+        "user_id": "1140221486217560074",
+        "minecraft_ign": "_MDLegendOP",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1140221486217560074",
+                "category": "Npot",
+                "tier": "HT4",
+                "timestamp": 1773834079885
+            }
+        ]
+    },
+    {
+        "user_id": "1317104167151603734",
+        "minecraft_ign": "krxss_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1317104167151603734",
+                "category": "Npot",
+                "tier": "LT4",
+                "timestamp": 1773834079886
+            }
+        ]
+    },
+    {
+        "user_id": "1383831070482366648",
+        "minecraft_ign": "Dexter_Playz420",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1383831070482366648",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834079887
+            }
+        ]
+    },
+    {
+        "user_id": "1420050325489844335",
+        "minecraft_ign": "H4WK",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1420050325489844335",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079889
+            },
+            {
+                "user_id": "1420050325489844335",
+                "category": "Npot",
+                "tier": "Lt5",
+                "timestamp": 1773834079891
+            },
+            {
+                "user_id": "1420050325489844335",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773917360475
+            }
+        ]
+    },
+    {
+        "user_id": "1426210313728163931",
+        "minecraft_ign": "Zaxd_YT",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1426210313728163931",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079890
+            }
+        ]
+    },
+    {
+        "user_id": "1456846753448988803",
+        "minecraft_ign": "ITznitin731",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1456846753448988803",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834079893
+            }
+        ]
+    },
+    {
+        "user_id": "1373334254100025344",
+        "minecraft_ign": "CrPie_zxdf",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1373334254100025344",
+                "category": "cpvp",
+                "tier": "ht4",
+                "timestamp": 1773834079894
+            }
+        ]
+    },
+    {
+        "user_id": "899899858981371935",
+        "minecraft_ign": "_ITz_Falcon_MC",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "899899858981371935",
+                "category": "Npot",
+                "tier": "LT4",
+                "timestamp": 1773834079898
+            }
+        ]
+    },
+    {
+        "user_id": "1321068243095388190",
+        "minecraft_ign": "ARS20_xd",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1321068243095388190",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079899
+            }
+        ]
+    },
+    {
+        "user_id": "1402678094195593238",
+        "minecraft_ign": "GamerAnsh777",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1402678094195593238",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773834079900
+            },
+            {
+                "user_id": "1402678094195593238",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079922
+            }
+        ]
+    },
+    {
+        "user_id": "1238902329151979610",
+        "minecraft_ign": "Dominator_1",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1238902329151979610",
+                "category": "NETHPOT",
+                "tier": "ht4",
+                "timestamp": 1773834079903
+            }
+        ]
+    },
+    {
+        "user_id": "1375081200544251914",
+        "minecraft_ign": "TheSimpleGuy",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1375081200544251914",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079923
+            }
+        ]
+    },
+    {
+        "user_id": "1398168786955407432",
+        "minecraft_ign": "Raj_105_GOD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1398168786955407432",
+                "category": "NETHPOT",
+                "tier": "ht5",
+                "timestamp": 1773834079917
+            },
+            {
+                "user_id": "1398168786955407432",
+                "category": "Npot",
+                "tier": "LT5",
+                "timestamp": 1773834078985
+            }
+        ]
+    },
+    {
+        "user_id": "1308792860052819998",
+        "minecraft_ign": "noob_ko_trinh_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1308792860052819998",
+                "category": "crystal pvp",
+                "tier": "ht5",
+                "timestamp": 1773834079907
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "NETHPOT",
+                "tier": "lt5",
+                "timestamp": 1773834079911
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773834078961
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "cpvp",
+                "tier": "lt4",
+                "timestamp": 1773917360489
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "Nethpot",
+                "tier": "HT5",
+                "timestamp": 1773917360479
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "sword",
+                "tier": "ht5",
+                "timestamp": 1773917360458
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360431
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "nethpot",
+                "tier": "ht5",
+                "timestamp": 1773917360460
+            }
+        ]
+    },
+    {
+        "user_id": "1443554474126999613",
+        "minecraft_ign": "Wzelo",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1443554474126999613",
+                "category": "Crystal",
+                "tier": "LT3",
+                "timestamp": 1773834079908
+            },
+            {
+                "user_id": "1443554474126999613",
+                "category": "UHC",
+                "tier": "HT4",
+                "timestamp": 1773834079910
+            },
+            {
+                "user_id": "1443554474126999613",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773834079934
+            },
+            {
+                "user_id": "1443554474126999613",
+                "category": "CPVP",
+                "tier": "HT4",
+                "timestamp": 1773917360467
+            }
+        ]
+    },
+    {
+        "user_id": "1469948925246046386",
+        "minecraft_ign": "LOKESHGAMERIND",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1469948925246046386",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773834079932
+            },
+            {
+                "user_id": "1469948925246046386",
+                "category": "Npot",
+                "tier": "LT4",
+                "timestamp": 1773834078999
+            },
+            {
+                "user_id": "1469948925246046386",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360464
+            }
+        ]
+    },
+    {
+        "user_id": "1213365047401644062",
+        "minecraft_ign": "LeafFire_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1213365047401644062",
+                "category": "Axe",
+                "tier": "HT5",
+                "timestamp": 1773834079912
+            },
+            {
+                "user_id": "1213365047401644062",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773834079913
+            }
+        ]
+    },
+    {
+        "user_id": "1118816404418871346",
+        "minecraft_ign": "Sambhrant300",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1118816404418871346",
+                "category": "Axe",
+                "tier": "LT4",
+                "timestamp": 1773834079914
+            },
+            {
+                "user_id": "1118816404418871346",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1773834079916
+            },
+            {
+                "user_id": "1118816404418871346",
+                "category": "sword",
+                "tier": "ht5",
+                "timestamp": 1773917360448
+            }
+        ]
+    },
+    {
+        "user_id": "1288784540751499318",
+        "minecraft_ign": "ProtexReaper_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1288784540751499318",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834079928
+            }
+        ]
+    },
+    {
+        "user_id": "1339121180967174215",
+        "minecraft_ign": "GodxZyr0",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1339121180967174215",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079942
+            }
+        ]
+    },
+    {
+        "user_id": "1450401629189967915",
+        "minecraft_ign": "ITZ_MEXY_08",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1450401629189967915",
+                "category": "Sword",
+                "tier": "Lt4",
+                "timestamp": 1773834079018
+            },
+            {
+                "user_id": "1450401629189967915",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773917360477
+            }
+        ]
+    },
+    {
+        "user_id": "995589476103508029",
+        "minecraft_ign": "vizzzyv7",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "995589476103508029",
+                "category": "NPot",
+                "tier": "HT4",
+                "timestamp": 1773834079000
+            },
+            {
+                "user_id": "995589476103508029",
+                "category": "NETHPOT",
+                "tier": "LT3",
+                "timestamp": 1773917360458
+            }
+        ]
+    },
+    {
+        "user_id": "850940549253824512",
+        "minecraft_ign": "Xiaouy5",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "850940549253824512",
+                "category": "Npot",
+                "tier": "LT4",
+                "timestamp": 1773834078991
+            },
+            {
+                "user_id": "850940549253824512",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773834079002
+            },
+            {
+                "user_id": "850940549253824512",
+                "category": "Crystal",
+                "tier": "HT4",
+                "timestamp": 1773917360463
+            }
+        ]
+    },
+    {
+        "user_id": "1406585711888568394",
+        "minecraft_ign": "Ankuz",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1406585711888568394",
+                "category": "Npot",
+                "tier": "LT3",
+                "timestamp": 1773834078989
+            },
+            {
+                "user_id": "1406585711888568394",
+                "category": "Smp",
+                "tier": "HT4",
+                "timestamp": 1773917360482
+            },
+            {
+                "user_id": "1406585711888568394",
+                "category": "Crystal",
+                "tier": "LT3",
+                "timestamp": 1773917360462
+            },
+            {
+                "user_id": "1406585711888568394",
+                "category": "sword",
+                "tier": "lt4",
+                "timestamp": 1773917360456
+            }
+        ]
+    },
+    {
+        "user_id": "834444670955814963",
+        "minecraft_ign": "_fearxz_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "834444670955814963",
+                "category": "NPot\\",
+                "tier": "HT5",
+                "timestamp": 1773834078986
+            }
+        ]
+    },
+    {
+        "user_id": "1375099499579441166",
+        "minecraft_ign": "parth_nonstop1",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1375099499579441166",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834078979
+            }
+        ]
+    },
+    {
+        "user_id": "1216933678614183977",
+        "minecraft_ign": "AkiraLegend",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1216933678614183977",
+                "category": "NETHPOT",
+                "tier": "LT3",
+                "timestamp": 1773834078978
+            }
+        ]
+    },
+    {
+        "user_id": "1306664963816816661",
+        "minecraft_ign": "aman008",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1306664963816816661",
+                "category": "NETHPOT",
+                "tier": "LT5",
+                "timestamp": 1773834078976
+            },
+            {
+                "user_id": "1306664963816816661",
+                "category": "Crystal",
+                "tier": "LT4",
+                "timestamp": 1773917360461
+            }
+        ]
+    },
+    {
+        "user_id": "1246862900002422854",
+        "minecraft_ign": "deathreaper0007",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1246862900002422854",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834078971
+            }
+        ]
+    },
+    {
+        "user_id": "1292097197453742144",
+        "minecraft_ign": "Itz_Me08",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1292097197453742144",
+                "category": "cpvp",
+                "tier": "lt4",
+                "timestamp": 1773917359466
+            }
+        ]
+    },
+    {
+        "user_id": "1239838753367920694",
+        "minecraft_ign": "Bilintaskill",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1239838753367920694",
+                "category": "Npot",
+                "tier": "LT3",
+                "timestamp": 1773917360488
+            }
+        ]
+    },
+    {
+        "user_id": "748252438947168356",
+        "minecraft_ign": "RubelCofe",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "748252438947168356",
+                "category": "cpvp",
+                "tier": "lt4",
+                "timestamp": 1773917360487
+            }
+        ]
+    },
+    {
+        "user_id": "1431540507644919821",
+        "minecraft_ign": "ITzrealkartik",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1431540507644919821",
+                "category": "Npot",
+                "tier": "LT4",
+                "timestamp": 1773917360470
+            }
+        ]
+    },
+    {
+        "user_id": "1375294814714855494",
+        "minecraft_ign": "naman1231137",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1375294814714855494",
+                "category": "Npot",
+                "tier": "HT5",
+                "timestamp": 1773917360471
+            },
+            {
+                "user_id": "1375294814714855494",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360432
+            },
+            {
+                "user_id": "1375294814714855494",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360446
+            },
+            {
+                "user_id": "1375294814714855494",
+                "category": "SWOED",
+                "tier": "LT5",
+                "timestamp": 1773917360447
+            }
+        ]
+    },
+    {
+        "user_id": "1286285320177975348",
+        "minecraft_ign": "ItzSoftBro",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1286285320177975348",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1773917360472
+            },
+            {
+                "user_id": "1286285320177975348",
+                "category": "crystal",
+                "tier": "lt3",
+                "timestamp": 1773917360429
+            }
+        ]
+    },
+    {
+        "user_id": "1070322534106529812",
+        "minecraft_ign": "mojito1402",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1070322534106529812",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773917360473
+            },
+            {
+                "user_id": "1070322534106529812",
+                "category": "sword",
+                "tier": "ht4",
+                "timestamp": 1773917360455
+            }
+        ]
+    },
+    {
+        "user_id": "1474765545860632658",
+        "minecraft_ign": "_Dragonator",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1474765545860632658",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360473
+            }
+        ]
+    },
+    {
+        "user_id": "1464857968268017668",
+        "minecraft_ign": "KIDDO_GAMERZ",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1464857968268017668",
+                "category": "cpvp",
+                "tier": "lt5",
+                "timestamp": 1773917360474
+            }
+        ]
+    },
+    {
+        "user_id": "1294327684696113203",
+        "minecraft_ign": "diamino",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1294327684696113203",
+                "category": "Smp",
+                "tier": "Ht4",
+                "timestamp": 1773917360478
+            }
+        ]
+    },
+    {
+        "user_id": "1074961653843623946",
+        "minecraft_ign": "Mogambo00",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1074961653843623946",
+                "category": "Smp Kit",
+                "tier": "LT3",
+                "timestamp": 1773917360478
+            }
+        ]
+    },
+    {
+        "user_id": "931587832294830151",
+        "minecraft_ign": "ItzRealMine",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "931587832294830151",
+                "category": "Nethpot",
+                "tier": "LT3",
+                "timestamp": 1773917360480
+            }
+        ]
+    },
+    {
+        "user_id": "1189226222778060973",
+        "minecraft_ign": "Manifester_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1189226222778060973",
+                "category": "Smp",
+                "tier": "Ht4",
+                "timestamp": 1773917360481
+            }
+        ]
+    },
+    {
+        "user_id": "1335972893766455396",
+        "minecraft_ign": "_StraightXD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1335972893766455396",
+                "category": "NethPOT",
+                "tier": "HT4",
+                "timestamp": 1773917360483
+            },
+            {
+                "user_id": "1335972893766455396",
+                "category": "Crystal",
+                "tier": "HT4",
+                "timestamp": 1773917360435
+            }
+        ]
+    },
+    {
+        "user_id": "1140550197324296223",
+        "minecraft_ign": "AimComDll",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1140550197324296223",
+                "category": "Netherite POT",
+                "tier": "LT3",
+                "timestamp": 1773917360483
+            }
+        ]
+    },
+    {
+        "user_id": "1165321478112288899",
+        "minecraft_ign": "adityasingh24",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1165321478112288899",
+                "category": "Smp",
+                "tier": "Ht5",
+                "timestamp": 1773917360484
+            },
+            {
+                "user_id": "1165321478112288899",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773917360487
+            }
+        ]
+    },
+    {
+        "user_id": "1314554205952020502",
+        "minecraft_ign": "DEEPXD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1314554205952020502",
+                "category": "cpvp",
+                "tier": "ht5",
+                "timestamp": 1773917360485
+            }
+        ]
+    },
+    {
+        "user_id": "1272488980046155868",
+        "minecraft_ign": "AstralShift",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1272488980046155868",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1773917360485
+            }
+        ]
+    },
+    {
+        "user_id": "1329823261235875841",
+        "minecraft_ign": "not_underrated",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1329823261235875841",
+                "category": "cpvp",
+                "tier": "Ht5",
+                "timestamp": 1773834079003
+            },
+            {
+                "user_id": "1329823261235875841",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1773834079029
+            }
+        ]
+    },
+    {
+        "user_id": "1454813045904642150",
+        "minecraft_ign": "Zexxo_07",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1454813045904642150",
+                "category": "NETHPOT",
+                "tier": "Lt4",
+                "timestamp": 1773834079005
+            }
+        ]
+    },
+    {
+        "user_id": "1480565513460519182",
+        "minecraft_ign": "AkidoKun_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1480565513460519182",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1773834079007
+            }
+        ]
+    },
+    {
+        "user_id": "817691193382141962",
+        "minecraft_ign": "M1NH4J",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "817691193382141962",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360464
+            },
+            {
+                "user_id": "817691193382141962",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360416
+            }
+        ]
+    },
+    {
+        "user_id": "1165569875754889216",
+        "minecraft_ign": "ThunderGamerIND",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1165569875754889216",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1773917360465
+            },
+            {
+                "user_id": "1165569875754889216",
+                "category": "sword",
+                "tier": "ht4",
+                "timestamp": 1773917360450
+            }
+        ]
+    },
+    {
+        "user_id": "1161800111496646746",
+        "minecraft_ign": "BLOODYFANG7495",
+        "region": "asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1161800111496646746",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360466
+            }
+        ]
+    },
+    {
+        "user_id": "1463507986746966121",
+        "minecraft_ign": "GATYOOO",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1463507986746966121",
+                "category": "Crystal",
+                "tier": "LT4",
+                "timestamp": 1773917360466
+            }
+        ]
+    },
+    {
+        "user_id": "1373628015384461373",
+        "minecraft_ign": "_NotSoTricky",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1373628015384461373",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360467
+            }
+        ]
+    },
+    {
+        "user_id": "1279790915388575919",
+        "minecraft_ign": "ZarkNow",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1279790915388575919",
+                "category": "CPVP",
+                "tier": "HT5",
+                "timestamp": 1773917360468
+            }
+        ]
+    },
+    {
+        "user_id": "1305839477272608769",
+        "minecraft_ign": "TarronXD",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1305839477272608769",
+                "category": "CPVP",
+                "tier": "HT5",
+                "timestamp": 1773917360468
+            }
+        ]
+    },
+    {
+        "user_id": "1472890308093018154",
+        "minecraft_ign": "BeastLegendOP",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1472890308093018154",
+                "category": "crystal pvp",
+                "tier": "lt3",
+                "timestamp": 1773917360470
+            }
+        ]
+    },
+    {
+        "user_id": "1460964777647145158",
+        "minecraft_ign": "notenemyyt",
+        "region": "ASS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1460964777647145158",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360423
+            }
+        ]
+    },
+    {
+        "user_id": "1452883567234514986",
+        "minecraft_ign": "gatyooo",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1452883567234514986",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1773917360425
+            }
+        ]
+    },
+    {
+        "user_id": "1141264314028806154",
+        "minecraft_ign": "sapuadoek374",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1141264314028806154",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360426
+            }
+        ]
+    },
+    {
+        "user_id": "1466007420441460945",
+        "minecraft_ign": "Godxcloudy",
+        "region": "Asia",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1466007420441460945",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1773917360452
+            }
+        ]
+    },
+    {
+        "user_id": "1289562682432819230",
+        "minecraft_ign": "ankuop_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1289562682432819230",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1773917360430
+            }
+        ]
+    },
+    {
+        "user_id": "868446024392404992",
+        "minecraft_ign": "HELLxNEON",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "868446024392404992",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360433
+            }
+        ]
+    },
+    {
+        "user_id": "1171378460070006865",
+        "minecraft_ign": "RadheBhaiya",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1171378460070006865",
+                "category": "SSWORD",
+                "tier": "LT3",
+                "timestamp": 1773917360440
+            },
+            {
+                "user_id": "1171378460070006865",
+                "category": "sword",
+                "tier": "ht4",
+                "timestamp": 1773917360449
+            }
+        ]
+    },
+    {
+        "user_id": "1405560425403387919",
+        "minecraft_ign": "NoturAvg_vid",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1405560425403387919",
+                "category": "SWORD",
+                "tier": "LT4",
+                "timestamp": 1773917360442
+            }
+        ]
+    },
+    {
+        "user_id": "1418966196073795725",
+        "minecraft_ign": "MackPlayzz",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1418966196073795725",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1773917360445
+            }
+        ]
+    },
+    {
+        "user_id": "1447611901218525376",
+        "minecraft_ign": "xShi_",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1447611901218525376",
+                "category": "sword",
+                "tier": "lt3",
+                "timestamp": 1773917360451
+            }
+        ]
+    },
+    {
+        "user_id": "1392681414398447698",
+        "minecraft_ign": "BLADEGI4L_YT",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1392681414398447698",
+                "category": "sword",
+                "tier": "lt5",
+                "timestamp": 1773917360451
+            }
+        ]
+    },
+    {
+        "user_id": "1309109487931621390",
+        "minecraft_ign": "CRITICALHITCREW",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1309109487931621390",
+                "category": "sword",
+                "tier": "lt5",
+                "timestamp": 1773917360452
+            }
+        ]
+    },
+    {
+        "user_id": "1466422788507308124",
+        "minecraft_ign": "Shresth_pro",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1466422788507308124",
+                "category": "sword",
+                "tier": "lt5",
+                "timestamp": 1773917360457
+            }
+        ]
+    },
+    {
+        "user_id": "1042671997232087053",
+        "minecraft_ign": "_xD1rkReap",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1042671997232087053",
+                "category": "sword",
+                "tier": "lt4",
+                "timestamp": 1773917360459
             }
         ]
     }
