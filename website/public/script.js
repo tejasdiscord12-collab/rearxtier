@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
-    const API_BASE = '';
+    const API_BASE = 'http://eu1i7.hexonode.com:26113';
     let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
 
     // ─── DOM REFS ────────────────────────────────────────────────────────────
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── FETCH ───────────────────────────────────────────────────────────────
     async function fetchRankings() {
         try {
-            const res = await fetch(`./players.json`);
+            const res = await fetch(`${API_BASE}/api/tiers`);
             allData = await res.json();
             statPlayers.textContent = allData.length;
             renderRankings(allData);
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchQueue() {
         try {
-            const res = await fetch(`./queue.json`);
+            const res = await fetch(`${API_BASE}/api/queue`);
             const { queue, isOpen } = await res.json();
             renderQueue(queue, isOpen);
         } catch (e) {

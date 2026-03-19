@@ -7,7 +7,7 @@ const manager = require('../database/manager');
 const config = require('../utils/config');
 
 const app = express();
-const PORT = 25568;
+const PORT = 26113;
 
 app.use(cors());
 app.use(express.json());
