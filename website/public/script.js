@@ -19,6 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.getElementById('navbar');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const sidebar = document.querySelector('.sidebar');
+    
+    // Modal Refs
+    const playerModal = document.getElementById('playerModal');
+    const modalAvatar = document.getElementById('modalAvatar');
+    const modalName = document.getElementById('modalName');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalRegion = document.getElementById('modalRegion');
+    const modalType = document.getElementById('modalType');
+    const modalTiers = document.getElementById('modalTiers');
+    const playerModalClose = document.getElementById('playerModalClose');
 
     // ─── KIT ICONS ───────────────────────────────────────────────────────────
     const KIT_ICONS = {
@@ -44,17 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'HT5': 20, 'LT5': 10
     };
 
-    const HIERARCHY = ['HT1', 'LT1', 'HT2', 'LT2', 'HT3', 'LT3', 'HT4', 'LT4', 'HT5', 'LT5'];
-
     // ─── STATE ───────────────────────────────────────────────────────────────
     let allData = [];
     let currentCategory = 'all';
     let currentView = 'rankings';
-
-    // ─── NAV SCROLL ──────────────────────────────────────────────────────────
-    window.addEventListener('scroll', () => {
-        navbar?.classList.toggle('scrolled', window.scrollY > 20);
-    });
 
     // ─── HELPERS ─────────────────────────────────────────────────────────────
     function getTierVal(tier) {
@@ -62,9 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     function getBestTierValue(tiers) {
         return (tiers || []).reduce((best, t) => Math.max(best, getTierVal(t.tier)), 0);
-    }
-    function getPoints(tiers) {
-        return (tiers || []).reduce((sum, t) => sum + getTierVal(t.tier), 0);
     }
     function getTitle(bestVal) {
         if (bestVal >= 90) return 'Combat Grandmaster';
@@ -75,20 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function normalizeCategory(cat) {
         if (!cat) return 'sword';
         const c = cat.toLowerCase().trim();
-        if (c.includes('neth') || c.includes('pot')) return 'nethpot';
+        if (c.includes('neth') || c === 'npot' || c === 'nethpot' || c.includes('pot')) return 'nethpot';
         if (c.includes('smp')) return 'smpkit';
         if (c === 'swords' || c === 'sword') return 'sword';
         if (c === 'cpvp' || c === 'crystal') return 'crystal';
         if (c.includes('axe')) return 'axe';
         if (c.includes('uhc')) return 'uhc';
         if (c.includes('mace')) return 'mace';
+        if (c.includes('diapot') || c.includes('diamond')) return 'diapot';
         return 'sword';
     }
 
     // ─── FETCH ───────────────────────────────────────────────────────────────
     async function fetchRankings() {
         try {
-            console.log("🔍 Syncing rankings via Raw Gist...");
             const res = await fetch(`${GIST_RAW_BASE}players.json?v=${Date.now()}`, { cache: 'no-store' });
             if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
             allData = await res.json();
@@ -129,7 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (normalizedCurrent === 'all') {
             tableHeader.style.display = 'flex';
             contentTitle.innerHTML = '<i class="fa-solid fa-trophy" style="color:#ffb800"></i> Overall Rankings';
-
             const sorted = [...playersWithData].sort((a, b) => b.bestVal - a.bestVal || (b.tiers || []).length - (a.tiers || []).length);
             renderPodium(sorted.slice(0, 3));
 
@@ -137,29 +136,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isTop3 = index < 3;
                 const row = document.createElement('div');
                 row.className = `player-row${isTop3 ? ' top-rank' : ''} row-${index + 1}`;
+                row.addEventListener('click', () => openPlayerModal(player));
 
                 const processedTiers = (player.tiers || []).reduce((acc, current) => {
                     let cat = normalizeCategory(current.category);
-                    const existing = acc.find(t => normalizeCategory(t.category) === cat);
-                    if (!existing) acc.push({ ...current, category: cat });
-                    else if (getTierVal(current.tier) > getTierVal(existing.tier)) Object.assign(existing, { ...current, category: cat });
+                    const existingIdx = acc.findIndex(t => t.category === cat);
+                    if (existingIdx === -1) acc.push({ tier: current.tier, category: cat });
+                    else if (getTierVal(current.tier) > getTierVal(acc[existingIdx].tier)) acc[existingIdx].tier = current.tier;
                     return acc;
                 }, []).sort((a, b) => getTierVal(b.tier) - getTierVal(a.tier));
 
                 const tiersHtml = processedTiers.map(t => {
                     const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
                     const colorClass = `tier-color-${cleanTier}`;
-                    const displayCat = KIT_DISPLAY[t.category.toLowerCase()] || t.category;
-                    const iconName = Object.keys(KIT_ICONS).find(k => k.toLowerCase() === displayCat.toLowerCase());
-                    const icon = KIT_ICONS[iconName] || KIT_ICONS['Sword'];
+                    const dispName = KIT_DISPLAY[t.category] || t.category;
+                    const icon = KIT_ICONS[dispName] || KIT_ICONS['Sword'];
                     return `
                         <div class="tier-item ${colorClass}">
-                            <div class="tier-circle"><img src="${icon}" alt="${displayCat}"></div>
+                            <div class="tier-circle"><img src="${icon}"></div>
                             <span class="tier-badge-label">${cleanTier}</span>
-                            <div class="tier-tooltip">
-                                <strong>${displayCat}</strong>
-                                <span>Tier ${cleanTier}</span>
-                            </div>
                         </div>`;
                 }).join('');
 
@@ -191,13 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     const tB = b.tiers.find(t => normalizeCategory(t.category) === normalizedCurrent);
                     return getTierVal(tB.tier) - getTierVal(tA.tier);
                 });
-
             renderPodium(filtered.slice(0, 3));
 
             filtered.forEach((player, index) => {
                 const isTop3 = index < 3;
                 const row = document.createElement('div');
                 row.className = `player-row${isTop3 ? ' top-rank' : ''} row-${index + 1}`;
+                row.addEventListener('click', () => openPlayerModal(player));
+
                 const t = player.tiers.find(ti => normalizeCategory(ti.category) === normalizedCurrent);
                 const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
                 const regionCode = (player.region || 'AS').toUpperCase().split('/')[0];
@@ -215,12 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     <div class="col-region"><span class="region-badge region-${regionCode}">${player.region || 'AS'}</span></div>
                     <div class="col-tiers">
-                        <div class="tiers-list">
-                            <div class="tier-item tier-color-${cleanTier}">
-                                <div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}"></div>
-                                <span class="tier-badge-label">${cleanTier}</span>
-                            </div>
-                        </div>
+                        <div class="tiers-list"><div class="tier-item tier-color-${cleanTier}"><div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}"></div><span class="tier-badge-label">${cleanTier}</span></div></div>
                     </div>
                 `;
                 rankingsList.appendChild(row);
@@ -231,75 +222,50 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderPodium(top3) {
         document.querySelector('.podium-section')?.remove();
         if (!top3 || top3.length === 0) return;
-
         const podium = document.createElement('div');
         podium.className = 'podium-section';
-        podium.id = 'podiumSection';
         const order = [top3[1], top3[0], top3[2]].filter(Boolean);
-        
         podium.innerHTML = `<div class="podium-title">🏆 Top Players</div><div class="podium-stage">
             ${order.map((p) => {
                 const rank = top3.indexOf(p) + 1;
-                const h = [75, 100, 55][rank - 1];
                 const medals = ['🥇', '🥈', '🥉'];
-                return `<div class="podium-spot rank-${rank}">
-                        ${rank === 1 ? '<div class="podium-crown">👑</div>' : ''}
-                        <img class="podium-avatar" src="https://mc-heads.net/avatar/${p.minecraft_ign}/96" alt="${p.minecraft_ign}">
-                        <div class="podium-ign">${p.minecraft_ign}</div>
-                        <div class="podium-block" style="height:${h}px"><span>${medals[rank - 1]}</span></div>
-                    </div>`;
+                return `<div class="podium-spot rank-${rank}"><img class="podium-avatar" src="https://mc-heads.net/avatar/${p.minecraft_ign}/96" alt="${p.minecraft_ign}"><div class="podium-ign">${p.minecraft_ign}</div><div class="podium-block"><span>${medals[rank - 1]}</span></div></div>`;
             }).join('')}
         </div>`;
-        const toolbar = document.querySelector('.content-toolbar');
-        if (toolbar) toolbar.insertAdjacentElement('afterend', podium);
+        document.querySelector('.content-toolbar')?.insertAdjacentElement('afterend', podium);
     }
 
     function renderQueue(queue, isOpen) {
-        const qCount = document.getElementById('statQueueCount');
-        if (qCount) qCount.textContent = queue.length;
-        const qStatusText = document.getElementById('queueStatusText');
-        if (qStatusText) qStatusText.textContent = isOpen ? 'QUEUE OPEN' : 'QUEUE CLOSED';
+        const qCount = document.getElementById('statQueueCount'); if (qCount) qCount.textContent = queue.length;
+        const qStatusText = document.getElementById('queueStatusText'); if (qStatusText) qStatusText.textContent = isOpen ? 'QUEUE OPEN' : 'QUEUE CLOSED';
         document.getElementById('queueStatusBanner')?.classList.toggle('open', isOpen);
+        const qList = document.getElementById('queueList'); if (!qList) return;
+        if (queue.length === 0) { qList.innerHTML = '<div class="tcp-empty">The queue is currently empty.</div>'; return; }
+        qList.innerHTML = queue.map((q, i) => `<div class="player-row" style="height: 60px;"><div class="col-rank"><div class="rank-box"><span class="rank-text">${i + 1}</span></div></div><div class="col-player"><div class="player-card"><div class="avatar-wrapper"><img src="https://mc-heads.net/avatar/${q.minecraft_ign}/32"></div><div class="player-name">${q.minecraft_ign}</div></div></div><div class="col-region"><span class="region-badge region-AS">${q.category}</span></div></div>`).join('');
+    }
+
+    // ─── PLAYER MODAL ─────────────────────────────────────────────────────────
+    function openPlayerModal(player) {
+        modalName.textContent = player.minecraft_ign;
+        modalAvatar.src = `https://mc-heads.net/body/${player.minecraft_ign}`;
+        modalRegion.textContent = player.region || 'AS';
+        modalType.textContent = player.account_type || 'Premium';
         
-        const qList = document.getElementById('queueList');
-        if (!qList) return;
-        if (queue.length === 0) {
-            qList.innerHTML = '<div class="tcp-empty">The queue is currently empty.</div>';
-            return;
-        }
-        qList.innerHTML = queue.map((q, i) => `
-            <div class="player-row" style="height: 60px;">
-                <div class="col-rank">
-                    <div class="rank-box"><span class="rank-text">${i + 1}</span></div>
-                </div>
-                <div class="col-player">
-                    <div class="player-card">
-                        <div class="avatar-wrapper"><img src="https://mc-heads.net/avatar/${q.minecraft_ign}/32"></div>
-                        <div class="player-name">${q.minecraft_ign}</div>
-                    </div>
-                </div>
-                <div class="col-region"><span class="region-badge region-AS">${q.category}</span></div>
-            </div>`).join('');
+        const bestVal = getBestTierValue(player.tiers);
+        modalTitle.textContent = getTitle(bestVal);
+        
+        modalTiers.innerHTML = (player.tiers || []).sort((a,b) => getTierVal(b.tier) - getTierVal(a.tier)).map(t => {
+            const cleanTier = t.tier.toUpperCase().replace(';', '').trim();
+            const dispName = KIT_DISPLAY[normalizeCategory(t.category)] || t.category;
+            return `<div class="modal-stat-card"><div class="msc-icon"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}"></div><div class="msc-info"><div class="msc-val tier-color-${cleanTier}">${cleanTier}</div><div class="msc-label">${dispName}</div></div></div>`;
+        }).join('');
+        
+        playerModal.classList.add('modal-open');
     }
 
     // ─── EVENTS ──────────────────────────────────────────────────────────────
-    navRankings?.addEventListener('click', (e) => {
-        e.preventDefault();
-        currentView = 'rankings';
-        rankingsContainer.style.display = 'block';
-        queueContainer.style.display = 'none';
-        navRankings.classList.add('active');
-        navQueue.classList.remove('active');
-    });
-
-    navQueue?.addEventListener('click', (e) => {
-        e.preventDefault();
-        currentView = 'queue';
-        rankingsContainer.style.display = 'none';
-        queueContainer.style.display = 'block';
-        navQueue.classList.add('active');
-        navRankings.classList.remove('active');
-    });
+    playerModalClose?.addEventListener('click', () => playerModal.classList.remove('modal-open'));
+    window.addEventListener('click', (e) => { if (e.target === playerModal) playerModal.classList.remove('modal-open'); });
 
     kitButtons.forEach(btn => btn.addEventListener('click', () => {
         kitButtons.forEach(b => b.classList.remove('active'));
@@ -319,12 +285,8 @@ document.addEventListener('DOMContentLoaded', () => {
         sidebar.classList.toggle('active');
     });
 
-    // ─── INITIALIZE ───────────────────────────────────────────────────────────
     fetchRankings();
     fetchQueue();
-    setInterval(() => {
-        fetchRankings();
-        fetchQueue();
-    }, 60000);
+    setInterval(() => { fetchRankings(); fetchQueue(); }, 60000);
 
 });

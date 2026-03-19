@@ -1675,6 +1675,14 @@ body {
     letter-spacing: 2px;
 }
 
+.modal-subtitle.ip-highlight {
+    color: var(--primary);
+    font-weight: 800;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 1.5px;
+    text-shadow: 0 0 10px rgba(255, 184, 0, 0.4);
+}
+
 .modal-tags {
     display: flex;
     justify-content: center;
@@ -2111,6 +2119,15 @@ body.modal-active {
         font-size: 0.75rem;
     }
 
+    /* Mobile Search Fix */
+    .nav-right .search-box {
+        display: flex !important;
+        width: 150px !important;
+    }
+    .nav-right .live-pill {
+        display: none !important;
+    }
+
     .container {
         padding: 0 16px 40px;
     }
@@ -2121,9 +2138,12 @@ body.modal-active {
 }
 
 @media (max-width: 768px) {
-    .nav-right .search-box,
+    .nav-right .search-box {
+        display: flex !important;
+        width: 120px !important;
+    }
     .nav-right .live-pill {
-        display: none;
+        display: none !important;
     }
 
     .hero-title {

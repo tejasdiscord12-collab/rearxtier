@@ -61,7 +61,7 @@
         <div class="hero-content">
             <div class="hero-badge">🏆 Official Tier List</div>
             <h1 class="hero-title">Rear<span class="hero-x">Mc</span> TIERS</h1>
-            <p class="hero-sub">The most skilled Minecraft PvP players, ranked and verified by our testers.</p>
+            <p class="hero-sub">The Ultimate Practice Experience • IP: <span class="ip-highlight">Play.rearmc.fun</span></p>
             <div class="hero-stats" id="heroStats">
                 <div class="stat-card">
                     <span class="stat-num" id="statPlayers">—</span>
@@ -267,6 +267,29 @@
             <span class="footer-copy">© 2026 RearMC Network. All rights reserved.</span>
         </div>
     </footer>
+
+    <!-- Player Detail Modal -->
+    <div id="playerModal" class="player-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+            <button class="modal-close" id="playerModalClose"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-body">
+                <div class="modal-avatar-wrap">
+                    <img id="modalAvatar" src="" alt="Player Avatar">
+                </div>
+                <h2 id="modalName" class="modal-name">Player Name</h2>
+                <p id="modalTitle" class="modal-subtitle">Combat Initiate</p>
+                <div class="modal-tags">
+                    <span id="modalRegion" class="modal-tag">AS</span>
+                    <span id="modalType" class="modal-tag">Premium</span>
+                </div>
+                <div class="modal-divider"></div>
+                <div class="modal-stats-grid" id="modalTiers">
+                    <!-- Dynamic Tier Items -->
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Admin Login Modal -->
     <div id="adminModal" class="player-modal">
