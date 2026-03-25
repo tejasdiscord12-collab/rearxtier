@@ -123,6 +123,7 @@ const commands = [
         .setDescription('Remove a specific kit tier from a player (Staff only)')
         .addUserOption(opt => opt.setName('user').setDescription('The Discord user').setRequired(true))
         .addStringOption(opt => opt.setName('gamemode').setDescription('The kit to remove (e.g. Nethpot, Sword)').setRequired(true)),
+    new SlashCommandBuilder().setName('admin-sync').setDescription('Force sync the database to the website (Admin only)'),
 ].map(command => command.toJSON());
 
 const rest = new REST({ version: '10' }).setToken(config.TOKEN);
