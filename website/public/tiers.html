@@ -4,103 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RearMC | Tier Rankings</title>
-    <meta name="description" content="Official Minecraft PvP Tier List for RearMC Network. View ranked players, categories, and live queue.">
-    <link rel="stylesheet" href="style.css?v=6.0">
-    <script src="script.js?v=6.0" defer></script>
+    <link rel="stylesheet" href="style.css?v=7.0">
+    <script src="script.js?v=7.0" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root { --primary: #ff003c; --bg: #0a0a0b; --card: #141416; --border: rgba(255,255,255,0.08); }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Outfit', sans-serif; background: var(--bg); color: #fff; overflow-x: hidden; }
+        
+        #navbar { background: rgba(10,10,11,0.9); border-bottom: 1px solid var(--border); padding: 15px 0; position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 35px; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-item { color: #888; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: 0.3s; }
+        .nav-item.active { color: var(--primary); }
+
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        .page-layout { display: flex; gap: 40px; }
+        .sidebar { width: 260px; flex-shrink: 0; }
+        .sidebar-section { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 25px; margin-bottom: 25px; }
+        .sidebar-title { font-size: 0.75rem; font-weight: 800; color: #666; letter-spacing: 2px; margin-bottom: 15px; }
+        .kit-btn { width: 100%; text-align: left; background: rgba(255,255,255,0.03); border: 1px solid transparent; color: #fff; padding: 12px 18px; border-radius: 8px; margin-bottom: 8px; cursor: pointer; font-weight: 700; transition: 0.2s; }
+        .kit-btn.active { background: rgba(255,0,60,0.1); border-color: var(--primary); color: var(--primary); }
+
+        .content-area { flex: 1; }
+        .table-header { display: flex; padding: 15px 25px; background: rgba(255,255,255,0.02); border-radius: 8px; margin-bottom: 10px; font-weight: 800; font-size: 0.75rem; color: #666; }
+        .th-rank { width: 60px; } .th-player { flex: 2; } .th-region { width: 100px; text-align: center; } .th-kits { flex: 2.5; }
+
+        .player-row { display: flex; align-items: center; background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 8px; padding: 18px 25px; cursor: pointer; transition: 0.2s; }
+        .player-row:hover { border-color: var(--primary); transform: translateX(5px); }
+        .col-rank { width: 60px; font-weight: 900; color: var(--primary); font-size: 1.1rem; }
+        .col-player { flex: 2; display: flex; align-items: center; gap: 15px; font-weight: 700; }
+        .col-player img { width: 32px; height: 32px; border-radius: 4px; }
+        .col-region { width: 100px; text-align: center; color: #888; font-weight: 800; font-size: 0.8rem; }
+        .col-kits { flex: 2.5; display: flex; gap: 8px; flex-wrap: wrap; }
+        .tier-badge { background: rgba(255,255,255,0.05); padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 900; border: 1px solid var(--border); }
+        .tier-ht1 { color: #ff003c; border-color: rgba(255,0,60,0.2); }
+
+        .player-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 2000; display: none; align-items: center; justify-content: center; }
+        .player-modal.active { display: flex; }
+        .modal-card { background: var(--card); border: 1px solid var(--border); width: 90%; max-width: 440px; border-radius: 15px; padding: 40px; text-align: center; position: relative; }
+        .modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+
+        @media (max-width: 800px) { .page-layout { flex-direction: column; } .sidebar { width: 100%; } }
+    </style>
 </head>
 <body>
     <nav id="navbar">
         <div class="nav-container">
             <div class="nav-links">
                 <a href="index.html" class="nav-item">Home</a>
-                <a href="#" class="nav-item active" id="navRankings">Rankings</a>
+                <a href="#" class="nav-item active">Rankings</a>
             </div>
-            <a href="index.html" class="logo"><img src="logo.png" class="logo-img"></a>
+            <a href="index.html" class="logo"><img src="logo.png" alt="RearMC Logo"></a>
             <div class="nav-right">
-                <div class="search-box" style="position:relative; background:rgba(255,255,255,0.03); padding:10px 20px; border-radius:10px; border:1px solid var(--border); display:flex; align-items:center;">
-                    <i class="fa-solid fa-magnifying-glass" style="opacity:0.4; margin-right:15px;"></i>
-                    <input type="text" id="playerSearch" placeholder="Search player..." style="background:none; border:none; color:#fff; font-family:'Outfit'; font-weight:700; outline:none;">
-                </div>
-                <div class="live-node-badge" style="background:#00ff8820; color:#00ff88; padding:8px 15px; border-radius:10px; font-weight:900; font-size:0.7rem; letter-spacing:1px; margin-left:20px;">● LIVE</div>
+                <input type="text" id="playerSearch" style="background:#000; border:1px solid var(--border); padding:8px 15px; border-radius:8px; color:#fff; font-family:'Outfit'; outline:none;" placeholder="Search player...">
             </div>
         </div>
     </nav>
-
-    <div class="hero-section">
-        <div class="hero-badge">🏆 Official Tier List</div>
-        <h1 class="hero-title">Rear<span style="color:var(--primary)">MC</span> TIERS</h1>
-        <p class="hero-sub">The Ultimate Practice Experience • IP: Play.rearmc.fun</p>
-        
-        <div style="display:flex; justify-content:center; gap:50px; margin-top:50px;">
-            <div style="text-align:center;"><span style="display:block; font-size:2rem; font-weight:900;" id="statPlayers">170</span><span style="font-size:0.7rem; letter-spacing:3px; opacity:0.4; font-weight:800;">PLAYERS RANKED</span></div>
-            <div style="text-align:center;"><span style="display:block; font-size:2rem; font-weight:900;">8</span><span style="font-size:0.7rem; letter-spacing:3px; opacity:0.4; font-weight:800;">GAMEMODES</span></div>
-            <div style="text-align:center;"><span style="display:block; font-size:2rem; font-weight:900;" id="statQueueCount">0</span><span style="font-size:0.7rem; letter-spacing:3px; opacity:0.4; font-weight:800;">IN QUEUE</span></div>
-            <div style="text-align:center;"><span style="display:block; font-size:2rem; font-weight:900; color:var(--primary);">LIVE</span><span style="font-size:0.7rem; letter-spacing:3px; opacity:0.4; font-weight:800;">STATUS</span></div>
-        </div>
-    </div>
 
     <main class="container">
         <div class="page-layout">
             <aside class="sidebar">
                 <div class="sidebar-section">
-                    <div class="sidebar-title">GAMEMODE</div>
-                    <div class="kit-list" id="kitList">
+                    <div class="sidebar-title">CATEGORIES</div>
+                    <div id="kitList">
                         <button class="kit-btn active" data-category="all">Overall Rankings</button>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-title">SERVER</div>
-                    <div style="display:flex; gap:15px; align-items:center; background:rgba(255,0,60,0.05); padding:20px; border-radius:12px; border:1px solid var(--primary-glow);">
-                        <img src="logo.png" style="width:40px;">
-                        <div>
-                            <div style="font-weight:900; font-size:1rem; letter-spacing:1px;">REARMC</div>
-                            <div style="font-size:0.65rem; color:var(--primary); font-weight:800; letter-spacing:2px;">play.rearmc.fun</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-title">TIER GUIDE</div>
-                    <div style="display:flex; flex-direction:column; gap:15px;">
-                        <div style="display:flex; align-items:center; gap:12px;"><span style="width:14px; height:14px; background:var(--gold); border-radius:4px; box-shadow:0 0 10px rgba(255,184,0,0.4);"></span> <span style="font-size:0.8rem; font-weight:800; letter-spacing:1px;">HT1: High Tier 1</span></div>
-                        <div style="display:flex; align-items:center; gap:12px;"><span style="width:14px; height:14px; background:var(--primary); border-radius:4px; box-shadow:0 0 10px var(--primary-glow);"></span> <span style="font-size:0.8rem; font-weight:800; letter-spacing:1px;">LT1: Low Tier 1</span></div>
-                        <div style="display:flex; align-items:center; gap:12px;"><span style="width:14px; height:14px; background:#fff; border-radius:4px; opacity:0.2;"></span> <span style="font-size:0.8rem; font-weight:800; letter-spacing:1px;">T2-T5: Skilled Tiers</span></div>
                     </div>
                 </div>
             </aside>
 
             <div class="content-area">
-                <div id="podiumContainer">
-                    <!-- Dynamic Podium -->
+                <div class="content-toolbar" style="margin-bottom:25px;">
+                    <h2 id="contentTitle" style="font-size: 2rem; font-weight: 900;">Overall Rankings</h2>
                 </div>
 
-                <div id="rankingsContainer">
-                    <div class="content-toolbar">
-                        <h2 style="font-family:'Outfit'; font-weight:900; font-size:2rem; letter-spacing:-1px;">Overall Rankings</h2>
-                    </div>
+                <div class="table-header">
+                    <div class="th-rank">#</div>
+                    <div class="th-player">PLAYER</div>
+                    <div class="th-region">REGION</div>
+                    <div class="th-kits">KIT TIERS</div>
+                </div>
 
-                    <div id="rankingsList">
-                        <!-- Neon Sliver Cards -->
-                    </div>
+                <div id="rankingsList">
+                    <!-- Dynamic -->
                 </div>
             </div>
         </div>
     </main>
 
     <div id="playerModal" class="player-modal">
-        <div class="modal-backdrop"></div>
         <div class="modal-card">
             <button class="modal-close" id="playerModalClose">×</button>
-            <div class="modal-avatar-wrap" style="transform:translateZ(50px);"><img id="modalAvatar" src=""></div>
-            <h2 id="modalName" style="font-family:'Outfit'; font-weight:900; font-size:2.5rem; margin-top:20px;">PLAYER</h2>
-            <p id="modalTitle" style="color:var(--primary); font-weight:900; letter-spacing:3px; text-transform:uppercase; margin:10px 0 30px;">COMBAT ACE</p>
-            <div id="modalRegion" class="col-region" style="opacity:1; background:rgba(255,255,255,0.05); padding:10px 20px; border-radius:8px; display:inline-block;">AS</div>
-            <div id="modalTiers" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:40px;"></div>
+            <img id="modalAvatar" src="" style="width:120px; margin-bottom:20px;">
+            <h2 id="modalName" style="font-size:2rem; font-weight:900;">Player</h2>
+            <p id="modalRegion" style="color:var(--primary); font-weight:800; letter-spacing:2px; margin:10px 0 30px;">REGION</p>
+            <div id="modalTiers" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;"></div>
         </div>
     </div>
 </body>
