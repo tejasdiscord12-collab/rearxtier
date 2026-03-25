@@ -598,22 +598,26 @@ body {
     border-bottom: 1px solid var(--border);
 }
 
-.th-rank {
-    width: 56px;
+.th-rank, .col-rank {
+    width: 60px;
     flex-shrink: 0;
-}
-
-.th-player {
-    flex: 1;
-}
-
-.th-region {
-    width: 90px;
     text-align: center;
 }
 
-.th-tiers {
-    width: 380px;
+.th-player, .col-player {
+    flex: 1;
+    min-width: 200px;
+}
+
+.th-region, .col-region {
+    width: 100px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.th-tiers, .col-tiers {
+    width: 420px;
+    flex-shrink: 0;
 }
 
 /* ─── PLAYER ROWS ────────────────────────────────────────────────────── */
@@ -627,15 +631,17 @@ body {
 .player-row {
     display: flex;
     align-items: center;
-    background: var(--bg-row);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    height: 70px;
-    padding: 0 8px 0 0;
+    background: rgba(15, 18, 25, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    min-height: 80px;
+    padding: 0 12px;
     position: relative;
-    transition: border-color 0.3s, background 0.3s, transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     overflow: visible;
-    animation: slideIn 0.3s ease both;
+    animation: slideIn 0.5s ease backwards;
 }
 
 @keyframes slideIn {
@@ -678,16 +684,18 @@ body {
 }
 
 .player-row:hover {
-    background: #161b28;
-    border-color: rgba(255, 184, 0, 0.4);
-    transform: translateY(-4px) scale(1.025);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 184, 0, 0.2), 0 0 30px rgba(255, 184, 0, 0.08);
-    z-index: 50;
+    background: rgba(22, 27, 40, 0.6);
+    border-color: rgba(255, 77, 77, 0.3);
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 77, 77, 0.1);
+    z-index: 10;
 }
 
 .top-rank {
-    border-color: rgba(255, 184, 0, 0.2);
-    background: linear-gradient(90deg, rgba(255, 184, 0, 0.03) 0%, var(--bg-row) 20%);
+    background: linear-gradient(90deg, rgba(255, 184, 0, 0.05) 0%, rgba(15, 18, 25, 0.4) 100%);
+    border-color: rgba(255, 184, 0, 0.15);
 }
 
 /* ─── NAMEPLATE POPUP ────────────────────────────────────────────────── */
@@ -1016,10 +1024,11 @@ body {
 
 .tiers-list {
     display: flex;
-    gap: 6px;
-    flex-wrap: nowrap;
-    overflow: visible;
-    transition: all 0.2s;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    transition: all 0.3s ease;
 }
 
 .tiers-list:hover .tier-item {
@@ -1039,9 +1048,9 @@ body {
     flex-direction: column;
     align-items: center;
     position: relative;
-    width: 32px;
+    width: 36px;
     cursor: help;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .server-card-logo {
@@ -1052,26 +1061,27 @@ body {
 }
 
 .tier-circle {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.85rem;
-    border: 2px solid rgba(255, 255, 255, 0.06);
-    background: rgba(255, 255, 255, 0.04);
-    transition: border-color 0.2s;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .tier-badge-label {
-    margin-top: 3px;
-    font-size: 0.5rem;
-    font-weight: 800;
-    padding: 1px 4px;
+    margin-top: 4px;
+    font-size: 0.55rem;
+    font-weight: 900;
+    padding: 1px 5px;
     border-radius: 4px;
     color: #fff;
-    letter-spacing: 0.2px;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Tier tooltip */
@@ -1573,16 +1583,18 @@ body {
 
 .modal-card {
     position: relative;
-    width: 440px;
+    width: 480px;
     max-width: 95vw;
-    background: #0d111b;
-    border: 1px solid rgba(255, 184, 0, 0.25);
+    background: #0d121c;
+    border: 1px solid rgba(255, 77, 77, 0.2);
     border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9), 0 0 80px rgba(255, 184, 0, 0.08);
+    overflow: visible;
+    box-shadow: 
+        0 40px 100px rgba(0, 0, 0, 0.9),
+        0 0 80px rgba(255, 77, 77, 0.05);
     transform: translateY(30px) scale(0.96);
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    z-index: 1;
+    z-index: 100;
 }
 
 .player-modal.modal-open .modal-card {
@@ -1631,17 +1643,25 @@ body {
     background: radial-gradient(circle at 50% 0%, rgba(255, 184, 0, 0.15) 0%, transparent 75%);
 }
 
-.modal-avatar {
-    width: 110px;
-    height: 110px;
-    border-radius: 18px;
-    image-rendering: pixelated;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
-    outline: 3px solid var(--primary);
-    outline-offset: 4px;
+.modal-avatar-wrap {
+    width: 140px;
+    height: 140px;
+    margin: -70px auto 20px;
     position: relative;
-    z-index: 1;
-    margin-bottom: 20px;
+    z-index: 5;
+}
+
+#modalAvatar {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.8));
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.modal-avatar-wrap:hover #modalAvatar {
+    transform: scale(1.1) translateY(-10px);
 }
 
 .modal-rank-badge {

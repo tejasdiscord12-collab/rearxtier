@@ -52,10 +52,19 @@ const saveJson = () => {
                 'Authorization': `Bearer ${GITHUB_TOKEN}`,
                 'User-Agent': 'NodeJS',
                 'Content-Type': 'application/json',
-                'Content-Length': data.length
+                'Content-Length': Buffer.byteLength(data)
             }
         });
-        req.on('error', (e) => console.error('❌ Gist Sync Error:', e));
+        
+        req.on('response', (res) => {
+            if (res.statusCode === 200) {
+                console.log('✅ Gist successfully synced to GitHub.');
+            } else {
+                console.error(`❌ Gist Sync Failed: ${res.statusCode} ${res.statusMessage}`);
+            }
+        });
+        
+        req.on('error', (e) => console.error('❌ Gist Network Error:', e));
         req.write(data);
         req.end();
 

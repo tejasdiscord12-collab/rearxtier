@@ -150,7 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 const tiersHtml = processedTiers.map(t => {
                     const cleanTier = t.tier.replace(';', '').trim();
                     const dispName = KIT_DISPLAY[t.category] || t.category;
-                    return `<div class="tier-item tier-color-${cleanTier}"><div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}"></div><span class="tier-badge-label">${cleanTier}</span></div>`;
+                    return `
+                    <div class="tier-item tier-color-${cleanTier}">
+                        <div class="tier-circle">
+                            <img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="${dispName}">
+                        </div>
+                        <span class="tier-badge-label">${cleanTier}</span>
+                        <div class="tier-tooltip">
+                            <strong>${dispName}</strong>
+                            <span>Tier: ${cleanTier}</span>
+                        </div>
+                    </div>`;
                 }).join('');
 
                 const regionCode = (player.region || 'AS').split('/')[0].toUpperCase();
@@ -176,7 +186,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 const t = player.tiers.find(ti => normalizeCategory(ti.category) === normalizedCurrent);
                 const cleanTier = t.tier.replace(';', '').trim();
                 const regionCode = (player.region || 'AS').split('/')[0].toUpperCase();
-                row.innerHTML = `<div class="col-rank"><div class="rank-box"><span class="rank-text">${index + 1}</span></div></div><div class="col-player"><div class="player-card"><div class="avatar-wrapper"><img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42"></div><div class="player-info"><div class="player-name">${player.minecraft_ign}</div><div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div></div></div></div><div class="col-region"><span class="region-badge region-${regionCode}">${player.region || 'AS'}</span></div><div class="col-tiers"><div class="tiers-list"><div class="tier-item tier-color-${cleanTier}"><div class="tier-circle"><img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}"></div><span class="tier-badge-label">${cleanTier}</span></div></div></div>`;
+                row.innerHTML = `
+                    <div class="col-rank">
+                        <div class="rank-box">
+                            <span class="rank-text">${index + 1}</span>
+                        </div>
+                    </div>
+                    <div class="col-player">
+                        <div class="player-card">
+                            <div class="avatar-wrapper">
+                                <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42" alt="${player.minecraft_ign}">
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">${player.minecraft_ign}</div>
+                                <div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-region">
+                        <span class="region-badge region-${regionCode}">${player.region || 'AS'}</span>
+                    </div>
+                    <div class="col-tiers">
+                        <div class="tiers-list">
+                            <div class="tier-item tier-color-${cleanTier}">
+                                <div class="tier-circle">
+                                    <img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="${dispName}">
+                                </div>
+                                <span class="tier-badge-label">${cleanTier}</span>
+                                <div class="tier-tooltip">
+                                    <strong>${dispName}</strong>
+                                    <span>Tier: ${cleanTier}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
                 rankingsList.appendChild(row);
             });
         }
@@ -289,6 +332,63 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lockIcon) { lockIcon.classList.replace('fa-lock', 'fa-unlock'); }
     }
 
+    // ─── HERO PARTICLES ──────────────────────────────────────────────────────
+    function initHeroParticles() {
+        const canvas = document.createElement('canvas');
+        const container = document.getElementById('heroParticles');
+        if (!container) return;
+        
+        container.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        
+        function resize() {
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+        }
+        
+        window.addEventListener('resize', resize);
+        resize();
+        
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 77, 77, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    initHeroParticles();
     fetchRankings();
     fetchQueue();
     setInterval(() => { fetchRankings(); fetchQueue(); }, 60000);
