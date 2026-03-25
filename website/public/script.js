@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
     const GIST_ID = '62dcff9fb06d470d2b7bf5c1bdc63cf2';
-const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/${GIST_ID}/raw/`;
+    const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/${GIST_ID}/raw/`;
     const API_BASE = 'http://eu1i7.hexonode.com:26113';
     let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
 
@@ -20,7 +20,6 @@ const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/
     const navbar = document.getElementById('navbar');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const sidebar = document.querySelector('.sidebar');
-    const adminLoginBtn = document.getElementById('adminLoginBtn');
     
     // Modal Refs
     const playerModal = document.getElementById('playerModal');
@@ -96,10 +95,38 @@ const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/
             if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
             allData = await res.json();
             if (statPlayers) statPlayers.textContent = allData.length;
+            
+            const kitList = document.getElementById('kitList');
+            if (kitList) {
+                kitList.innerHTML = `<button class="kit-btn ${currentCategory === 'all' ? 'active' : ''}" data-category="all">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Overall</span>
+                </button>`;
+                
+                Object.keys(KIT_DISPLAY).forEach(kitKey => {
+                    const disp = KIT_DISPLAY[kitKey];
+                    const btn = document.createElement('button');
+                    btn.className = `kit-btn ${currentCategory === kitKey ? 'active' : ''}`;
+                    btn.dataset.category = kitKey;
+                    btn.innerHTML = `
+                        <img src="${KIT_ICONS[disp] || KIT_ICONS['Sword']}" style="width:18px; image-rendering:pixelated; margin-right:8px;">
+                        <span>${disp}</span>
+                    `;
+                    btn.onclick = () => {
+                        document.querySelectorAll('.kit-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        currentCategory = kitKey;
+                        renderRankings(allData);
+                        if (window.innerWidth <= 1000) sidebar.classList.remove('active');
+                    };
+                    kitList.appendChild(btn);
+                });
+            }
+
             renderRankings(allData);
         } catch (e) {
-            console.error('❌ Fetch Error:', e);
-            if (rankingsList) rankingsList.innerHTML = `<div class="loading-state"><span>Failed to load rankings: ${e.message}</span></div>`;
+            console.error('Fetch Failed:', e);
+            if (rankingsList) rankingsList.innerHTML = `<div class="loading-state"><span>Failed to load node: ${e.message}</span></div>`;
         }
     }
 
@@ -113,114 +140,89 @@ const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/
     }
 
     // ─── RENDER ──────────────────────────────────────────────────────────────
-    function renderRankings(players) {
+    function renderRankings(data) {
         if (!rankingsList) return;
         rankingsList.innerHTML = '';
-        if (!players || players.length === 0) {
-            rankingsList.innerHTML = '<div class="loading-state"><span>No players found.</span></div>';
-            return;
-        }
-
-        const playersWithData = players.map(p => {
-            const bestVal = getBestTierValue(p.tiers);
-            return { ...p, bestVal, title: getTitle(bestVal) };
-        });
-
-        const normalizedCurrent = normalizeCategory(currentCategory);
-
+        
+        const normalizedCurrent = currentCategory.toLowerCase();
+        
         if (normalizedCurrent === 'all') {
-            tableHeader.style.display = 'flex';
-            contentTitle.innerHTML = '<i class="fa-solid fa-trophy" style="color:#ffb800"></i> Overall Rankings';
-            const sorted = [...playersWithData].sort((a,b) => b.bestVal - a.bestVal || (b.tiers||[]).length - (a.tiers||[]).length);
-            renderPodium(sorted.slice(0, 3));
+            if (tableHeader) tableHeader.style.display = 'flex';
+            if (contentTitle) contentTitle.innerHTML = `<i class="fa-solid fa-trophy" style="color:var(--primary)"></i> OVERALL RANKINGS`;
+            
+            const playersWithRank = data.map(p => {
+                const bestVal = getBestTierValue(p.tiers);
+                return { ...p, bestVal, title: getTitle(bestVal) };
+            }).sort((a,b) => b.bestVal - a.bestVal);
 
-            sorted.forEach((player, index) => {
-                const isTop3 = index < 3;
+            renderPodium(playersWithRank.slice(0, 3));
+
+            playersWithRank.forEach((player, index) => {
                 const row = document.createElement('div');
-                row.className = `player-row${isTop3 ? ' top-rank' : ''}`;
-                row.addEventListener('click', () => openPlayerModal(player));
+                row.className = 'player-row';
+                
+                const bestTier = player.tiers?.length > 0 ? player.tiers.reduce((prev, curr) => (getTierVal(prev.tier) > getTierVal(curr.tier)) ? prev : curr) : null;
+                const tierColorClass = bestTier ? `tier-${bestTier.tier.toLowerCase().replace(';', '')}` : '';
+                if (tierColorClass) row.classList.add(tierColorClass);
 
-                const processedTiers = (player.tiers || []).reduce((acc, current) => {
-                    let cat = normalizeCategory(current.category);
-                    const existingIdx = acc.findIndex(t => t.category === cat);
-                    if (existingIdx === -1) acc.push({ tier: current.tier, category: cat });
-                    else if (getTierVal(current.tier) > getTierVal(acc[existingIdx].tier)) acc[existingIdx].tier = current.tier;
-                    return acc;
-                }, []).sort((a,b) => getTierVal(b.tier) - getTierVal(a.tier));
+                const rank = index + 1;
+                let rankDisp = `#${rank}`;
+                if (rank === 1) rankDisp = '🥇';
+                if (rank === 2) rankDisp = '🥈';
+                if (rank === 3) rankDisp = '🥉';
 
-                const tiersHtml = processedTiers.map(t => {
-                    const cleanTier = t.tier.replace(';', '').trim();
-                    const dispName = KIT_DISPLAY[t.category] || t.category;
-                    return `
-                    <div class="tier-item tier-color-${cleanTier}">
-                        <div class="tier-circle">
-                            <img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="${dispName}">
+                row.innerHTML = `
+                    <div class="col-rank" style="width:70px; font-weight:800; color:var(--primary); font-size:1.1rem;">${rankDisp}</div>
+                    <div class="col-player" style="flex:2; display:flex; align-items:center; gap:12px;">
+                        <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/32" style="border-radius:4px; border:1px solid rgba(255,255,255,0.1);">
+                        <div>
+                            <div style="font-weight:700; color:#fff;">${player.minecraft_ign}</div>
+                            <div style="font-size:0.65rem; color:var(--text-muted); font-weight:800; text-transform:uppercase; letter-spacing:1px;">${player.title}</div>
                         </div>
-                        <span class="tier-badge-label">${cleanTier}</span>
-                        <div class="tier-tooltip">
-                            <strong>${dispName}</strong>
-                            <span>Tier: ${cleanTier}</span>
-                        </div>
-                    </div>`;
-                }).join('');
-
-                const regionCode = (player.region || 'AS').split('/')[0].toUpperCase();
-                row.innerHTML = `<div class="col-rank"><div class="rank-box"><span class="rank-text">${index + 1}</span></div></div><div class="col-player"><div class="player-card"><div class="avatar-wrapper"><img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42"></div><div class="player-info"><div class="player-name">${player.minecraft_ign}</div><div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div></div></div></div><div class="col-region"><span class="region-badge region-${regionCode}">${player.region || 'AS'}</span></div><div class="col-tiers"><div class="tiers-list">${tiersHtml}</div></div>`;
+                    </div>
+                    <div class="col-region" style="width:100px; text-align:center; font-size:0.75rem; font-weight:800; opacity:0.5;">${player.region || 'GLOBAL'}</div>
+                    <div class="col-tiers" style="flex:3; display:flex; gap:8px; flex-wrap:wrap;">
+                        ${(player.tiers || []).sort((a,b) => getTierVal(b.tier) - getTierVal(a.tier)).slice(0, 5).map(t => `<span class="tier-pill-small ${t.tier.toUpperCase().replace(';', '')}">${t.category}: ${t.tier}</span>`).join('')}
+                    </div>
+                `;
+                row.onclick = () => openPlayerModal(player);
                 rankingsList.appendChild(row);
             });
         } else {
-            tableHeader.style.display = 'flex';
-            const dispName = KIT_DISPLAY[normalizedCurrent] || normalizedCurrent;
-            contentTitle.innerHTML = `<img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" class="title-kit-icon"> ${dispName} Rankings`;
-            
-            const filtered = playersWithData.filter(p => (p.tiers || []).some(t => normalizeCategory(t.category) === normalizedCurrent))
-                .sort((a,b) => {
-                    const tA = a.tiers.find(t => normalizeCategory(t.category) === normalizedCurrent);
-                    const tB = b.tiers.find(t => normalizeCategory(t.category) === normalizedCurrent);
-                    return getTierVal(tB.tier) - getTierVal(tA.tier);
-                });
+            if (tableHeader) tableHeader.style.display = 'flex';
+            const disp = KIT_DISPLAY[normalizedCurrent] || normalizedCurrent;
+            if (contentTitle) contentTitle.innerHTML = `<img src="${KIT_ICONS[disp] || KIT_ICONS['Sword']}" style="width:24px; vertical-align:middle; margin-right:10px;"> ${disp.toUpperCase()} RANKINGS`;
+
+            const filtered = data.filter(p => (p.tiers || []).some(t => normalizeCategory(t.category) === normalizedCurrent))
+                .map(p => {
+                    const t = p.tiers.find(ti => normalizeCategory(ti.category) === normalizedCurrent);
+                    return { ...p, currentTier: t.tier, tierVal: getTierVal(t.tier) };
+                })
+                .sort((a,b) => b.tierVal - a.tierVal);
+
             renderPodium(filtered.slice(0, 3));
+
             filtered.forEach((player, index) => {
                 const row = document.createElement('div');
-                row.className = `player-row ${index < 3 ? 'top-rank' : ''}`;
-                row.addEventListener('click', () => openPlayerModal(player));
-                const t = player.tiers.find(ti => normalizeCategory(ti.category) === normalizedCurrent);
-                const cleanTier = t.tier.replace(';', '').trim();
-                const regionCode = (player.region || 'AS').split('/')[0].toUpperCase();
+                row.className = 'player-row';
+                const rank = index + 1;
+                let rankDisp = `#${rank}`;
+                if (rank === 1) rankDisp = '🥇';
+                if (rank === 2) rankDisp = '🥈';
+                if (rank === 3) rankDisp = '🥉';
+
                 row.innerHTML = `
-                    <div class="col-rank">
-                        <div class="rank-box">
-                            <span class="rank-text">${index + 1}</span>
-                        </div>
+                    <div class="col-rank" style="width:70px; font-weight:800; color:var(--primary);">${rankDisp}</div>
+                    <div class="col-player" style="flex:2; display:flex; align-items:center; gap:12px;">
+                        <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/32" style="border-radius:4px;">
+                        <span style="font-weight:700;">${player.minecraft_ign}</span>
                     </div>
-                    <div class="col-player">
-                        <div class="player-card">
-                            <div class="avatar-wrapper">
-                                <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42" alt="${player.minecraft_ign}">
-                            </div>
-                            <div class="player-info">
-                                <div class="player-name">${player.minecraft_ign}</div>
-                                <div class="player-title"><i class="fa-solid fa-medal title-icon"></i> ${player.title}</div>
-                            </div>
-                        </div>
+                    <div class="col-region" style="width:100px; text-align:center; opacity:0.5; font-size:0.75rem;">${player.region || 'GLOBAL'}</div>
+                    <div class="col-tiers" style="flex:3;">
+                        <span class="tier-pill-small ${player.currentTier.toUpperCase().replace(';', '')}" style="background:rgba(225,0,60,0.1); border:1px solid var(--primary-glow);">${player.currentTier}</span>
                     </div>
-                    <div class="col-region">
-                        <span class="region-badge region-${regionCode}">${player.region || 'AS'}</span>
-                    </div>
-                    <div class="col-tiers">
-                        <div class="tiers-list">
-                            <div class="tier-item tier-color-${cleanTier}">
-                                <div class="tier-circle">
-                                    <img src="${KIT_ICONS[dispName] || KIT_ICONS['Sword']}" alt="${dispName}">
-                                </div>
-                                <span class="tier-badge-label">${cleanTier}</span>
-                                <div class="tier-tooltip">
-                                    <strong>${dispName}</strong>
-                                    <span>Tier: ${cleanTier}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
+                `;
+                row.onclick = () => openPlayerModal(player);
                 rankingsList.appendChild(row);
             });
         }
@@ -246,6 +248,7 @@ const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/
     }
 
     function openPlayerModal(player) {
+        if (!modalName || !playerModal) return;
         modalName.textContent = player.minecraft_ign;
         modalAvatar.src = `https://mc-heads.net/body/${player.minecraft_ign}`;
         modalRegion.textContent = player.region || 'AS';
@@ -264,28 +267,20 @@ const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/
     navRankings?.addEventListener('click', (e) => {
         e.preventDefault();
         currentView = 'rankings';
-        rankingsContainer.style.display = 'block';
-        queueContainer.style.display = 'none';
+        if (rankingsContainer) rankingsContainer.style.display = 'block';
+        if (queueContainer) queueContainer.style.display = 'none';
         navRankings.classList.add('active');
-        navQueue.classList.remove('active');
+        navQueue?.classList.remove('active');
     });
 
     navQueue?.addEventListener('click', (e) => {
         e.preventDefault();
         currentView = 'queue';
-        rankingsContainer.style.display = 'none';
-        queueContainer.style.display = 'block';
+        if (rankingsContainer) rankingsContainer.style.display = 'none';
+        if (queueContainer) queueContainer.style.display = 'block';
         navQueue.classList.add('active');
-        navRankings.classList.remove('active');
+        navRankings?.classList.remove('active');
     });
-
-    kitButtons.forEach(btn => btn.addEventListener('click', () => {
-        kitButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentCategory = btn.dataset.category;
-        renderRankings(allData);
-        if (window.innerWidth <= 900) sidebar.classList.remove('active');
-    }));
 
     playerSearch?.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
@@ -294,102 +289,12 @@ const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/
     });
 
     mobileMenuBtn?.addEventListener('click', () => {
-        sidebar.classList.toggle('active');
+        if (sidebar) sidebar.classList.toggle('active');
     });
 
     playerModalClose?.addEventListener('click', () => playerModal.classList.remove('modal-open'));
-    window.addEventListener('click', (e) => { if (e.target === playerModal || e.target === document.getElementById('adminModal')) { playerModal.classList.remove('modal-open'); document.getElementById('adminModal')?.classList.remove('modal-open'); } });
+    window.addEventListener('click', (e) => { if (e.target === playerModal) playerModal.classList.remove('modal-open'); });
 
-    adminLoginBtn?.addEventListener('click', () => {
-        document.getElementById('adminModal')?.classList.add('modal-open');
-    });
-
-    document.getElementById('adminModalClose')?.addEventListener('click', () => {
-        document.getElementById('adminModal')?.classList.remove('modal-open');
-    });
-
-    document.getElementById('adminLoginSubmit')?.addEventListener('click', async () => {
-        const pass = document.getElementById('adminPassword')?.value;
-        if (!pass) return;
-        try {
-            const res = await fetch(`${API_BASE}/api/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password: pass })
-            });
-            if (res.ok) {
-                const data = await res.json();
-                ADMIN_TOKEN = data.token;
-                localStorage.setItem('adminToken', ADMIN_TOKEN);
-                document.getElementById('adminModal')?.classList.remove('modal-open');
-                location.reload();
-            } else { alert('Invalid Password!'); }
-        } catch (e) { alert('Server error'); }
-    });
-
-    if (ADMIN_TOKEN) {
-        document.body.classList.add('is-admin');
-        const lockIcon = document.querySelector('#adminLoginBtn i');
-        if (lockIcon) { lockIcon.classList.replace('fa-lock', 'fa-unlock'); }
-    }
-
-    // ─── HERO PARTICLES ──────────────────────────────────────────────────────
-    function initHeroParticles() {
-        const canvas = document.createElement('canvas');
-        const container = document.getElementById('heroParticles');
-        if (!container) return;
-        
-        container.appendChild(canvas);
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        
-        function resize() {
-            canvas.width = container.offsetWidth;
-            canvas.height = container.offsetHeight;
-        }
-        
-        window.addEventListener('resize', resize);
-        resize();
-        
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = `rgba(255, 77, 77, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        
-        for (let i = 0; i < 60; i++) particles.push(new Particle());
-        
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-    }
-
-    initHeroParticles();
     fetchRankings();
     fetchQueue();
     setInterval(() => { fetchRankings(); fetchQueue(); }, 60000);

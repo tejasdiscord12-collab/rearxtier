@@ -7,8 +7,8 @@
     <title>RearMC | Tier Rankings</title>
     <meta name="description"
         content="Official Minecraft PvP Tier List for RearMC Network. View ranked players, categories, and live queue.">
-    <link rel="stylesheet" href="style.css?v=4.0">
-    <script src="script.js?v=4.0" defer></script>
+    <link rel="stylesheet" href="style.css?v=4.7">
+    <script src="script.js?v=4.7" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -86,53 +86,50 @@
         <div class="hero-scroll-hint">
             <i class="fa-solid fa-chevron-down"></i>
         </div>
-    <    <main class="master-container" style="max-width: 1540px; margin: 0 auto; padding: 40px; display: flex; gap: 40px; animation: hudReveal 1.2s cubic-bezier(0.16,1,0.3,1) both;">
-
-        <!-- DIGITAL CONTROL SIDEBAR -->
-        <aside class="sidebar">
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Digital Control</h3>
-                <div class="kit-list">
-                    <button class="kit-btn active" data-category="all">
-                        <i class="fa-solid fa-layer-group"></i>
-                        <span>OVERALL</span>
-                    </button>
-                    <!-- Other buttons will be dynamically updated in script.js to match these styles -->
-                    <button class="kit-btn" data-category="Nethpot">
-                        <i class="fa-solid fa-shield-halved"></i>
-                        <span>NETHPOT</span>
-                    </button>
-                    <button class="kit-btn" data-category="Sword">
-                        <i class="fa-solid fa-sword"></i>
-                        <span>SWORD</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="sidebar-section">
-                <h3 class="sidebar-title">Server Node</h3>
-                <div class="server-node-card" style="padding: 20px; background: rgba(225,0,60,0.05); border: 1px solid var(--primary-glow); border-radius: 12px; display: flex; gap: 15px; align-items: center;">
-                    <img src="logo.png" style="width: 40px; filter: drop-shadow(0 0 10px var(--primary-glow));">
-                    <div>
-                        <div style="font-weight: 800; color: #fff; font-size: 0.9rem;">REARMC</div>
-                        <div style="font-size: 0.7rem; color: var(--primary); letter-spacing: 1px; font-weight: 900;">PLAY.REARMC.FUN</div>
+    <    <main class="container" style="max-width: 1440px; margin: 0 auto; padding: 120px 24px 40px; min-height: 100vh;">
+        <div class="page-layout" style="display: flex; gap: 32px;">
+            
+            <!-- CLASSIC SIDEBAR (Restored & Polished) -->
+            <aside class="sidebar" style="width: 280px; flex-shrink: 0;">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">GAMEMODES</div>
+                    <div class="kit-list" id="kitList">
+                        <button class="kit-btn active" data-category="all">
+                            <i class="fa-solid fa-trophy"></i>
+                            <span>Overall</span>
+                        </button>
                     </div>
                 </div>
-            </div>
-        </aside>
-
-        <!-- NEON SLIVER RANKINGS -->
-        <div class="content-area" style="flex: 1;">
-            <div id="rankingsContainer">
-                <div class="content-toolbar" style="margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between;">
-                    <div style="font-family: 'Syncopate', sans-serif; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 15px;">
-                        <span style="width: 12px; height: 12px; background: var(--primary); border-radius: 50%; box-shadow: 0 0 15px var(--primary);"></span>
-                        Live Rankings
+                
+                <div class="sidebar-section">
+                    <div class="sidebar-title">SERVER</div>
+                    <div class="server-node" style="padding: 15px; background: rgba(225,0,60,0.05); border: 1px solid var(--primary-glow); border-radius: 12px; display: flex; gap: 12px; align-items: center;">
+                        <img src="logo.png" style="width: 32px;">
+                        <div style="font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;">PLAY.REARMC.FUN</div>
                     </div>
                 </div>
+            </aside>
 
-                <div id="rankingsList">
-                    <!-- Dynamic Sliver Rows -->
+            <!-- CLASSIC TABLE (Restored & Polished) -->
+            <div class="content-area" style="flex: 1;">
+                <div id="rankingsContainer">
+                    <div class="content-toolbar" style="margin-bottom: 24px;">
+                        <h2 id="contentTitle" style="font-family: 'Syncopate', sans-serif; font-size: 1.4rem; display: flex; align-items: center; gap: 12px;">
+                            <i class="fa-solid fa-trophy" style="color:var(--primary)"></i>
+                            OVERALL RANKINGS
+                        </h2>
+                    </div>
+
+                    <div id="tableHeader" class="table-header-row" style="display: flex; padding: 15px 20px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 12px; font-weight: 800; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
+                        <div style="width: 70px;">#</div>
+                        <div style="flex: 2;">PLAYER</div>
+                        <div style="width: 100px; text-align: center;">REGION</div>
+                        <div style="flex: 3;">KIT TIERS</div>
+                    </div>
+
+                    <div id="rankingsList">
+                        <!-- Dynamic rows will be re-synchronized in script.js -->
+                    </div>
                 </div>
             </div>
         </div>
