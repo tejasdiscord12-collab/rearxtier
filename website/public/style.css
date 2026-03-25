@@ -608,8 +608,9 @@ body {
 }
 
 .th-player, .col-player {
-    flex: 1.5;
-    min-width: 0;
+    flex: 2;
+    min-width: 250px;
+    overflow: hidden;
 }
 
 .th-region, .col-region {
@@ -621,7 +622,7 @@ body {
 }
 
 .th-tiers, .col-tiers {
-    flex: 2;
+    flex: 3;
     min-width: 320px;
 }
 

@@ -14,6 +14,12 @@ const saveJson = () => {
     try {
         const users = db.prepare("SELECT * FROM users").all();
         const playerTiers = db.prepare("SELECT * FROM player_tiers").all();
+
+        if (users.length === 0 && fs.existsSync(playersJsonPath)) {
+            console.warn('⚠️  Database is currently empty. Aborting Gist sync to prevent clearing live data. (Use /admin-sync if this is intentional)');
+            return;
+        }
+
         const exportTiers = users.map(user => ({
             ...user,
             tiers: playerTiers.filter(t => t.user_id === user.user_id)
