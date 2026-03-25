@@ -588,36 +588,41 @@ body {
 .table-header-row {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
+    padding: 16px 32px;
     color: var(--text-muted);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     border-bottom: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.01);
 }
 
 .th-rank, .col-rank {
-    width: 60px;
+    width: 70px;
     flex-shrink: 0;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .th-player, .col-player {
-    flex: 1;
-    min-width: 200px;
+    flex: 1.5;
+    min-width: 0;
 }
 
 .th-region, .col-region {
-    width: 100px;
+    width: 120px;
     text-align: center;
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .th-tiers, .col-tiers {
-    width: 420px;
-    flex-shrink: 0;
+    flex: 2;
+    min-width: 320px;
 }
 
 /* ─── PLAYER ROWS ────────────────────────────────────────────────────── */
@@ -631,17 +636,17 @@ body {
 .player-row {
     display: flex;
     align-items: center;
-    background: rgba(15, 18, 25, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(15, 18, 25, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-    min-height: 80px;
-    padding: 0 12px;
+    border-radius: 18px;
+    min-height: 90px;
+    padding: 0 32px;
     position: relative;
-    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
     overflow: visible;
-    animation: slideIn 0.5s ease backwards;
+    animation: slideIn 0.6s ease backwards;
 }
 
 @keyframes slideIn {

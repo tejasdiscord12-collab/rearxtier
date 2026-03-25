@@ -733,6 +733,20 @@ client.on(Events.InteractionCreate, async interaction => {
                 return;
             }
 
+            if (commandName === 'admin-sync') {
+                if (!interaction.member.permissions.has('Administrator')) {
+                    return interaction.reply({ content: 'Only Administrators can use this command.', ephemeral: true });
+                }
+                await interaction.deferReply({ ephemeral: true });
+                try {
+                    db.saveJson();
+                    await interaction.editReply({ content: '✅ Manual synchronization triggered successfully! The website should update in a few seconds.' });
+                } catch (e) {
+                    await interaction.editReply({ content: `❌ Sync failed: ${e.message}` });
+                }
+                return;
+            }
+
             if (commandName === 'result') {
                 const userId = interaction.user.id;
                 const now = Date.now();
