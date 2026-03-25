@@ -3,284 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RearMC Network | Elite Practice</title>
-    <link rel="stylesheet" href="style.css?v=2.5">
+    <title>RearMC | The Apex Experience</title>
+    <link rel="stylesheet" href="style.css?v=2.9">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;500;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #e11d48;
-            --primary-glow: rgba(225, 29, 72, 0.4);
+            --primary-glow: rgba(225, 29, 72, 0.5);
             --gold: #fbbf24;
-            --bg-dark: #080b12;
+            --gold-glow: rgba(251, 191, 36, 0.4);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--bg-dark);
-            background-image: linear-gradient(rgba(8, 11, 18, 0.8), rgba(8, 11, 18, 0.95)), url('hero-bg.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            background: #05070a;
             color: #fff;
             font-family: 'Outfit', sans-serif;
-            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
         }
 
-        .home-container {
-            max-width: 1100px;
-            width: 95%;
-            text-align: center;
-            animation: eliteIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+        /* Immersive Background with Ken Burns Effect */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: -2;
+            background-image: linear-gradient(rgba(5, 7, 10, 0.4), rgba(5, 7, 10, 0.95)), url('hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            animation: kenBurns 40s linear infinite alternate;
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(-2%, -2%); }
+        }
+
+        .overlay-vignette {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: radial-gradient(circle at center, transparent 0%, rgba(5, 7, 10, 0.8) 100%);
+        }
+
+        /* Floating Particles */
+        .particles-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            filter: blur(2px);
+            opacity: 0.3;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+
+        /* Main Layout */
+        main {
+            position: relative;
             z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 40px;
         }
 
-        @keyframes eliteIn {
-            0% { opacity: 0; transform: translateY(40px) scale(1.05); filter: blur(10px); }
-            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        /* Branding Section */
+        .branding {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: revealHero 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        .server-logo-main {
-            width: 220px;
-            margin-bottom: -10px;
-            filter: drop-shadow(0 0 40px rgba(225, 29, 72, 0.4));
-            transition: all 0.6s ease;
-            cursor: pointer;
+        .main-logo {
+            width: 280px;
+            margin-bottom: -30px;
+            filter: drop-shadow(0 0 50px var(--primary-glow));
+            transition: all 0.5s ease;
         }
 
-        .server-logo-main:hover {
-            transform: scale(1.08) rotate(2deg);
-            filter: drop-shadow(0 0 60px rgba(225, 29, 72, 0.6));
+        .main-logo:hover {
+            transform: scale(1.05) translateY(-5px);
+            filter: drop-shadow(0 0 80px var(--primary-glow));
         }
 
-        .hero-text-wrap {
-            margin-bottom: 60px;
-        }
-
-        .home-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 4.8rem;
-            font-weight: 800;
-            letter-spacing: -3px;
+        .server-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 5rem;
+            font-weight: 700;
+            letter-spacing: -6px;
             margin: 0;
             text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff, #999);
+            background: linear-gradient(180deg, #fff 0%, #999 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .home-sub {
-            font-size: 0.95rem;
-            color: var(--gold);
-            font-weight: 800;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-top: -5px;
-            text-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
-        }
-
-        .nav-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            perspective: 1000px;
-        }
-
-        .nav-card {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 45px 20px;
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            display: flex;
-            flex-direction: column;
+        .server-status-pill {
+            display: inline-flex;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-card:hover {
-            transform: translateY(-15px) rotateX(10deg);
-            background: rgba(225, 29, 72, 0.08);
-            border-color: rgba(225, 29, 72, 0.4);
-            box-shadow: 0 25px 60px rgba(225, 29, 72, 0.2);
-        }
-
-        .nav-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            padding: 1px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.5;
-        }
-
-        .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 25px;
-            transition: all 0.5s ease;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
-        }
-
-        .nav-card:hover .card-icon {
-            transform: scale(1.1) translateY(-10px);
-            filter: drop-shadow(0 0 20px var(--primary-glow));
-        }
-
-        .card-title {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .card-status {
-            font-size: 0.65rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 6px 14px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.06);
-            color: rgba(255, 255, 255, 0.3);
-            transition: all 0.3s;
-        }
-
-        .nav-card:hover .card-status {
-            background: var(--primary);
-            color: #fff;
-            box-shadow: 0 4px 12px var(--primary-glow);
-        }
-
-        .active .card-status {
+            gap: 10px;
             background: rgba(225, 29, 72, 0.1);
+            border: 1px solid rgba(225, 29, 72, 0.3);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             color: var(--primary);
-            border: 1px solid var(--primary-glow);
+            margin-top: 15px;
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.15);
         }
 
-        @media (max-width: 900px) {
-            .nav-grid { grid-template-columns: repeat(2, 1fr); }
-            .home-title { font-size: 3.2rem; }
-        }
-
-        @media (max-width: 480px) {
-            .nav-grid { grid-template-columns: 1fr; }
-            .home-title { font-size: 2.4rem; }
-        }
-
-        /* Ambient Glow Particles */
-        .ambient-glow {
-            position: absolute;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .glow-circle {
-            position: absolute;
-            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
             border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.3;
-            animation: pulse 8s infinite alternate;
+            box-shadow: 0 0 10px var(--primary);
+            animation: pulse 2s infinite;
         }
 
         @keyframes pulse {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.4) translate(100px, 50px); }
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
         }
 
-        .toast {
+        /* Elite Navigation Grid */
+        .elite-grid {
+            display: flex;
+            gap: 30px;
+            perspective: 2000px;
+            animation: revealNav 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        @keyframes revealHero {
+            from { opacity: 0; transform: translateY(40px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes revealNav {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .elite-card {
+            position: relative;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            width: 240px;
+            height: 320px;
+            border-radius: 30px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+            overflow: visible; /* To allow glow hover to leak */
+        }
+
+        .elite-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(225, 29, 72, 0.15), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .elite-card:hover::before { opacity: 1; }
+
+        .elite-card:hover {
+            transform: translateY(-25px) rotateX(15deg) rotateY(-5deg);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(225, 29, 72, 0.5);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 30px var(--primary-glow);
+        }
+
+        .card-illu {
+            height: 100px;
+            margin-bottom: 40px;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.4));
+        }
+
+        .elite-card:hover .card-illu {
+            transform: scale(1.25) rotateY(180deg);
+            filter: drop-shadow(0 25px 25px var(--primary-glow));
+        }
+
+        .card-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .card-detail {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 3px;
+            margin-top: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .elite-card.active .card-detail { color: var(--gold); }
+
+        /* Floating Background Accent */
+        .bg-accent {
             position: fixed;
-            top: 40px;
-            right: 40px;
-            background: rgba(225, 29, 72, 0.1);
-            backdrop-filter: blur(15px);
-            border-left: 4px solid var(--primary);
-            padding: 20px 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            transform: translateX(400px);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -300px;
+            right: -300px;
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Toast Modern */
+        .modern-toast {
+            position: fixed;
+            bottom: 40px;
+            background: rgba(8, 11, 18, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 15px 30px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateY(150px);
             transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1000;
         }
 
-        .toast.show { transform: translateX(0); }
+        .modern-toast.show { transform: translateY(0); }
+
+        .toast-loader {
+            width: 14px;
+            height: 14px;
+            border: 2px solid var(--primary);
+            border-right-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <div class="ambient-glow">
-        <div class="glow-circle" style="width: 600px; height: 600px; top: -200px; left: -200px;"></div>
-        <div class="glow-circle" style="width: 500px; height: 500px; bottom: -150px; right: -150px; animation-delay: -2s;"></div>
-    </div>
+    <div class="bg-layer"></div>
+    <div class="overlay-vignette"></div>
+    <div class="bg-accent"></div>
+    <div class="particles-layer" id="particles"></div>
 
-    <div class="home-container">
-        <img src="logo.png" alt="RearMC Logo" class="server-logo-main">
-        <div class="hero-text-wrap">
-            <h1 class="home-title">REARMC NETWORK</h1>
-            <p class="home-sub">The Apex Practice Environment</p>
+    <main>
+        <div class="branding">
+            <img src="logo.png" alt="RearMC Elite" class="main-logo">
+            <h1 class="server-title">REARMC</h1>
+            <div class="server-status-pill">
+                <span class="status-dot"></span>
+                The Apex Practice Network
+            </div>
         </div>
 
-        <div class="nav-grid">
-            <div class="nav-card" onclick="showSoon('The Store')">
-                <div class="card-icon">🛒</div>
-                <div class="card-title">STORE</div>
-                <div class="card-status">Soon</div>
+        <nav class="elite-grid">
+            <div class="elite-card" onmousemove="handleMove(event)" onclick="showToast('Store')">
+                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/gold_ingot.png" class="card-illu" alt="Store">
+                <span class="card-label">Store</span>
+                <span class="card-detail">Maintenance</span>
             </div>
 
-            <a href="tiers.html" class="nav-card active">
-                <div class="card-icon">🏆</div>
-                <div class="card-title">TIERS</div>
-                <div class="card-status">LIVE</div>
+            <a href="tiers.html" class="elite-card active" onmousemove="handleMove(event)">
+                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/netherite_sword.png" class="card-illu" alt="Tiers">
+                <span class="card-label">Tiers</span>
+                <span class="card-detail" style="color:var(--gold)">Online</span>
             </a>
 
-            <div class="nav-card" onclick="showSoon('Discord Community')">
-                <div class="card-icon">💬</div>
-                <div class="card-title">DISCORD</div>
-                <div class="card-status">Soon</div>
+            <div class="elite-card" onmousemove="handleMove(event)" onclick="showToast('Discord')">
+                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/enchanted_book.png" class="card-illu" alt="Discord">
+                <span class="card-label">Discord</span>
+                <span class="card-detail">Locked</span>
             </div>
 
-            <div class="nav-card" onclick="showSoon('The Gallery')">
-                <div class="card-icon">📸</div>
-                <div class="card-title">CLIPS</div>
-                <div class="card-status">Soon</div>
+            <div class="elite-card" onmousemove="handleMove(event)" onclick="showToast('Clips')">
+                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/spyglass.png" class="card-illu" alt="Clips">
+                <span class="card-label">Clips</span>
+                <span class="card-detail">Soon</span>
             </div>
-        </div>
-    </div>
+        </nav>
+    </main>
 
-    <div id="toast" class="toast">
-        <h4 style="margin: 0; color: var(--primary); font-size: 0.9rem; letter-spacing: 1px;">SYSTEM NOTIFICATION</h4>
-        <p id="toastMessage" style="margin: 5px 0 0; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Section is currently under maintenance.</p>
+    <div id="toast" class="modern-toast">
+        <div class="toast-loader"></div>
+        <span id="toastMsg" style="font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">Awaiting Access Card...</span>
     </div>
 
     <script>
-        function showSoon(name) {
+        // Particle Generation
+        const container = document.getElementById('particles');
+        for(let i=0; i<25; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            p.style.animationDuration = (10 + Math.random() * 20) + 's';
+            container.appendChild(p);
+        }
+
+        // Card Spotlight Effect
+        function handleMove(e) {
+            const card = e.currentTarget;
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--x', x + 'px');
+            card.style.setProperty('--y', y + 'px');
+        }
+
+        function showToast(section) {
             const toast = document.getElementById('toast');
-            const msg = document.getElementById('toastMessage');
-            msg.textContent = `${name} arrives in the next update.`;
+            const msg = document.getElementById('toastMsg');
+            msg.textContent = `Access to ${section} is currently restricted.`;
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 4000);
+            setTimeout(() => toast.classList.remove('show'), 3500);
         }
     </script>
 </body>
