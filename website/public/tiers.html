@@ -7,8 +7,8 @@
     <title>RearMC | Tier Rankings</title>
     <meta name="description"
         content="Official Minecraft PvP Tier List for RearMC Network. View ranked players, categories, and live queue.">
-    <link rel="stylesheet" href="style.css?v=4.7">
-    <script src="script.js?v=4.7" defer></script>
+    <link rel="stylesheet" href="style.css?v=5.1">
+    <script src="script.js?v=5.1" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -86,49 +86,41 @@
         <div class="hero-scroll-hint">
             <i class="fa-solid fa-chevron-down"></i>
         </div>
-    <    <main class="container" style="max-width: 1440px; margin: 0 auto; padding: 120px 24px 40px; min-height: 100vh;">
-        <div class="page-layout" style="display: flex; gap: 32px;">
+    <    <main class="container">
+    </div>
+    <main class="container">
+        <div class="page-layout">
             
-            <!-- CLASSIC SIDEBAR (Restored & Polished) -->
-            <aside class="sidebar" style="width: 280px; flex-shrink: 0;">
+            <aside class="sidebar">
                 <div class="sidebar-section">
                     <div class="sidebar-title">GAMEMODES</div>
-                    <div class="kit-list" id="kitList">
+                    <div class="kit-list">
                         <button class="kit-btn active" data-category="all">
-                            <i class="fa-solid fa-trophy"></i>
                             <span>Overall</span>
                         </button>
-                    </div>
-                </div>
-                
-                <div class="sidebar-section">
-                    <div class="sidebar-title">SERVER</div>
-                    <div class="server-node" style="padding: 15px; background: rgba(225,0,60,0.05); border: 1px solid var(--primary-glow); border-radius: 12px; display: flex; gap: 12px; align-items: center;">
-                        <img src="logo.png" style="width: 32px;">
-                        <div style="font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;">PLAY.REARMC.FUN</div>
+                        <button class="kit-btn" data-category="Nethpot"><span>Nethpot</span></button>
+                        <button class="kit-btn" data-category="Sword"><span>Sword</span></button>
+                        <button class="kit-btn" data-category="Axe"><span>Axe</span></button>
+                        <button class="kit-btn" data-category="UHC"><span>UHC</span></button>
                     </div>
                 </div>
             </aside>
 
-            <!-- CLASSIC TABLE (Restored & Polished) -->
-            <div class="content-area" style="flex: 1;">
+            <div class="content-area">
                 <div id="rankingsContainer">
-                    <div class="content-toolbar" style="margin-bottom: 24px;">
-                        <h2 id="contentTitle" style="font-family: 'Syncopate', sans-serif; font-size: 1.4rem; display: flex; align-items: center; gap: 12px;">
-                            <i class="fa-solid fa-trophy" style="color:var(--primary)"></i>
-                            OVERALL RANKINGS
-                        </h2>
+                    <div class="content-toolbar">
+                        <h2 id="contentTitle">Overall Rankings</h2>
                     </div>
 
-                    <div id="tableHeader" class="table-header-row" style="display: flex; padding: 15px 20px; background: rgba(255,255,255,0.03); border-radius: 8px; margin-bottom: 12px; font-weight: 800; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">
-                        <div style="width: 70px;">#</div>
-                        <div style="flex: 2;">PLAYER</div>
-                        <div style="width: 100px; text-align: center;">REGION</div>
-                        <div style="flex: 3;">KIT TIERS</div>
+                    <div id="tableHeader" class="table-header-row">
+                        <div class="th-rank">#</div>
+                        <div class="th-player">PLAYER</div>
+                        <div class="th-region">REGION</div>
+                        <div class="th-tiers">KITS</div>
                     </div>
 
                     <div id="rankingsList">
-                        <!-- Dynamic rows will be re-synchronized in script.js -->
+                        <!-- Dynamic Rankings -->
                     </div>
                 </div>
             </div>

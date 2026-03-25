@@ -3,307 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REAR-VERSE | THE APEX PORTAL</title>
-    <link rel="stylesheet" href="style.css?v=4.0">
+    <title>RearMC | Official Network</title>
+    <link rel="stylesheet" href="style.css?v=5.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --neon: #ff003c;
-            --neon-glow: rgba(255, 0, 60, 0.6);
-            --gold: #fbbf24;
-            --glass: rgba(0, 0, 0, 0.7);
+            --fire-orange: #ff9100;
+            --fire-glow: rgba(255, 145, 0, 0.4);
         }
-
-        * { margin:0; padding:0; box-sizing:border-box; cursor: none !important; }
-
-        body {
-            background-color: #000;
-            color: #fff;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            font-family: 'Outfit', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* ─── ULTRA IMMERSE BACKGROUND ─────────────────────────────────────── */
-        .master-viewport {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.95)), url('hero-bg.png');
-            background-size: cover;
-            background-position: center;
-            animation: masterZoom 90s linear infinite alternate;
-            filter: contrast(1.2) brightness(0.85);
-        }
-
-        @keyframes masterZoom {
-            0% { transform: scale(1); filter: hue-rotate(0deg); }
-            100% { transform: scale(1.15); filter: hue-rotate(5deg); }
-        }
-
-        .master-scanline {
-            position: fixed; inset: 0; z-index: -1;
-            background: linear-gradient(transparent 50%, rgba(225,0,60,0.02) 50%);
-            background-size: 100% 4px;
-            pointer-events: none;
-            opacity: 0.3;
-        }
-
-        /* ─── CUSTOM MASTER CURSOR ─────────────────────────────────────────── */
-        #customCursor {
-            position: fixed; width: 40px; height: 40px;
-            border: 2px solid var(--neon);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 10000;
-            mix-blend-mode: screen;
-            transition: transform 0.15s cubic-bezier(0.19, 1, 0.22, 1), width 0.3s, height 0.3s;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 20px var(--neon-glow);
-        }
-
-        #customCursorDot {
-            position: fixed; width: 6px; height: 6px;
-            background: #fff; border-radius: 50%;
-            pointer-events: none; z-index: 10001;
-            transform: translate(-50%, -50%);
-        }
-
-        /* ─── HUD INTERFACE ────────────────────────────────────────────────── */
-        .portal-hud {
-            position: relative;
-            z-index: 100;
-            width: 100%;
-            max-width: 1400px;
-            text-align: center;
-            animation: hudReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-
-        .portal-logo-3d {
-            width: 440px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 40px var(--neon-glow));
-            transition: all 0.4s ease;
-            transform-style: preserve-3d;
-        }
-
-        .title-ultra {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 7rem;
-            font-weight: 700;
-            letter-spacing: -14px;
-            text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff 0%, #777 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-            perspective: 1000px;
-        }
-
-        .tag-ultra {
-            font-size: 0.8rem;
-            font-weight: 900;
-            letter-spacing: 16px;
-            color: var(--neon);
-            text-transform: uppercase;
-            margin-bottom: 80px;
-            opacity: 0.8;
-            text-shadow: 0 0 15px var(--neon-glow);
-        }
-
-        /* ─── ESOTERIC NAVIGATION ─────────────────────────────────────────── */
-        .esoteric-grid {
-            display: flex;
-            gap: 32px;
-            justify-content: center;
-            perspective: 2500px;
-        }
-
-        .esoteric-card {
-            position: relative;
-            width: 280px;
-            height: 220px;
-            background: var(--glass);
-            backdrop-filter: blur(50px) saturate(1.8);
-            -webkit-backdrop-filter: blur(50px) saturate(1.8);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 2px; /* Brutalist Elite Style */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
-            text-decoration: none;
-            color: inherit;
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            background: #080808; font-family: 'Outfit', sans-serif; color: #fff;
             overflow: hidden;
         }
-
-        .esoteric-card::before {
-            content: ''; position: absolute; top:0; left:0; width:100%; height:3px;
-            background: var(--neon); transform: scaleX(0);
-            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            box-shadow: 0 0 20px var(--neon);
+        .fire-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('hero-bg.png') center/cover no-repeat;
+            z-index: -1; filter: brightness(0.4) saturate(1.2) blur(5px);
+        }
+        .pixel-mask {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
+            z-index: 0;
         }
 
-        .esoteric-card:hover {
-            transform: translateZ(100px) rotateX(20deg) rotateY(-10deg);
-            background: rgba(225, 0, 60, 0.08);
-            border-color: var(--neon);
-            box-shadow: 0 50px 100px rgba(0,0,0,0.8), 0 0 50px var(--neon-glow);
+        /* NAVBAR */
+        .top-nav {
+            position: fixed; top: 20px; left: 0; width: 100%; z-index: 100;
+            display: flex; justify-content: center; gap: 40px;
+        }
+        .nav-link {
+            text-decoration: none; color: #fff; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; font-size: 0.9rem; opacity: 0.7; transition: 0.3s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .nav-link:hover { opacity: 1; color: var(--fire-orange); }
+
+        /* HERO */
+        .hero-main {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            position: relative; z-index: 10;
+        }
+        .hero-logo-box {
+            position: relative; transition: 0.1s;
+        }
+        .hero-logo {
+            width: 450px; position: relative; z-index: 2;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
+        }
+        .logo-island {
+            position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
+            width: 500px; height: 100px; background: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
+            z-index: 1;
         }
 
-        .esoteric-card:hover::before { transform: scaleX(1); }
-
-        .esoteric-card.active {
-            border-color: var(--gold);
-            background: rgba(251, 191, 36, 0.03);
+        /* SIDE STATS */
+        .side-stats {
+            position: absolute; width: 100%; top: 50%; transform: translateY(-50%);
+            display: flex; justify-content: space-between; padding: 0 10%;
         }
-        .esoteric-card.active::before { background: var(--gold); box-shadow: 0 0 20px var(--gold); }
-
-        .label-main {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 5px;
-            margin-bottom: 5px;
-            transition: 0.4s;
+        .stat-node {
+            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
-
-        .label-sub {
-            font-size: 0.65rem;
-            font-weight: 900;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.3);
-            transition: 0.4s;
+        .stat-val { color: var(--fire-orange); font-weight: 900; font-size: 1.5rem; letter-spacing: 1px; }
+        .stat-label { font-weight: 700; letter-spacing: 3px; font-size: 0.8rem; opacity: 0.6; }
+        .stat-icon {
+            width: 50px; height: 50px; background: var(--fire-orange); color: #fff;
+            display: flex; align-items: center; justify-content: center; border-radius: 50%;
+            box-shadow: 0 0 20px var(--fire-glow); margin-top: 10px; cursor: pointer;
         }
 
-        .esoteric-card:hover .label-main { letter-spacing: 12px; color: #fff; }
-        .esoteric-card:hover .label-sub { color: var(--neon); }
-        .esoteric-card.active:hover .label-sub { color: var(--gold); }
-
-        /* Systems Animation */
-        @keyframes hudReveal {
-            from { opacity: 0; transform: scale(1.2) translateY(80px); filter: blur(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        /* BOTTOM CTA */
+        .bottom-cta {
+            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 20px;
         }
-
-        /* Modern Toast v4 */
-        #masterToast {
-            position: fixed; right: 60px; bottom: 60px;
-            background: rgba(0,0,0,0.9);
-            border-left: 6px solid var(--neon);
-            padding: 30px 45px;
-            transform: translateX(500px);
-            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-            z-index: 10000;
+        .btn-cta {
+            padding: 18px 45px; border-radius: 4px; border: none; font-family: 'Outfit', sans-serif;
+            font-weight: 900; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s;
         }
-        #masterToast.show { transform: translateX(0); }
-        .toast-brand { font-family: 'Syncopate', sans-serif; font-size: 0.6rem; color: var(--neon); margin-bottom: 5px; }
+        .btn-primary { background: var(--fire-orange); color: #fff; box-shadow: 0 10px 20px var(--fire-glow); }
+        .btn-outline { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+        .btn-cta:hover { transform: translateY(-5px); filter: brightness(1.2); }
 
-        @media (max-width: 1100px) {
-            .esoteric-grid { flex-wrap: wrap; }
-            .title-ultra { font-size: 4.5rem; letter-spacing: -8px; }
-            .portal-logo-3d { width: 300px; }
-        }
+        /* PARTICLES */
+        #particles-js { position: absolute; width: 100%; height: 100%; z-index: 1; }
     </style>
 </head>
 <body>
-    <div id="customCursor"></div>
-    <div id="customCursorDot"></div>
+    <div class="fire-bg"></div>
+    <div class="pixel-mask"></div>
+    <div id="particles-js"></div>
 
-    <div class="master-viewport"></div>
-    <div class="master-scanline"></div>
+    <nav class="top-nav">
+        <a href="#" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="tiers.html" class="nav-link"><i class="fa-solid fa-trophy"></i> Rankings</a>
+        <a href="#" class="nav-link"><i class="fa-solid fa-shield-halved"></i> Rules</a>
+        <a href="#" class="nav-link"><i class="fa-solid fa-shop"></i> Store</a>
+    </nav>
 
-    <main class="portal-hud">
-        <img src="logo.png" alt="RearMC Logo" class="portal-logo-3d" id="heroLogo">
-        <h1 class="title-ultra">REARMC</h1>
-        <p class="tag-ultra">The Ultimate Apex Network</p>
-
-        <nav class="esoteric-grid">
-            <div class="esoteric-card" onclick="triggerSystem('Global Store')">
-                <span class="label-main">STORE</span>
-                <span class="label-sub">Maintenance</span>
+    <main class="hero-main">
+        <div class="side-stats">
+            <div class="stat-node">
+                <span class="stat-val">342 PLAYERS ONLINE</span>
+                <span class="stat-label">PLAY.REARMC.FUN</span>
+                <div class="stat-icon"><i class="fa-solid fa-play"></i></div>
             </div>
-
-            <a href="tiers.html" class="esoteric-card active">
-                <span class="label-main">TIERS</span>
-                <span class="label-sub" style="color:var(--gold)">LIVE ENTRY</span>
-            </a>
-
-            <div class="esoteric-card" onclick="triggerSystem('Discord Node')">
-                <span class="label-main">DISCORD</span>
-                <span class="label-sub">Encrypted</span>
+            
+            <div class="stat-node">
+                <span class="stat-val">2,104 USERS ONLINE</span>
+                <span class="stat-label">DISCORD.GG/REARMC</span>
+                <div class="stat-icon"><i class="fa-brands fa-discord"></i></div>
             </div>
+        </div>
 
-            <div class="esoteric-card" onclick="triggerSystem('Hyper Clips')">
-                <span class="label-main">CLIPS</span>
-                <span class="label-sub">Incoming</span>
-            </div>
-        </nav>
+        <div class="hero-logo-box" id="logoBox">
+            <img src="logo.png" alt="RearMC Logo" class="hero-logo">
+            <div class="logo-island"></div>
+        </div>
     </main>
 
-    <div id="masterToast">
-        <div class="toast-brand">SYSTEM OVERRIDE REQ.</div>
-        <p id="toastMessage" style="font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem;">NODE UNAVAILABLE</p>
+    <div class="bottom-cta">
+        <button class="btn-cta btn-primary">LOG IN</button>
+        <button class="btn-cta btn-outline">REGISTER</button>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Custom Elite Cursor
-        const cursor = document.getElementById('customCursor');
-        const dot = document.getElementById('customCursorDot');
-        
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 80 },
+                "color": { "value": "#ff9100" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5 },
+                "size": { "value": 3 },
+                "move": { "enable": true, "speed": 2, "direction": "top", "random": true }
+            }
+        });
+
+        const logoBox = document.getElementById('logoBox');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            dot.style.left = e.clientX + 'px';
-            dot.style.top = e.clientY + 'px';
-            
-            // Logo 3D tilt
-            const logo = document.getElementById('heroLogo');
             const dx = (window.innerWidth / 2 - e.pageX) / 40;
             const dy = (window.innerHeight / 2 - e.pageY) / 40;
-            logo.style.transform = `rotateY(${dx}deg) rotateX(${-dy}deg) translateZ(40px)`;
-        });
-
-        document.addEventListener('mousedown', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(0.6)';
-            cursor.style.borderColor = '#fff';
-        });
-
-        document.addEventListener('mouseup', () => {
-            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursor.style.borderColor = 'var(--neon)';
-        });
-
-        function triggerSystem(node) {
-            const toast = document.getElementById('masterToast');
-            const msg = document.getElementById('toastMessage');
-            msg.textContent = `${node} node is currently encrypted.`;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 4000);
-        }
-
-        // Expanded cursor on links
-        const links = document.querySelectorAll('a, .esoteric-card');
-        links.forEach(l => {
-            l.onmouseenter = () => {
-                cursor.style.width = '80px';
-                cursor.style.height = '80px';
-                cursor.style.backgroundColor = 'rgba(255, 0, 60, 0.1)';
-            };
-            l.onmouseleave = () => {
-                cursor.style.width = '40px';
-                cursor.style.height = '40px';
-                cursor.style.backgroundColor = 'transparent';
-            };
+            logoBox.style.transform = `translateX(${-dx}px) translateY(${-dy}px)`;
         });
     </script>
 </body>
