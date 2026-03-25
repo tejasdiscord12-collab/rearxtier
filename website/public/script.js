@@ -1,62 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ─── CONFIGURATION ────────────────────────────────────────────────────────
+    // ─── CONFIGURATION (v5.5) ────────────────────────────────────────────────
     const GIST_ID = '62dcff9fb06d470d2b7bf5c1bdc63cf2';
     const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/${GIST_ID}/raw/`;
-    const API_BASE = 'http://eu1i7.hexonode.com:26113';
-    let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
-
-    function checkMaintenance() {
-        const screen = document.getElementById('maintenanceScreen');
-        if (MAINTENANCE_MODE && !ADMIN_TOKEN) {
-            if (screen) screen.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        } else {
-            if (screen) screen.classList.remove('active');
-        }
-    }
 
     // ─── DOM REFS ────────────────────────────────────────────────────────────
     const rankingsList = document.getElementById('rankingsList');
     const playerSearch = document.getElementById('playerSearch');
-    const kitButtons = document.querySelectorAll('.kit-btn');
-    const navRankings = document.getElementById('navRankings');
-    const navQueue = document.getElementById('navQueue');
-    const rankingsContainer = document.getElementById('rankingsContainer');
-    const queueContainer = document.getElementById('queueContainer');
-    const tableHeader = document.getElementById('tableHeader');
-    const contentTitle = document.getElementById('contentTitle');
+    const kitList = document.getElementById('kitList');
+    const podiumContainer = document.getElementById('podiumContainer');
     const statPlayers = document.getElementById('statPlayers');
-
-    // ─── CONFIGURATION (v5.2) ────────────────────────────────────────────────
-    const MAINTENANCE_MODE = false; // Toggle this to true to lock the site
-
-    // Modal Refs
     const playerModal = document.getElementById('playerModal');
+    const playerModalClose = document.getElementById('playerModalClose');
     const modalAvatar = document.getElementById('modalAvatar');
     const modalName = document.getElementById('modalName');
     const modalTitle = document.getElementById('modalTitle');
     const modalRegion = document.getElementById('modalRegion');
-    const modalType = document.getElementById('modalType');
     const modalTiers = document.getElementById('modalTiers');
-    const playerModalClose = document.getElementById('playerModalClose');
-
-    const KIT_ICONS = {
-        'Sword': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_sword.png',
-        'Nethpot': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/netherite_chestplate.png',
-        'Axe': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_axe.png',
-        'Diapot': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_chestplate.png',
-        'UHC': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/golden_apple.png',
-        'SmpKit': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/ender_pearl.png',
-        'Crystal': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/end_crystal.png',
-        'Mace': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21/assets/minecraft/textures/item/mace.png'
-    };
-
-    const KIT_DISPLAY = {
-        'nethpot': 'Nethpot', 'sword': 'Sword', 'uhc': 'UHC',
-        'axe': 'Axe', 'crystal': 'Crystal', 'smpkit': 'SmpKit',
-        'diapot': 'Diapot', 'mace': 'Mace'
-    };
 
     const TIER_VALUES = {
         'HT1': 100, 'LT1': 90, 'HT2': 80, 'LT2': 70,
@@ -99,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
             allData = await res.json();
             if (statPlayers) statPlayers.textContent = allData.length;
+            detectKits(allData);
             renderRankings(allData);
         } catch (e) {
             console.error('Fetch Failed:', e);
@@ -106,69 +67,96 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function detectKits(data) {
+        if (!kitList) return;
+        const kits = new Set(['all']);
+        data.forEach(p => (p.tiers || []).forEach(t => kits.add(normalizeCategory(t.category))));
+        
+        const kitArray = Array.from(kits).map(k => k === 'all' ? k : k.charAt(0).toUpperCase() + k.slice(1));
+        kitList.innerHTML = kitArray.map(k => `
+            <button class="kit-btn ${currentCategory === k.toLowerCase() ? 'active' : ''}" data-category="${k.toLowerCase()}">
+                <span>${k}</span>
+            </button>
+        `).join('');
+
+        kitList.querySelectorAll('.kit-btn').forEach(btn => btn.onclick = () => {
+            currentCategory = btn.dataset.category;
+            kitList.querySelectorAll('.kit-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderRankings(allData);
+        });
+    }
+
     function renderRankings(data) {
         if (!rankingsList) return;
         rankingsList.innerHTML = '';
         
         const normalizedCurrent = currentCategory.toLowerCase();
-        const filtered = normalizedCurrent === 'all' 
+        let filtered = normalizedCurrent === 'all' 
             ? data.map(p => ({ ...p, bestVal: getBestTierValue(p.tiers), title: getTitle(getBestTierValue(p.tiers)) })).sort((a,b) => b.bestVal - a.bestVal)
             : data.filter(p => (p.tiers || []).some(t => normalizeCategory(t.category) === normalizedCurrent))
                 .map(p => {
                     const t = p.tiers.find(ti => normalizeCategory(ti.category) === normalizedCurrent);
-                    return { ...p, currentTier: t.tier, tierVal: getTierVal(t.tier) };
+                    return { ...p, currentTier: t.tier, tierVal: getTierVal(t.tier), title: getTitle(getTierVal(t.tier)) };
                 })
                 .sort((a,b) => b.tierVal - a.tierVal);
+
+        renderPodium(filtered.slice(0, 3));
 
         filtered.forEach((player, index) => {
             const row = document.createElement('div');
             row.className = 'player-row';
             const rank = index + 1;
+            const medals = ['🥇', '🥈', '🥉'];
+            const rankStamp = rank <= 3 ? medals[rank - 1] : rank;
 
-            if (normalizedCurrent === 'all') {
-                row.innerHTML = `
-                    <div class="col-rank">#${rank}</div>
-                    <div class="col-player">
-                        <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/32">
-                        <span>${player.minecraft_ign}</span>
+            row.innerHTML = `
+                <div class="col-rank">${rankStamp}</div>
+                <div class="col-player">
+                    <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42">
+                    <div>
+                        <div class="player-name">${player.minecraft_ign}</div>
+                        <div class="player-tier-sub">${player.title}</div>
                     </div>
-                    <div class="col-region">${player.region || 'AS'}</div>
-                    <div class="col-tiers">
-                        ${(player.tiers || []).slice(0, 5).map(t => `<span class="tier-badge ${t.tier.toLowerCase().replace(';', '')}">${t.category}: ${t.tier}</span>`).join('')}
-                    </div>
-                `;
-            } else {
-                row.innerHTML = `
-                    <div class="col-rank">#${rank}</div>
-                    <div class="col-player">
-                        <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/32">
-                        <span>${player.minecraft_ign}</span>
-                    </div>
-                    <div class="col-region">${player.region || 'AS'}</div>
-                    <div class="col-tiers">
-                        <span class="tier-badge ${player.currentTier.toLowerCase().replace(';', '')}">${player.currentTier}</span>
-                    </div>
-                `;
-            }
+                </div>
+                <div class="col-region">${player.region || 'AS'}</div>
+                <div class="col-tiers">
+                    ${(player.tiers || []).slice(0, 5).map(t => `<span class="tier-badge ${t.tier.toLowerCase().replace(';', '')}">${t.category}: ${t.tier}</span>`).join('')}
+                </div>
+            `;
             row.onclick = () => openPlayerModal(player);
             rankingsList.appendChild(row);
         });
     }
 
+    function renderPodium(top3) {
+        if (!podiumContainer || currentCategory !== 'all') {
+            if (podiumContainer) podiumContainer.innerHTML = '';
+            return;
+        }
+        podiumContainer.innerHTML = `
+            <div class="podium-stage">
+                ${top3[1] ? `<div class="podium-spot spot-2"><img src="https://mc-heads.net/body/${top3[1].minecraft_ign}/100" class="podium-avatar"><div>${top3[1].minecraft_ign}</div><div class="player-tier-sub">🥈 #${top3[1].bestVal}</div></div>` : ''}
+                ${top3[0] ? `<div class="podium-spot spot-1"><img src="https://mc-heads.net/body/${top3[0].minecraft_ign}/120" class="podium-avatar"><div>${top3[0].minecraft_ign}</div><div class="player-tier-sub">🥇 #${top3[0].bestVal}</div></div>` : ''}
+                ${top3[2] ? `<div class="podium-spot spot-3"><img src="https://mc-heads.net/body/${top3[2].minecraft_ign}/100" class="podium-avatar"><div>${top3[2].minecraft_ign}</div><div class="player-tier-sub">🥉 #${top3[2].bestVal}</div></div>` : ''}
+            </div>
+        `;
+    }
+
     function openPlayerModal(player) {
+        if (!playerModal) return;
         modalName.textContent = player.minecraft_ign;
         modalAvatar.src = `https://mc-heads.net/body/${player.minecraft_ign}`;
         modalRegion.textContent = player.region || 'AS';
-        modalTiers.innerHTML = (player.tiers || []).map(t => `<div class="modal-stat-card"><div class="msc-info"><div class="msc-val">${t.tier}</div><div class="msc-label">${t.category}</div></div></div>`).join('');
+        modalTitle.textContent = getTitle(getBestTierValue(player.tiers));
+        modalTiers.innerHTML = (player.tiers || []).map(t => `
+            <div class="modal-stat-card" style="background:rgba(255,255,255,0.03); padding:15px; border-radius:10px; border:1px solid var(--border);">
+                <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">${t.tier}</div>
+                <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:5px;">${t.category}</div>
+            </div>
+        `).join('');
         playerModal.classList.add('modal-open');
     }
-
-    kitButtons.forEach(btn => btn.addEventListener('click', () => {
-        kitButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentCategory = btn.dataset.category;
-        renderRankings(allData);
-    }));
 
     playerSearch?.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase();
@@ -181,5 +169,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchRankings();
     setInterval(fetchRankings, 60000);
-    checkMaintenance();
 });

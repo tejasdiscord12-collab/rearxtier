@@ -3,119 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RearMC | Official Network</title>
-    <link rel="stylesheet" href="style.css?v=5.0">
+    <title>RearMC | The Final Apex</title>
+    <link rel="stylesheet" href="style.css?v=5.5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --fire-orange: #ff9100;
-            --fire-glow: rgba(255, 145, 0, 0.4);
-        }
-        body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
-            background: #080808; font-family: 'Outfit', sans-serif; color: #fff;
-            overflow: hidden;
-        }
-        .fire-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('hero-bg.png') center/cover no-repeat;
-            z-index: -1; filter: brightness(0.4) saturate(1.2) blur(5px);
-        }
-        .pixel-mask {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%);
-            z-index: 0;
-        }
+        :root { --fire: #ff003c; --fire-glow: rgba(255, 0, 60, 0.4); }
+        body, html { margin:0; padding:0; width:100%; height:100%; background:#080808; font-family:'Outfit', sans-serif; color:#fff; overflow:hidden; }
+        .hero-bg { position:fixed; top:0; left:0; width:100%; height:100%; background:url('hero-bg.png') center/cover no-repeat; z-index:-1; filter:brightness(0.3) blur(2px); animation:kenburns 40s infinite; }
+        @keyframes kenburns { 0%{transform:scale(1);} 100%{transform:scale(1.1);} }
+        .pixel-mask { position:fixed; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.9) 100%); z-index:0; }
 
-        /* NAVBAR */
-        .top-nav {
-            position: fixed; top: 20px; left: 0; width: 100%; z-index: 100;
-            display: flex; justify-content: center; gap: 40px;
-        }
-        .nav-link {
-            text-decoration: none; color: #fff; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 2px; font-size: 0.9rem; opacity: 0.7; transition: 0.3s;
-            display: flex; align-items: center; gap: 8px;
-        }
-        .nav-link:hover { opacity: 1; color: var(--fire-orange); }
+        .top-nav { position:fixed; top:30px; left:0; width:100%; z-index:100; display:flex; justify-content:center; gap:50px; }
+        .nav-link { text-decoration:none; color:#fff; font-weight:800; text-transform:uppercase; letter-spacing:3px; font-size:0.8rem; opacity:0.6; transition:0.3s; }
+        .nav-link:hover { opacity:1; color:var(--fire); }
 
-        /* HERO */
-        .hero-main {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            position: relative; z-index: 10;
-        }
-        .hero-logo-box {
-            position: relative; transition: 0.1s;
-        }
-        .hero-logo {
-            width: 450px; position: relative; z-index: 2;
-            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
-        }
-        .logo-island {
-            position: absolute; bottom: -40px; left: 50%; transform: translateX(-50%);
-            width: 500px; height: 100px; background: radial-gradient(ellipse at center, rgba(0,0,0,0.6) 0%, transparent 70%);
-            z-index: 1;
-        }
+        .hero-main { height:100vh; display:flex; align-items:center; justify-content:center; position:relative; z-index:10; }
+        .hero-logo-box { position:relative; transition:0.1s; }
+        .hero-logo { width:420px; filter:drop-shadow(0 0 30px var(--fire-glow)); }
+        .logo-island { position:absolute; bottom:-50px; left:50%; transform:translateX(-50%); width:500px; height:120px; background:radial-gradient(ellipse at center, rgba(255,0,60,0.1) 0%, transparent 70%); z-index:1; }
 
-        /* SIDE STATS */
-        .side-stats {
-            position: absolute; width: 100%; top: 50%; transform: translateY(-50%);
-            display: flex; justify-content: space-between; padding: 0 10%;
-        }
-        .stat-node {
-            text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px;
-        }
-        .stat-val { color: var(--fire-orange); font-weight: 900; font-size: 1.5rem; letter-spacing: 1px; }
-        .stat-label { font-weight: 700; letter-spacing: 3px; font-size: 0.8rem; opacity: 0.6; }
-        .stat-icon {
-            width: 50px; height: 50px; background: var(--fire-orange); color: #fff;
-            display: flex; align-items: center; justify-content: center; border-radius: 50%;
-            box-shadow: 0 0 20px var(--fire-glow); margin-top: 10px; cursor: pointer;
-        }
+        .side-stats { position:absolute; width:100%; top:50%; transform:translateY(-50%); display:flex; justify-content:space-between; padding:0 8%; pointer-events:none; }
+        .stat-node { text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px; }
+        .stat-val { color:var(--fire); font-family:'Syncopate', sans-serif; font-weight:700; font-size:1.4rem; letter-spacing:1px; }
+        .stat-label { font-weight:800; letter-spacing:4px; font-size:0.7rem; opacity:0.4; text-transform:uppercase; }
+        .stat-icon { width:56px; height:56px; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:#fff; display:flex; align-items:center; justify-content:center; border-radius:50%; box-shadow:0 0 20px rgba(0,0,0,0.5); pointer-events:auto; cursor:pointer; font-size:1.2rem; transition:0.3s; }
+        .stat-icon:hover { background:var(--fire); box-shadow:0 0 30px var(--fire-glow); border-color:transparent; }
 
-        /* BOTTOM CTA */
-        .bottom-cta {
-            position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 20px;
-        }
-        .btn-cta {
-            padding: 18px 45px; border-radius: 4px; border: none; font-family: 'Outfit', sans-serif;
-            font-weight: 900; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s;
-        }
-        .btn-primary { background: var(--fire-orange); color: #fff; box-shadow: 0 10px 20px var(--fire-glow); }
-        .btn-outline { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-        .btn-cta:hover { transform: translateY(-5px); filter: brightness(1.2); }
-
-        /* PARTICLES */
-        #particles-js { position: absolute; width: 100%; height: 100%; z-index: 1; }
+        .bottom-cta { position:fixed; bottom:50px; left:50%; transform:translateX(-50%); display:flex; gap:25px; }
+        .btn-cta { padding:20px 50px; border-radius:8px; border:none; font-family:'Outfit', sans-serif; font-weight:900; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:0.3s; border: 1px solid transparent; }
+        .btn-primary { background:var(--fire); color:#fff; box-shadow:0 10px 30px var(--fire-glow); }
+        .btn-outline { background:rgba(255,255,255,0.02); color:#fff; border:1px solid rgba(255,255,255,0.1); }
+        .btn-cta:hover { transform:translateY(-8px); filter:brightness(1.2); }
     </style>
 </head>
 <body>
-    <div class="fire-bg"></div>
+    <div class="hero-bg"></div>
     <div class="pixel-mask"></div>
-    <div id="particles-js"></div>
 
     <nav class="top-nav">
-        <a href="#" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="tiers.html" class="nav-link"><i class="fa-solid fa-trophy"></i> Rankings</a>
-        <a href="#" class="nav-link"><i class="fa-solid fa-shield-halved"></i> Rules</a>
-        <a href="#" class="nav-link"><i class="fa-solid fa-shop"></i> Store</a>
+        <a href="#" class="nav-link">Home</a>
+        <a href="tiers.html" class="nav-link">Tiers</a>
+        <a href="#" class="nav-link">Discord</a>
+        <a href="#" class="nav-link">Store</a>
     </nav>
 
     <main class="hero-main">
         <div class="side-stats">
             <div class="stat-node">
-                <span class="stat-val">342 PLAYERS ONLINE</span>
+                <span class="stat-val">342 ONLINE</span>
                 <span class="stat-label">PLAY.REARMC.FUN</span>
-                <div class="stat-icon"><i class="fa-solid fa-play"></i></div>
+                <div class="stat-icon" onclick="copyIP()"><i class="fa-solid fa-play"></i></div>
             </div>
             
             <div class="stat-node">
-                <span class="stat-val">2,104 USERS ONLINE</span>
-                <span class="stat-label">DISCORD.GG/REARMC</span>
+                <span class="stat-val">2,104 USERS</span>
+                <span class="stat-label">COMMUNITY NODE</span>
                 <div class="stat-icon"><i class="fa-brands fa-discord"></i></div>
             </div>
         </div>
@@ -127,29 +72,22 @@
     </main>
 
     <div class="bottom-cta">
-        <button class="btn-cta btn-primary">LOG IN</button>
-        <button class="btn-cta btn-outline">REGISTER</button>
+        <button class="btn-cta btn-primary" onclick="window.location.href='tiers.html'">VIEW TIERS</button>
+        <button class="btn-cta btn-outline">NETWORK MAP</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80 },
-                "color": { "value": "#ff9100" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5 },
-                "size": { "value": 3 },
-                "move": { "enable": true, "speed": 2, "direction": "top", "random": true }
-            }
-        });
-
         const logoBox = document.getElementById('logoBox');
         document.addEventListener('mousemove', (e) => {
-            const dx = (window.innerWidth / 2 - e.pageX) / 40;
-            const dy = (window.innerHeight / 2 - e.pageY) / 40;
+            const dx = (window.innerWidth / 2 - e.pageX) / 45;
+            const dy = (window.innerHeight / 2 - e.pageY) / 45;
             logoBox.style.transform = `translateX(${-dx}px) translateY(${-dy}px)`;
         });
+
+        function copyIP() {
+            navigator.clipboard.writeText('play.rearmc.fun');
+            alert('IP Copied: play.rearmc.fun');
+        }
     </script>
 </body>
 </html>

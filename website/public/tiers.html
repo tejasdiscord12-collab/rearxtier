@@ -1,192 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RearMC | Tier Rankings</title>
-    <meta name="description"
-        content="Official Minecraft PvP Tier List for RearMC Network. View ranked players, categories, and live queue.">
-    <link rel="stylesheet" href="style.css?v=5.1">
-    <script src="script.js?v=5.1" defer></script>
+    <meta name="description" content="Official Minecraft PvP Tier List for RearMC Network. View ranked players, categories, and live queue.">
+    <link rel="stylesheet" href="style.css?v=5.5">
+    <script src="script.js?v=5.5" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-
 <body>
-    <!-- NAVIGATION -->
     <nav id="navbar">
         <div class="nav-container">
-            <div class="nav-links side-nav">
-                <a href="index.html" class="nav-item">
-                    <i class="fa-solid fa-house"></i>
-                    Home
-                </a>
-                <a href="#" class="nav-item active" id="navRankings">
-                    <i class="fa-solid fa-trophy"></i>
-                    Rankings
-                </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="#" class="nav-item active" id="navRankings">Rankings</a>
+                <a href="#" class="nav-item" id="navQueue">Queue</a>
             </div>
-            <a href="index.html" class="logo centered-logo">
-                <img src="logo.png" alt="RearMC" class="logo-img">
-            </a>
+            <a href="index.html" class="logo"><img src="logo.png" class="logo-img"></a>
             <div class="nav-right">
-                <a href="#" class="nav-item" id="navQueue" style="margin-right: 20px;">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    Queue
-                </a>
                 <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" id="playerSearch" placeholder="Search player...">
                 </div>
-                <button id="adminLoginBtn" class="admin-btn-nav">
-                    <i class="fa-solid fa-lock"></i>
-                </button>
-                <button id="mobileMenuBtn" class="mobile-menu-btn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                <div class="live-node-badge">● LIVE</div>
             </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <div class="hero-section" id="heroSection">
-        <div class="hero-bg-gradient"></div>
-        <div class="hero-particles" id="heroParticles"></div>
-        <div class="hero-content">
-            <div class="hero-badge">🏆 Official Tier List</div>
-            <h1 class="hero-title">Rear<span class="hero-x">MC</span> TIERS</h1>
-            <p class="hero-sub">The Ultimate Practice Experience • IP: <span class="ip-highlight">Play.rearmc.fun</span></p>
-            <div class="hero-stats" id="heroStats">
-                <div class="stat-card">
-                    <span class="stat-num" id="statPlayers">—</span>
-                    <span class="stat-label">PLAYERS RANKED</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-card">
-                    <span class="stat-num" id="statKits">8</span>
-                    <span class="stat-label">GAMEMODES</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-card">
-                    <span class="stat-num" id="statQueueCount">0</span>
-                    <span class="stat-label">IN QUEUE</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-card">
-                    <span class="stat-num">LIVE</span>
-                    <span class="stat-label">STATUS</span>
-                </div>
+    <div class="hero-section">
+        <div class="hero-badge">🏆 Official Tier List</div>
+        <h1 class="hero-title">Rear<span style="color:var(--primary)">MC</span> TIERS</h1>
+        <p class="hero-sub">The Ultimate Practice Experience • IP: Play.rearmc.fun</p>
+        
+        <div class="hero-stats-row" style="display:flex; justify-content:center; gap:30px; margin-top:40px;">
+            <div class="hero-stat-node" style="text-align:center;">
+                <span style="display:block; font-size:1.8rem; font-weight:900;" id="statPlayers">170</span>
+                <span style="font-size:0.65rem; letter-spacing:2px; font-weight:800; opacity:0.6;">PLAYERS RANKED</span>
+            </div>
+            <div class="hero-stat-node" style="text-align:center;">
+                <span style="display:block; font-size:1.8rem; font-weight:900;">8</span>
+                <span style="font-size:0.65rem; letter-spacing:2px; font-weight:800; opacity:0.6;">GAMEMODES</span>
+            </div>
+            <div class="hero-stat-node" style="text-align:center;">
+                <span style="display:block; font-size:1.8rem; font-weight:900;" id="statQueueCount">0</span>
+                <span style="font-size:0.65rem; letter-spacing:2px; font-weight:800; opacity:0.6;">IN QUEUE</span>
+            </div>
+            <div class="hero-stat-node" style="text-align:center;">
+                <span style="display:block; font-size:1.8rem; font-weight:900; color:var(--primary);">LIVE</span>
+                <span style="font-size:0.65rem; letter-spacing:2px; font-weight:800; opacity:0.6;">STATUS</span>
             </div>
         </div>
-        <div class="hero-scroll-hint">
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    <    <main class="container">
     </div>
+
     <main class="container">
         <div class="page-layout">
-            
             <aside class="sidebar">
                 <div class="sidebar-section">
-                    <div class="sidebar-title">GAMEMODES</div>
-                    <div class="kit-list">
-                        <button class="kit-btn active" data-category="all">
-                            <span>Overall Rankings</span>
-                        </button>
+                    <div class="sidebar-title">GAMEMODE</div>
+                    <div class="kit-list" id="kitList">
+                        <button class="kit-btn active" data-category="all">Overall</button>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">SERVER</div>
+                    <div class="server-card" style="display:flex; gap:15px; align-items:center;">
+                        <img src="logo.png" style="width:40px;">
+                        <div>
+                            <div style="font-weight:900; font-size:0.9rem;">REARMC</div>
+                            <div style="font-size:0.65rem; color:var(--primary);">play.rearmc.fun</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">TIER GUIDE</div>
+                    <div style="display:flex; flex-direction:column; gap:10px;">
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="width:12px; height:12px; background:var(--gold); border-radius:3px;"></span> <span style="font-size:0.75rem; font-weight:800;">HT1: High Tier 1</span></div>
+                        <div style="display:flex; align-items:center; gap:10px;"><span style="width:12px; height:12px; background:var(--primary); border-radius:3px;"></span> <span style="font-size:0.75rem; font-weight:800;">LT1: Low Tier 1</span></div>
                     </div>
                 </div>
             </aside>
 
             <div class="content-area">
+                <div id="podiumContainer" class="podium-section">
+                    <!-- Dynamic Podium -->
+                </div>
+
                 <div id="rankingsContainer">
                     <div class="content-toolbar">
-                        <h2 id="contentTitle">Overall Rankings</h2>
-                    </div>
-
-                    <div id="tableHeader" class="table-header-row">
-                        <div class="th-rank">#</div>
-                        <div class="th-player">PLAYER</div>
-                        <div class="th-region">REGION</div>
-                        <div class="th-tiers">KIT TIERS</div>
+                        <h2 id="contentTitle" style="font-family: 'Outfit', sans-serif; font-weight: 900; letter-spacing: -0.5px;">Overall Rankings</h2>
                     </div>
 
                     <div id="rankingsList">
-                        <!-- Dynamic Rankings -->
+                        <!-- Neon Sliver Rows -->
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- MAINTENANCE -->
-    <div id="maintenanceScreen" class="maintenance-screen">
-        <img src="logo.png" class="maint-logo">
-        <h2 class="maint-title">REARMC NODE</h2>
-        <p class="maint-tag">UNDER CONSTRUCTION</p>
-    </div>
-/main>
-
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <span class="footer-brand">Rear<span style="color:#ff4d4d">MC</span> TIERS</span>
-            <span class="footer-sep">·</span>
-            <span class="footer-copy">© 2026 RearMC Network. All rights reserved.</span>
-        </div>
-    </footer>
-
-    <!-- Player Detail Modal -->
     <div id="playerModal" class="player-modal">
         <div class="modal-backdrop"></div>
         <div class="modal-card">
-            <button class="modal-close" id="playerModalClose"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-body">
-                <div class="modal-avatar-wrap">
-                    <img id="modalAvatar" src="" alt="Player Avatar">
-                </div>
-                <h2 id="modalName" class="modal-name">Player Name</h2>
-                <p id="modalTitle" class="modal-subtitle">Combat Initiate</p>
-                <div class="modal-tags">
-                    <span id="modalRegion" class="modal-tag">AS</span>
-                    <span id="modalType" class="modal-tag">Premium</span>
-                </div>
-                <div class="modal-divider"></div>
-                <div class="modal-stats-grid" id="modalTiers">
-                    <!-- Dynamic Tier Items -->
-                </div>
-            </div>
+            <button class="modal-close" id="playerModalClose">×</button>
+            <div class="modal-avatar-wrap"><img id="modalAvatar" src=""></div>
+            <h2 id="modalName" class="modal-name">PLAYER</h2>
+            <p id="modalTitle" class="modal-subtitle">TITILE</p>
+            <div id="modalRegion" class="modal-tag">AS</div>
+            <div id="modalTiers" style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:20px;"></div>
         </div>
-    </div>
-
-    <!-- Admin Login Modal -->
-    <div id="adminModal" class="player-modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-card admin-modal-card">
-            <button class="modal-close" id="adminModalClose"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-body">
-                <div class="admin-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h2 class="modal-name">Admin Login</h2>
-                <p class="modal-subtitle">Access restricted to authorized testers.</p>
-                <div class="modal-divider"></div>
-                <div class="admin-form">
-                    <input type="password" id="adminPassword" placeholder="Enter Admin Password..." class="admin-input">
-                    <button id="adminLoginSubmit" class="admin-submit-btn">Login</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- MAINTENANCE -->
-    <div id="maintenanceScreen" class="maintenance-screen">
-        <img src="logo.png" class="maint-logo">
-        <h2 class="maint-title">SYSTEM OFFLINE</h2>
-        <p class="maint-tag">MAINTENANCE IN PROGRESS</p>
     </div>
 </body>
-
 </html>
