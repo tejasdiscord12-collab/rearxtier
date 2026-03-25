@@ -4,6 +4,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const GIST_ID = '62dcff9fb06d470d2b7bf5c1bdc63cf2';
     const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/${GIST_ID}/raw/`;
     const API_BASE = 'http://eu1i7.hexonode.com:26113';
+    let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
+
+    function checkMaintenance() {
+        const screen = document.getElementById('maintenanceScreen');
+        if (MAINTENANCE_MODE && !ADMIN_TOKEN) {
+            if (screen) screen.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        } else {
+            if (screen) screen.classList.remove('active');
+        }
+    }
 
     // ─── DOM REFS ────────────────────────────────────────────────────────────
     const rankingsList = document.getElementById('rankingsList');
@@ -16,6 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const tableHeader = document.getElementById('tableHeader');
     const contentTitle = document.getElementById('contentTitle');
     const statPlayers = document.getElementById('statPlayers');
+
+    // ─── CONFIGURATION (v5.2) ────────────────────────────────────────────────
+    const MAINTENANCE_MODE = false; // Toggle this to true to lock the site
 
     // Modal Refs
     const playerModal = document.getElementById('playerModal');
@@ -167,4 +181,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchRankings();
     setInterval(fetchRankings, 60000);
+    checkMaintenance();
 });
