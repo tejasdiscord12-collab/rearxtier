@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REARMC | ELITE PORTAL</title>
-    <link rel="stylesheet" href="style.css?v=3.5">
+    <title>REAR-VERSE | THE APEX PORTAL</title>
+    <link rel="stylesheet" href="style.css?v=4.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;400;600;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;300;400;600;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon: #ff003c;
-            --neon-dim: rgba(255, 0, 60, 0.4);
+            --neon-glow: rgba(255, 0, 60, 0.6);
             --gold: #fbbf24;
-            --bg-deep: #020305;
+            --glass: rgba(0, 0, 0, 0.7);
         }
 
-        * { margin:0; padding:0; box-sizing:border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; cursor: none !important; }
 
         body {
-            background-color: var(--bg-deep);
+            background-color: #000;
             color: #fff;
             height: 100vh;
             width: 100vw;
@@ -31,265 +30,280 @@
             justify-content: center;
         }
 
-        /* Cinematic ULTRA Background */
-        .viewport-bg {
+        /* ─── ULTRA IMMERSE BACKGROUND ─────────────────────────────────────── */
+        .master-viewport {
             position: fixed;
             inset: 0;
             z-index: -2;
-            background-image: linear-gradient(rgba(2, 3, 5, 0.2), rgba(2, 3, 5, 0.9)), url('hero-bg.png');
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.95)), url('hero-bg.png');
             background-size: cover;
             background-position: center;
-            filter: saturate(1.2) contrast(1.1);
-            animation: kenFlow 60s linear infinite alternate;
+            animation: masterZoom 90s linear infinite alternate;
+            filter: contrast(1.2) brightness(0.85);
         }
 
-        @keyframes kenFlow {
-            0% { transform: scale(1) translate(0,0); }
-            100% { transform: scale(1.1) translate(-2%, -1%); }
+        @keyframes masterZoom {
+            0% { transform: scale(1); filter: hue-rotate(0deg); }
+            100% { transform: scale(1.15); filter: hue-rotate(5deg); }
         }
 
-        /* Abstract Glow Effects */
-        .bloom {
-            position: fixed;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, var(--neon-dim) 0%, transparent 65%);
+        .master-scanline {
+            position: fixed; inset: 0; z-index: -1;
+            background: linear-gradient(transparent 50%, rgba(225,0,60,0.02) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            opacity: 0.3;
+        }
+
+        /* ─── CUSTOM MASTER CURSOR ─────────────────────────────────────────── */
+        #customCursor {
+            position: fixed; width: 40px; height: 40px;
+            border: 2px solid var(--neon);
             border-radius: 50%;
             pointer-events: none;
-            filter: blur(120px);
-            opacity: 0.2;
-            z-index: -1;
-            animation: breathe 10s ease-in-out infinite alternate;
+            z-index: 10000;
+            mix-blend-mode: screen;
+            transition: transform 0.15s cubic-bezier(0.19, 1, 0.22, 1), width 0.3s, height 0.3s;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px var(--neon-glow);
         }
 
-        @keyframes breathe {
-            from { transform: scale(1); opacity: 0.15; }
-            to { transform: scale(1.3); opacity: 0.25; }
+        #customCursorDot {
+            position: fixed; width: 6px; height: 6px;
+            background: #fff; border-radius: 50%;
+            pointer-events: none; z-index: 10001;
+            transform: translate(-50%, -50%);
         }
 
-        /* Portal Content Core */
-        .portal-wrapper {
+        /* ─── HUD INTERFACE ────────────────────────────────────────────────── */
+        .portal-hud {
             position: relative;
-            width: 100%;
-            max-width: 1300px;
-            padding: 40px;
-            text-align: center;
-            perspective: 1500px;
             z-index: 100;
+            width: 100%;
+            max-width: 1400px;
+            text-align: center;
+            animation: hudReveal 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
-        .portal-logo-wrap {
-            margin-bottom: 80px;
-            animation: heroicEntry 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-
-        .hero-logo {
-            width: 380px;
-            filter: drop-shadow(0 0 50px rgba(0,0,0,0.8)) drop-shadow(0 0 20px var(--neon-dim));
-            transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-        }
-
-        .hero-logo:hover {
-            transform: scale(1.05) translateZ(50px);
-            filter: drop-shadow(0 0 80px var(--neon-dim));
-        }
-
-        .title-display {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 6rem;
-            font-weight: 700;
-            line-height: 0.8;
-            letter-spacing: -12px;
+        .portal-logo-3d {
+            width: 440px;
             margin-bottom: 20px;
+            filter: drop-shadow(0 0 40px var(--neon-glow));
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+        }
+
+        .title-ultra {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 7rem;
+            font-weight: 700;
+            letter-spacing: -14px;
             text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.4));
+            background: linear-gradient(to bottom, #fff 0%, #777 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
-            opacity: 0.9;
+            margin-bottom: 5px;
+            perspective: 1000px;
         }
 
-        .hero-tag {
+        .tag-ultra {
             font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 12px;
-            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: 16px;
             color: var(--neon);
-            margin-bottom: 60px;
-            text-shadow: 0 0 20px var(--neon-dim);
+            text-transform: uppercase;
+            margin-bottom: 80px;
+            opacity: 0.8;
+            text-shadow: 0 0 15px var(--neon-glow);
         }
 
-        /* ELITE ACTION MENU */
-        .action-menu {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            animation: menuReveal 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-            animation-delay: 0.4s;
+        /* ─── ESOTERIC NAVIGATION ─────────────────────────────────────────── */
+        .esoteric-grid {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            perspective: 2500px;
         }
 
-        .action-btn {
+        .esoteric-card {
             position: relative;
-            height: 180px;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 20px;
-            text-decoration: none;
-            color: inherit;
+            width: 280px;
+            height: 220px;
+            background: var(--glass);
+            backdrop-filter: blur(50px) saturate(1.8);
+            -webkit-backdrop-filter: blur(50px) saturate(1.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 2px; /* Brutalist Elite Style */
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            text-decoration: none;
+            color: inherit;
             overflow: hidden;
-            cursor: pointer;
         }
 
-        .action-btn::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--neon);
-            transform: scaleX(0);
+        .esoteric-card::before {
+            content: ''; position: absolute; top:0; left:0; width:100%; height:3px;
+            background: var(--neon); transform: scaleX(0);
             transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            box-shadow: 0 -10px 20px var(--neon-dim);
+            box-shadow: 0 0 20px var(--neon);
         }
 
-        .action-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--neon-dim);
-            transform: translateY(-20px) rotateX(10deg);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        .esoteric-card:hover {
+            transform: translateZ(100px) rotateX(20deg) rotateY(-10deg);
+            background: rgba(225, 0, 60, 0.08);
+            border-color: var(--neon);
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8), 0 0 50px var(--neon-glow);
         }
 
-        .action-btn:hover::after { transform: scaleX(1); }
+        .esoteric-card:hover::before { transform: scaleX(1); }
 
-        .btn-label {
+        .esoteric-card.active {
+            border-color: var(--gold);
+            background: rgba(251, 191, 36, 0.03);
+        }
+        .esoteric-card.active::before { background: var(--gold); box-shadow: 0 0 20px var(--gold); }
+
+        .label-main {
             font-family: 'Syncopate', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-            transition: all 0.4s ease;
+            letter-spacing: 5px;
+            margin-bottom: 5px;
+            transition: 0.4s;
         }
 
-        .action-btn:hover .btn-label { letter-spacing: 6px; color: var(--neon); }
-
-        .btn-desc {
+        .label-sub {
             font-size: 0.65rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.3);
-        }
-
-        .action-btn i {
-            display: none; /* User hates "L emojis", hiding icons to stay minimalist-Elite */
-        }
-
-        /* SPECIFIC FOR TIERS */
-        .tier-btn {
-            background: rgba(225, 0, 60, 0.05);
-            border-color: rgba(225, 0, 60, 0.2);
-        }
-        .tier-btn .btn-desc { color: var(--gold); }
-
-        /* Animations */
-        @keyframes heroicEntry {
-            from { opacity: 0; transform: scale(1.1) rotateX(-20deg) translateY(-40px); }
-            to { opacity: 1; transform: scale(1) rotateX(0) translateY(0); }
-        }
-
-        @keyframes menuReveal {
-            from { opacity: 0; transform: translateY(100px) rotateX(15deg); }
-            to { opacity: 1; transform: translateY(0) rotateX(0); }
-        }
-
-        /* Systems */
-        #portalNotice {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%) translateY(150px);
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(20px);
-            padding: 18px 40px;
-            border-radius: 100px;
-            border: 1px solid var(--neon-dim);
-            font-size: 0.75rem;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: 4px;
             text-transform: uppercase;
-            color: var(--neon);
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-            z-index: 1000;
-            white-space: nowrap;
+            color: rgba(255,255,255,0.3);
+            transition: 0.4s;
         }
 
-        #portalNotice.show { transform: translateX(-50%) translateY(0); }
+        .esoteric-card:hover .label-main { letter-spacing: 12px; color: #fff; }
+        .esoteric-card:hover .label-sub { color: var(--neon); }
+        .esoteric-card.active:hover .label-sub { color: var(--gold); }
 
-        @media (max-width: 900px) {
-            .action-menu { grid-template-columns: 1fr 1fr; }
-            .title-display { font-size: 4rem; letter-spacing: -6px; }
-            .hero-logo { width: 260px; }
+        /* Systems Animation */
+        @keyframes hudReveal {
+            from { opacity: 0; transform: scale(1.2) translateY(80px); filter: blur(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+        }
+
+        /* Modern Toast v4 */
+        #masterToast {
+            position: fixed; right: 60px; bottom: 60px;
+            background: rgba(0,0,0,0.9);
+            border-left: 6px solid var(--neon);
+            padding: 30px 45px;
+            transform: translateX(500px);
+            transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            z-index: 10000;
+        }
+        #masterToast.show { transform: translateX(0); }
+        .toast-brand { font-family: 'Syncopate', sans-serif; font-size: 0.6rem; color: var(--neon); margin-bottom: 5px; }
+
+        @media (max-width: 1100px) {
+            .esoteric-grid { flex-wrap: wrap; }
+            .title-ultra { font-size: 4.5rem; letter-spacing: -8px; }
+            .portal-logo-3d { width: 300px; }
         }
     </style>
 </head>
 <body>
-    <div class="viewport-bg"></div>
-    <div class="bloom" style="top: -200px; left: -200px;"></div>
-    <div class="bloom" style="bottom: -150px; right: -150px; animation-delay: -2s;"></div>
+    <div id="customCursor"></div>
+    <div id="customCursorDot"></div>
 
-    <div class="portal-wrapper">
-        <div class="portal-logo-wrap">
-            <img src="logo.png" alt="RearMC Logo" class="hero-logo">
-            <p class="hero-tag">Professional Practice Network</p>
-        </div>
+    <div class="master-viewport"></div>
+    <div class="master-scanline"></div>
 
-        <div class="action-menu">
-            <div class="action-btn" onclick="openSystem('Store')">
-                <span class="btn-label">STORE</span>
-                <span class="btn-desc">OFFLINE</span>
+    <main class="portal-hud">
+        <img src="logo.png" alt="RearMC Logo" class="portal-logo-3d" id="heroLogo">
+        <h1 class="title-ultra">REARMC</h1>
+        <p class="tag-ultra">The Ultimate Apex Network</p>
+
+        <nav class="esoteric-grid">
+            <div class="esoteric-card" onclick="triggerSystem('Global Store')">
+                <span class="label-main">STORE</span>
+                <span class="label-sub">Maintenance</span>
             </div>
 
-            <a href="tiers.html" class="action-btn tier-btn">
-                <span class="btn-label">TIERS</span>
-                <span class="btn-desc">LIVE ACCESS</span>
+            <a href="tiers.html" class="esoteric-card active">
+                <span class="label-main">TIERS</span>
+                <span class="label-sub" style="color:var(--gold)">LIVE ENTRY</span>
             </a>
 
-            <div class="action-btn" onclick="openSystem('Discord')">
-                <span class="btn-label">DISCORD</span>
-                <span class="btn-desc">RESTRICTED</span>
+            <div class="esoteric-card" onclick="triggerSystem('Discord Node')">
+                <span class="label-main">DISCORD</span>
+                <span class="label-sub">Encrypted</span>
             </div>
 
-            <div class="action-btn" onclick="openSystem('Clips')">
-                <span class="btn-label">CLIPS</span>
-                <span class="btn-desc">COMING SOON</span>
+            <div class="esoteric-card" onclick="triggerSystem('Hyper Clips')">
+                <span class="label-main">CLIPS</span>
+                <span class="label-sub">Incoming</span>
             </div>
-        </div>
+        </nav>
+    </main>
+
+    <div id="masterToast">
+        <div class="toast-brand">SYSTEM OVERRIDE REQ.</div>
+        <p id="toastMessage" style="font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem;">NODE UNAVAILABLE</p>
     </div>
 
-    <div id="portalNotice">Authorization required for this node.</div>
-
     <script>
-        function openSystem(name) {
-            const notice = document.getElementById('portalNotice');
-            notice.textContent = `CRITICAL: ${name.toUpperCase()} DATA NODE IS CURRENTLY OFFLINE.`;
-            notice.classList.add('show');
-            setTimeout(() => notice.classList.remove('show'), 3500);
+        // Custom Elite Cursor
+        const cursor = document.getElementById('customCursor');
+        const dot = document.getElementById('customCursorDot');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            
+            // Logo 3D tilt
+            const logo = document.getElementById('heroLogo');
+            const dx = (window.innerWidth / 2 - e.pageX) / 40;
+            const dy = (window.innerHeight / 2 - e.pageY) / 40;
+            logo.style.transform = `rotateY(${dx}deg) rotateX(${-dy}deg) translateZ(40px)`;
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.6)';
+            cursor.style.borderColor = '#fff';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.borderColor = 'var(--neon)';
+        });
+
+        function triggerSystem(node) {
+            const toast = document.getElementById('masterToast');
+            const msg = document.getElementById('toastMessage');
+            msg.textContent = `${node} node is currently encrypted.`;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
         }
 
-        // Parallax Logo
-        document.addEventListener('mousemove', (e) => {
-            const logo = document.querySelector('.hero-logo');
-            const x = (window.innerWidth / 2 - e.pageX) / 45;
-            const y = (window.innerHeight / 2 - e.pageY) / 45;
-            logo.style.transform = `translateX(${x}px) translateY(${y}px) rotateX(${-y}px) rotateY(${x}px)`;
+        // Expanded cursor on links
+        const links = document.querySelectorAll('a, .esoteric-card');
+        links.forEach(l => {
+            l.onmouseenter = () => {
+                cursor.style.width = '80px';
+                cursor.style.height = '80px';
+                cursor.style.backgroundColor = 'rgba(255, 0, 60, 0.1)';
+            };
+            l.onmouseleave = () => {
+                cursor.style.width = '40px';
+                cursor.style.height = '40px';
+                cursor.style.backgroundColor = 'transparent';
+            };
         });
     </script>
 </body>
