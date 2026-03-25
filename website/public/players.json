@@ -11,19 +11,19 @@
                 "user_id": "1347518733182173204",
                 "category": "Sword",
                 "tier": "LT5",
-                "timestamp": 1773919914064
+                "timestamp": 1774434175749
             },
             {
                 "user_id": "1347518733182173204",
                 "category": "Nethpot",
                 "tier": "LT4",
-                "timestamp": 1773919914063
+                "timestamp": 1774434175748
             }
         ]
     },
     {
         "user_id": "1413557942631792651",
-        "minecraft_ign": "PUMBA_PLAYS",
+        "minecraft_ign": "pumba_plays",
         "region": "AS",
         "total_points": 0,
         "account_type": "Premium",
@@ -33,19 +33,25 @@
                 "user_id": "1413557942631792651",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919914061
+                "timestamp": 1774434175748
             },
             {
                 "user_id": "1413557942631792651",
                 "category": "Sword",
                 "tier": "LT4",
-                "timestamp": 1773919914059
+                "timestamp": 1774434175746
             },
             {
                 "user_id": "1413557942631792651",
                 "category": "Nethpot",
                 "tier": "LT4",
-                "timestamp": 1773919914056
+                "timestamp": 1774434175745
+            },
+            {
+                "user_id": "1413557942631792651",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1774434177355
             }
         ]
     },
@@ -61,13 +67,13 @@
                 "user_id": "1457740656222142697",
                 "category": "Npot",
                 "tier": "HT4",
-                "timestamp": 1773919913602
+                "timestamp": 1774434175744
             },
             {
                 "user_id": "1457740656222142697",
                 "category": "Sword",
                 "tier": "LT4",
-                "timestamp": 1773919916848
+                "timestamp": 1774434180586
             }
         ]
     },
@@ -83,7 +89,7 @@
                 "user_id": "1303946153053786212",
                 "category": "Npot",
                 "tier": "LT3",
-                "timestamp": 1773919913601
+                "timestamp": 1774434175743
             }
         ]
     },
@@ -99,7 +105,7 @@
                 "user_id": "1344205919847972935",
                 "category": "Npot",
                 "tier": "Ht3",
-                "timestamp": 1773919913600
+                "timestamp": 1774434175742
             }
         ]
     },
@@ -115,7 +121,7 @@
                 "user_id": "1410647405249957898",
                 "category": "Sword",
                 "tier": "LT4",
-                "timestamp": 1773919913600
+                "timestamp": 1774434175741
             }
         ]
     },
@@ -131,7 +137,7 @@
                 "user_id": "1442368364142919734",
                 "category": "Nethpot",
                 "tier": "LT4",
-                "timestamp": 1773919913599
+                "timestamp": 1774434175741
             }
         ]
     },
@@ -147,7 +153,7 @@
                 "user_id": "1232261529752178719",
                 "category": "Nethpot",
                 "tier": "HT5",
-                "timestamp": 1773919913598
+                "timestamp": 1774434175740
             }
         ]
     },
@@ -163,7 +169,7 @@
                 "user_id": "1419409149229535293",
                 "category": "Nethpot",
                 "tier": "HT3",
-                "timestamp": 1773919913598
+                "timestamp": 1774434175739
             }
         ]
     },
@@ -179,13 +185,13 @@
                 "user_id": "1308352936891387904",
                 "category": "Nethpot",
                 "tier": "LT4",
-                "timestamp": 1773919913597
+                "timestamp": 1774434175737
             },
             {
                 "user_id": "1308352936891387904",
                 "category": "Sword",
                 "tier": "LT4",
-                "timestamp": 1773919916846
+                "timestamp": 1774434180584
             }
         ]
     },
@@ -201,19 +207,19 @@
                 "user_id": "880086193348431872",
                 "category": "Nethpot",
                 "tier": "HT4",
-                "timestamp": 1773919913596
+                "timestamp": 1774434175735
             },
             {
                 "user_id": "880086193348431872",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916040
+                "timestamp": 1774434179580
             },
             {
                 "user_id": "880086193348431872",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919916810
+                "timestamp": 1774434179618
             }
         ]
     },
@@ -229,13 +235,13 @@
                 "user_id": "1393507884008083487",
                 "category": "Nethpot",
                 "tier": "HT5",
-                "timestamp": 1773919913596
+                "timestamp": 1774434175733
             },
             {
                 "user_id": "1393507884008083487",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919915983
+                "timestamp": 1774434178612
             }
         ]
     },
@@ -251,25 +257,31 @@
                 "user_id": "1312632266026913853",
                 "category": "Nethpot",
                 "tier": "LT4",
-                "timestamp": 1773919913595
+                "timestamp": 1774434175732
             },
             {
                 "user_id": "1312632266026913853",
                 "category": "cpvp",
                 "tier": "lt4",
-                "timestamp": 1773919916061
+                "timestamp": 1774434179604
             },
             {
                 "user_id": "1312632266026913853",
                 "category": "NethPOT",
                 "tier": "LT4",
-                "timestamp": 1773919915255
+                "timestamp": 1774434178592
             },
             {
                 "user_id": "1312632266026913853",
                 "category": "CPVP",
                 "tier": "LT4",
-                "timestamp": 1773919915229
+                "timestamp": 1774434178562
+            },
+            {
+                "user_id": "1312632266026913853",
+                "category": "Crystal",
+                "tier": "HT4",
+                "timestamp": 1774434177373
             }
         ]
     },
@@ -285,7 +297,7 @@
                 "user_id": "842354456036638731",
                 "category": "Nethpot",
                 "tier": "Ht4",
-                "timestamp": 1773919913594
+                "timestamp": 1774434175731
             }
         ]
     },
@@ -301,13 +313,13 @@
                 "user_id": "1471931345029693491",
                 "category": "Sword",
                 "tier": "Ht5",
-                "timestamp": 1773919913594
+                "timestamp": 1774434175729
             },
             {
                 "user_id": "1471931345029693491",
                 "category": "Nethpot",
                 "tier": "Lt5",
-                "timestamp": 1773919913593
+                "timestamp": 1774434175726
             }
         ]
     },
@@ -323,13 +335,13 @@
                 "user_id": "1478787400070336706",
                 "category": "Nethpot",
                 "tier": "HT5",
-                "timestamp": 1773919913592
+                "timestamp": 1774434175725
             },
             {
                 "user_id": "1478787400070336706",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916024
+                "timestamp": 1774434179564
             }
         ]
     },
@@ -345,7 +357,7 @@
                 "user_id": "1326070339918237762",
                 "category": "Nethpot",
                 "tier": "HT4",
-                "timestamp": 1773919913592
+                "timestamp": 1774434175724
             }
         ]
     },
@@ -361,13 +373,13 @@
                 "user_id": "894886079411404800",
                 "category": "Sword",
                 "tier": "Ht4",
-                "timestamp": 1773919913591
+                "timestamp": 1774434175723
             },
             {
                 "user_id": "894886079411404800",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915191
+                "timestamp": 1774434178445
             }
         ]
     },
@@ -383,7 +395,7 @@
                 "user_id": "1374328424755105866",
                 "category": "Sword",
                 "tier": "LT5",
-                "timestamp": 1773919913590
+                "timestamp": 1774434175722
             }
         ]
     },
@@ -399,7 +411,7 @@
                 "user_id": "1047888722558988350",
                 "category": "Sword",
                 "tier": "Ht4",
-                "timestamp": 1773919916849
+                "timestamp": 1774434180587
             },
             {
                 "user_id": "1047888722558988350",
@@ -411,7 +423,7 @@
                 "user_id": "1047888722558988350",
                 "category": "a",
                 "tier": "a",
-                "timestamp": 1773919916921
+                "timestamp": 1774434180629
             }
         ]
     },
@@ -436,19 +448,19 @@
                 "user_id": "1339605392187068478",
                 "category": "NETHPOT",
                 "tier": "lt4",
-                "timestamp": 1773919916917
+                "timestamp": 1774434180627
             },
             {
                 "user_id": "1339605392187068478",
                 "category": "Mace",
                 "tier": "LT4",
-                "timestamp": 1773919916870
+                "timestamp": 1774434180597
             },
             {
                 "user_id": "1339605392187068478",
                 "category": "DIAPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916870
+                "timestamp": 1774434180596
             }
         ]
     },
@@ -464,7 +476,7 @@
                 "user_id": "1471603841827868824",
                 "category": "Sword",
                 "tier": "LT5",
-                "timestamp": 1773919916921
+                "timestamp": 1774434180630
             }
         ]
     },
@@ -480,7 +492,7 @@
                 "user_id": "1460229148134867048",
                 "category": "Sword",
                 "tier": "LT4",
-                "timestamp": 1773919916922
+                "timestamp": 1774434180630
             }
         ]
     },
@@ -496,31 +508,43 @@
                 "user_id": "1349046039616819285",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916887
+                "timestamp": 1774434180610
             },
             {
                 "user_id": "1349046039616819285",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916918
+                "timestamp": 1774434180627
             },
             {
                 "user_id": "1349046039616819285",
                 "category": "UHC",
                 "tier": "HT5",
-                "timestamp": 1773919916881
+                "timestamp": 1774434180602
             },
             {
                 "user_id": "1349046039616819285",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916817
+                "timestamp": 1774434179622
             },
             {
                 "user_id": "1349046039616819285",
                 "category": "Diapot",
                 "tier": "LT4",
-                "timestamp": 1773919916819
+                "timestamp": 1774434179624
+            },
+            {
+                "user_id": "1349046039616819285",
+                "category": "SWORD",
+                "tier": "LT5",
+                "timestamp": 1774434177347
+            },
+            {
+                "user_id": "1349046039616819285",
+                "category": "AXE",
+                "tier": "HT5",
+                "timestamp": 1774434177348
             }
         ]
     },
@@ -545,7 +569,7 @@
                 "user_id": "1225060441924046921",
                 "category": "NETHPOT",
                 "tier": "HT4",
-                "timestamp": 1773919916035
+                "timestamp": 1774434179576
             }
         ]
     },
@@ -570,7 +594,7 @@
                 "user_id": "1223653976113938573",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919916840
+                "timestamp": 1774434180579
             }
         ]
     },
@@ -586,7 +610,7 @@
                 "user_id": "1268538286339522675",
                 "category": "NETHPOT",
                 "tier": "HT4",
-                "timestamp": 1773919916021
+                "timestamp": 1774434179562
             }
         ]
     },
@@ -620,13 +644,13 @@
                 "user_id": "1478325136913600644",
                 "category": "AS",
                 "tier": "AS",
-                "timestamp": 1773919916929
+                "timestamp": 1774434180632
             },
             {
                 "user_id": "1478325136913600644",
                 "category": "NETHPOT",
                 "tier": "LT3",
-                "timestamp": 1773919915211
+                "timestamp": 1774434178533
             }
         ]
     },
@@ -642,25 +666,37 @@
                 "user_id": "1384557368662163458",
                 "category": "Npot",
                 "tier": "LT5",
-                "timestamp": 1773919916888
+                "timestamp": 1774434180611
             },
             {
                 "user_id": "1384557368662163458",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916056
+                "timestamp": 1774434179598
             },
             {
                 "user_id": "1384557368662163458",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916009
+                "timestamp": 1774434179548
             },
             {
                 "user_id": "1384557368662163458",
                 "category": "sword",
                 "tier": "lt5",
-                "timestamp": 1773919915203
+                "timestamp": 1774434178524
+            },
+            {
+                "user_id": "1384557368662163458",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1774434177360
+            },
+            {
+                "user_id": "1384557368662163458",
+                "category": "SWORD",
+                "tier": "LT5",
+                "timestamp": 1774434177363
             }
         ]
     },
@@ -685,31 +721,31 @@
                 "user_id": "1096813675068796952",
                 "category": "Swords",
                 "tier": "Lt5",
-                "timestamp": 1773919916883
+                "timestamp": 1774434180605
             },
             {
                 "user_id": "1096813675068796952",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916045
+                "timestamp": 1774434179585
             },
             {
                 "user_id": "1096813675068796952",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916059
+                "timestamp": 1774434179602
             },
             {
                 "user_id": "1096813675068796952",
                 "category": "SWORD",
                 "tier": "LT5",
-                "timestamp": 1773919915171
+                "timestamp": 1774434177417
             },
             {
                 "user_id": "1096813675068796952",
                 "category": "Crystal",
                 "tier": "HT5",
-                "timestamp": 1773919915173
+                "timestamp": 1774434177421
             }
         ]
     },
@@ -725,19 +761,19 @@
                 "user_id": "1377513737220784210",
                 "category": "Nethpot",
                 "tier": "LT4",
-                "timestamp": 1773919916884
+                "timestamp": 1774434180606
             },
             {
                 "user_id": "1377513737220784210",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916910
+                "timestamp": 1774434180621
             },
             {
                 "user_id": "1377513737220784210",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916854
+                "timestamp": 1774434180591
             }
         ]
     },
@@ -753,25 +789,25 @@
                 "user_id": "1243442422353100853",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919916884
+                "timestamp": 1774434180606
             },
             {
                 "user_id": "1243442422353100853",
                 "category": "Crystal",
                 "tier": "LT4",
-                "timestamp": 1773919916880
+                "timestamp": 1774434180601
             },
             {
                 "user_id": "1243442422353100853",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916046
+                "timestamp": 1774434179587
             },
             {
                 "user_id": "1243442422353100853",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916051
+                "timestamp": 1774434179593
             }
         ]
     },
@@ -787,19 +823,19 @@
                 "user_id": "1426601073560391802",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916885
+                "timestamp": 1774434180607
             },
             {
                 "user_id": "1426601073560391802",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916022
+                "timestamp": 1774434179562
             },
             {
                 "user_id": "1426601073560391802",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916055
+                "timestamp": 1774434179598
             }
         ]
     },
@@ -815,7 +851,7 @@
                 "user_id": "1260562864230502472",
                 "category": "Diapot",
                 "tier": "HT5",
-                "timestamp": 1773919916886
+                "timestamp": 1774434180609
             }
         ]
     },
@@ -831,25 +867,25 @@
                 "user_id": "1301832081755602965",
                 "category": "Npot",
                 "tier": "LT4",
-                "timestamp": 1773919916889
+                "timestamp": 1774434180611
             },
             {
                 "user_id": "1301832081755602965",
                 "category": "NETHPOT",
                 "tier": "ht4",
-                "timestamp": 1773919916857
+                "timestamp": 1774434180595
             },
             {
                 "user_id": "1301832081755602965",
                 "category": "Axe",
                 "tier": "LT4",
-                "timestamp": 1773919916837
+                "timestamp": 1774434180577
             },
             {
                 "user_id": "1301832081755602965",
                 "category": "Sword",
                 "tier": "LT4",
-                "timestamp": 1773919916013
+                "timestamp": 1774434179552
             }
         ]
     },
@@ -865,43 +901,43 @@
                 "user_id": "1374402927481061389",
                 "category": "Diapot",
                 "tier": "HT5",
-                "timestamp": 1773919916889
+                "timestamp": 1774434180612
             },
             {
                 "user_id": "1374402927481061389",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919916890
+                "timestamp": 1774434180613
             },
             {
                 "user_id": "1374402927481061389",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916895
+                "timestamp": 1774434180617
             },
             {
                 "user_id": "1374402927481061389",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916896
+                "timestamp": 1774434180619
             },
             {
                 "user_id": "1374402927481061389",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916031
+                "timestamp": 1774434179570
             },
             {
                 "user_id": "1374402927481061389",
                 "category": "NethPOT",
                 "tier": "Ht5",
-                "timestamp": 1773919915254
+                "timestamp": 1774434178591
             },
             {
                 "user_id": "1374402927481061389",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915190
+                "timestamp": 1774434178443
             }
         ]
     },
@@ -917,19 +953,25 @@
                 "user_id": "1476549187092086904",
                 "category": "NEthpot",
                 "tier": "HT5",
-                "timestamp": 1773919916890
+                "timestamp": 1774434180613
             },
             {
                 "user_id": "1476549187092086904",
                 "category": "Npot",
                 "tier": "LT4",
-                "timestamp": 1773919916049
+                "timestamp": 1774434179591
             },
             {
                 "user_id": "1476549187092086904",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916058
+                "timestamp": 1774434179601
+            },
+            {
+                "user_id": "1476549187092086904",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1774434177408
             }
         ]
     },
@@ -945,19 +987,19 @@
                 "user_id": "1127814636222287912",
                 "category": "Sword",
                 "tier": "lt4",
-                "timestamp": 1773919916891
+                "timestamp": 1774434180615
             },
             {
                 "user_id": "1127814636222287912",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916908
+                "timestamp": 1774434180620
             },
             {
                 "user_id": "1127814636222287912",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916052
+                "timestamp": 1774434179595
             }
         ]
     },
@@ -973,13 +1015,13 @@
                 "user_id": "1165598409110077503",
                 "category": "Nethpot",
                 "tier": "HT5",
-                "timestamp": 1773919916892
+                "timestamp": 1774434180615
             },
             {
                 "user_id": "1165598409110077503",
                 "category": "NETHPOT",
                 "tier": "HT4",
-                "timestamp": 1773919916044
+                "timestamp": 1774434179585
             }
         ]
     },
@@ -995,13 +1037,19 @@
                 "user_id": "1229431557643567176",
                 "category": "Nethpot",
                 "tier": "HT4",
-                "timestamp": 1773919916893
+                "timestamp": 1774434180616
             },
             {
                 "user_id": "1229431557643567176",
                 "category": "NETHPOT",
                 "tier": "LT3",
-                "timestamp": 1773919916846
+                "timestamp": 1774434180584
+            },
+            {
+                "user_id": "1229431557643567176",
+                "category": "crystal",
+                "tier": "lt3",
+                "timestamp": 1774434177385
             }
         ]
     },
@@ -1017,25 +1065,31 @@
                 "user_id": "1384586354335289525",
                 "category": "SMP KIT",
                 "tier": "LT4",
-                "timestamp": 1773919916894
+                "timestamp": 1774434180617
             },
             {
                 "user_id": "1384586354335289525",
                 "category": "SMP",
                 "tier": "Lt4",
-                "timestamp": 1773919916917
+                "timestamp": 1774434180626
             },
             {
                 "user_id": "1384586354335289525",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916920
+                "timestamp": 1774434180628
             },
             {
                 "user_id": "1384586354335289525",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915215
+                "timestamp": 1774434178540
+            },
+            {
+                "user_id": "1384586354335289525",
+                "category": "sword",
+                "tier": "lt5",
+                "timestamp": 1774434177398
             }
         ]
     },
@@ -1051,7 +1105,7 @@
                 "user_id": "897013239244812299",
                 "category": "Nethpot",
                 "tier": "ht4",
-                "timestamp": 1773919916896
+                "timestamp": 1774434180618
             }
         ]
     },
@@ -1067,7 +1121,19 @@
                 "user_id": "1105502117994709052",
                 "category": "Nethpot",
                 "tier": "lt3",
-                "timestamp": 1773919916910
+                "timestamp": 1774434180621
+            },
+            {
+                "user_id": "1105502117994709052",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1774434177371
+            },
+            {
+                "user_id": "1105502117994709052",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1774434177384
             }
         ]
     },
@@ -1083,13 +1149,13 @@
                 "user_id": "1006551310142804110",
                 "category": "Axe",
                 "tier": "LT4",
-                "timestamp": 1773919916912
+                "timestamp": 1774434180624
             },
             {
                 "user_id": "1006551310142804110",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916831
+                "timestamp": 1774434179631
             }
         ]
     },
@@ -1105,19 +1171,19 @@
                 "user_id": "1451505043701497937",
                 "category": "Axe",
                 "tier": "LT5",
-                "timestamp": 1773919916913
+                "timestamp": 1774434180624
             },
             {
                 "user_id": "1451505043701497937",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916839
+                "timestamp": 1774434180579
             },
             {
                 "user_id": "1451505043701497937",
                 "category": "crystal",
                 "tier": "HT5",
-                "timestamp": 1773919915224
+                "timestamp": 1774434178555
             }
         ]
     },
@@ -1133,7 +1199,7 @@
                 "user_id": "1083425176168964166",
                 "category": "Sword",
                 "tier": "Ht4",
-                "timestamp": 1773919916923
+                "timestamp": 1774434180631
             }
         ]
     },
@@ -1149,25 +1215,25 @@
                 "user_id": "983286571677646910",
                 "category": "SMP KIT",
                 "tier": "LT4",
-                "timestamp": 1773919916882
+                "timestamp": 1774434180603
             },
             {
                 "user_id": "983286571677646910",
                 "category": "UHC",
                 "tier": "LT4",
-                "timestamp": 1773919916873
+                "timestamp": 1774434180599
             },
             {
                 "user_id": "983286571677646910",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919916043
+                "timestamp": 1774434179584
             },
             {
                 "user_id": "983286571677646910",
                 "category": "Axe",
                 "tier": "HT4",
-                "timestamp": 1773919916833
+                "timestamp": 1774434180574
             }
         ]
     },
@@ -1183,7 +1249,7 @@
                 "user_id": "1445823934246289561",
                 "category": "Nethpot",
                 "tier": "HT5",
-                "timestamp": 1773919916883
+                "timestamp": 1774434180604
             }
         ]
     },
@@ -1199,13 +1265,13 @@
                 "user_id": "1008801040730173480",
                 "category": "NETHPOT",
                 "tier": "HT4strong",
-                "timestamp": 1773919916874
+                "timestamp": 1774434180600
             },
             {
                 "user_id": "1008801040730173480",
                 "category": "UHC",
                 "tier": "LT3",
-                "timestamp": 1773919916824
+                "timestamp": 1774434179627
             }
         ]
     },
@@ -1221,25 +1287,25 @@
                 "user_id": "1474764771353165825",
                 "category": "NETHPOT",
                 "tier": "lt4",
-                "timestamp": 1773919916872
+                "timestamp": 1774434180598
             },
             {
                 "user_id": "1474764771353165825",
                 "category": "Diapot",
                 "tier": "HT4",
-                "timestamp": 1773919916856
+                "timestamp": 1774434180593
             },
             {
                 "user_id": "1474764771353165825",
                 "category": "cpvp",
                 "tier": "lt4",
-                "timestamp": 1773919916062
+                "timestamp": 1774434179606
             },
             {
                 "user_id": "1474764771353165825",
                 "category": "Axe",
                 "tier": "LT4",
-                "timestamp": 1773919916842
+                "timestamp": 1774434180581
             }
         ]
     },
@@ -1255,7 +1321,7 @@
                 "user_id": "1183103747925213218",
                 "category": "UHC",
                 "tier": "LT5",
-                "timestamp": 1773919916871
+                "timestamp": 1774434180597
             }
         ]
     },
@@ -1271,19 +1337,25 @@
                 "user_id": "1212100850563162144",
                 "category": "Diapot",
                 "tier": "LT5",
-                "timestamp": 1773919916857
+                "timestamp": 1774434180595
             },
             {
                 "user_id": "1212100850563162144",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916844
+                "timestamp": 1774434180582
             },
             {
                 "user_id": "1212100850563162144",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919915981
+                "timestamp": 1774434178610
+            },
+            {
+                "user_id": "1212100850563162144",
+                "category": "CRYSTAL",
+                "tier": "LT5",
+                "timestamp": 1774434177357
             }
         ]
     },
@@ -1299,7 +1371,7 @@
                 "user_id": "1358360720697196658",
                 "category": "NETHPOT",
                 "tier": "lt4",
-                "timestamp": 1773919916855
+                "timestamp": 1774434180592
             }
         ]
     },
@@ -1315,19 +1387,25 @@
                 "user_id": "1305824058369249352",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919916853
+                "timestamp": 1774434180590
             },
             {
                 "user_id": "1305824058369249352",
                 "category": "CPVP",
                 "tier": "HT5",
-                "timestamp": 1773919915228
+                "timestamp": 1774434178560
             },
             {
                 "user_id": "1305824058369249352",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915171
+                "timestamp": 1774434177418
+            },
+            {
+                "user_id": "1305824058369249352",
+                "category": "AXE",
+                "tier": "LT5",
+                "timestamp": 1774434177351
             }
         ]
     },
@@ -1343,7 +1421,7 @@
                 "user_id": "1354711532340252814",
                 "category": "Sword",
                 "tier": "Lt4",
-                "timestamp": 1773919916852
+                "timestamp": 1774434180589
             }
         ]
     },
@@ -1359,7 +1437,7 @@
                 "user_id": "1453834169988812843",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916021
+                "timestamp": 1774434179561
             }
         ]
     },
@@ -1375,13 +1453,13 @@
                 "user_id": "1312399442120540282",
                 "category": "NETHPOT",
                 "tier": "ht4",
-                "timestamp": 1773919916023
+                "timestamp": 1774434179563
             },
             {
                 "user_id": "1312399442120540282",
                 "category": "sword",
                 "tier": "ht5",
-                "timestamp": 1773919915172
+                "timestamp": 1774434177420
             }
         ]
     },
@@ -1397,13 +1475,13 @@
                 "user_id": "1218981502159683634",
                 "category": "Nethpot",
                 "tier": "HT4",
-                "timestamp": 1773919916025
+                "timestamp": 1774434179564
             },
             {
                 "user_id": "1218981502159683634",
                 "category": "NETHPOT",
                 "tier": "lt5",
-                "timestamp": 1773919916807
+                "timestamp": 1774434179616
             }
         ]
     },
@@ -1419,7 +1497,7 @@
                 "user_id": "1423654132350455859",
                 "category": "cpvp",
                 "tier": "Ht5",
-                "timestamp": 1773919916026
+                "timestamp": 1774434179565
             }
         ]
     },
@@ -1435,19 +1513,37 @@
                 "user_id": "1464926412656873604",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916026
+                "timestamp": 1774434179566
             },
             {
                 "user_id": "1464926412656873604",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915185
+                "timestamp": 1774434177432
             },
             {
                 "user_id": "1464926412656873604",
                 "category": "Crystal",
                 "tier": "LT4",
-                "timestamp": 1773919915206
+                "timestamp": 1774434178527
+            },
+            {
+                "user_id": "1464926412656873604",
+                "category": "AXE",
+                "tier": "LT5",
+                "timestamp": 1774434177351
+            },
+            {
+                "user_id": "1464926412656873604",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1774434177379
+            },
+            {
+                "user_id": "1464926412656873604",
+                "category": "crystal",
+                "tier": "lt5",
+                "timestamp": 1774434177386
             }
         ]
     },
@@ -1463,7 +1559,7 @@
                 "user_id": "1319564029672292413",
                 "category": "nethpot",
                 "tier": "lt4",
-                "timestamp": 1773919916027
+                "timestamp": 1774434179567
             }
         ]
     },
@@ -1479,7 +1575,7 @@
                 "user_id": "1211231110457991212",
                 "category": "Nethpot",
                 "tier": "lt4",
-                "timestamp": 1773919916028
+                "timestamp": 1774434179568
             }
         ]
     },
@@ -1495,31 +1591,31 @@
                 "user_id": "1377532798331785226",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916028
+                "timestamp": 1774434179568
             },
             {
                 "user_id": "1377532798331785226",
                 "category": "Diapot",
                 "tier": "LT5",
-                "timestamp": 1773919916823
+                "timestamp": 1774434179626
             },
             {
                 "user_id": "1377532798331785226",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916836
+                "timestamp": 1774434180577
             },
             {
                 "user_id": "1377532798331785226",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916845
+                "timestamp": 1774434180583
             },
             {
                 "user_id": "1377532798331785226",
                 "category": "Sword",
                 "tier": "HT5",
-                "timestamp": 1773919916015
+                "timestamp": 1774434179555
             }
         ]
     },
@@ -1535,7 +1631,7 @@
                 "user_id": "1060816404535857233",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916029
+                "timestamp": 1774434179569
             }
         ]
     },
@@ -1551,13 +1647,13 @@
                 "user_id": "1328991825280630827",
                 "category": "nethpot",
                 "tier": "lt4",
-                "timestamp": 1773919916030
+                "timestamp": 1774434179570
             },
             {
                 "user_id": "1328991825280630827",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916017
+                "timestamp": 1774434179558
             }
         ]
     },
@@ -1573,19 +1669,19 @@
                 "user_id": "1362457685219610684",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916032
+                "timestamp": 1774434179571
             },
             {
                 "user_id": "1362457685219610684",
                 "category": "Sword",
                 "tier": "LT4",
-                "timestamp": 1773919916033
+                "timestamp": 1774434179573
             },
             {
                 "user_id": "1362457685219610684",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916034
+                "timestamp": 1774434179575
             }
         ]
     },
@@ -1601,7 +1697,7 @@
                 "user_id": "1377858823104233516",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916035
+                "timestamp": 1774434179575
             }
         ]
     },
@@ -1617,25 +1713,31 @@
                 "user_id": "1462439556593750027",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916036
+                "timestamp": 1774434179577
             },
             {
                 "user_id": "1462439556593750027",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916001
+                "timestamp": 1774434179541
             },
             {
                 "user_id": "1462439556593750027",
                 "category": "cpvp",
                 "tier": "Lt5",
-                "timestamp": 1773919915978
+                "timestamp": 1774434178607
             },
             {
                 "user_id": "1462439556593750027",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915179
+                "timestamp": 1774434177426
+            },
+            {
+                "user_id": "1462439556593750027",
+                "category": "SWORD",
+                "tier": "LT5",
+                "timestamp": 1774434177399
             }
         ]
     },
@@ -1651,7 +1753,7 @@
                 "user_id": "1462467939868348625",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916037
+                "timestamp": 1774434179577
             }
         ]
     },
@@ -1667,13 +1769,19 @@
                 "user_id": "1464923588095381668",
                 "category": "cpvp",
                 "tier": "lt4",
-                "timestamp": 1773919916038
+                "timestamp": 1774434179578
             },
             {
                 "user_id": "1464923588095381668",
                 "category": "Crystal",
                 "tier": "HT5",
-                "timestamp": 1773919915204
+                "timestamp": 1774434178525
+            },
+            {
+                "user_id": "1464923588095381668",
+                "category": "Cpvp",
+                "tier": "LT4",
+                "timestamp": 1774434177373
             }
         ]
     },
@@ -1689,7 +1797,7 @@
                 "user_id": "1478073705069285569",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916039
+                "timestamp": 1774434179579
             }
         ]
     },
@@ -1705,7 +1813,7 @@
                 "user_id": "1313736739495608363",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916041
+                "timestamp": 1774434179581
             }
         ]
     },
@@ -1721,13 +1829,19 @@
                 "user_id": "1364865805891932251",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916042
+                "timestamp": 1774434179582
             },
             {
                 "user_id": "1364865805891932251",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916000
+                "timestamp": 1774434178625
+            },
+            {
+                "user_id": "1364865805891932251",
+                "category": "AXE",
+                "tier": "LT5",
+                "timestamp": 1774434177350
             }
         ]
     },
@@ -1743,7 +1857,7 @@
                 "user_id": "912346446664171520",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916045
+                "timestamp": 1774434179586
             }
         ]
     },
@@ -1759,7 +1873,7 @@
                 "user_id": "1140221486217560074",
                 "category": "Npot",
                 "tier": "HT4",
-                "timestamp": 1773919916047
+                "timestamp": 1774434179588
             }
         ]
     },
@@ -1775,7 +1889,7 @@
                 "user_id": "1317104167151603734",
                 "category": "Npot",
                 "tier": "LT4",
-                "timestamp": 1773919916048
+                "timestamp": 1774434179588
             }
         ]
     },
@@ -1791,7 +1905,7 @@
                 "user_id": "1383831070482366648",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916048
+                "timestamp": 1774434179590
             }
         ]
     },
@@ -1807,19 +1921,19 @@
                 "user_id": "1420050325489844335",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916050
+                "timestamp": 1774434179592
             },
             {
                 "user_id": "1420050325489844335",
                 "category": "Npot",
                 "tier": "Lt5",
-                "timestamp": 1773919916052
+                "timestamp": 1774434179594
             },
             {
                 "user_id": "1420050325489844335",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916826
+                "timestamp": 1774434179628
             }
         ]
     },
@@ -1835,7 +1949,13 @@
                 "user_id": "1426210313728163931",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916051
+                "timestamp": 1774434179594
+            },
+            {
+                "user_id": "1426210313728163931",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1774434177358
             }
         ]
     },
@@ -1851,7 +1971,7 @@
                 "user_id": "1456846753448988803",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919916053
+                "timestamp": 1774434179595
             }
         ]
     },
@@ -1867,7 +1987,7 @@
                 "user_id": "1373334254100025344",
                 "category": "cpvp",
                 "tier": "ht4",
-                "timestamp": 1773919916054
+                "timestamp": 1774434179596
             }
         ]
     },
@@ -1883,7 +2003,7 @@
                 "user_id": "899899858981371935",
                 "category": "Npot",
                 "tier": "LT4",
-                "timestamp": 1773919916056
+                "timestamp": 1774434179599
             }
         ]
     },
@@ -1899,7 +2019,7 @@
                 "user_id": "1321068243095388190",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916057
+                "timestamp": 1774434179600
             }
         ]
     },
@@ -1915,13 +2035,13 @@
                 "user_id": "1402678094195593238",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919916058
+                "timestamp": 1774434179601
             },
             {
                 "user_id": "1402678094195593238",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916820
+                "timestamp": 1774434179624
             }
         ]
     },
@@ -1937,7 +2057,7 @@
                 "user_id": "1238902329151979610",
                 "category": "NETHPOT",
                 "tier": "ht4",
-                "timestamp": 1773919916060
+                "timestamp": 1774434179603
             }
         ]
     },
@@ -1953,7 +2073,13 @@
                 "user_id": "1375081200544251914",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916822
+                "timestamp": 1774434179625
+            },
+            {
+                "user_id": "1375081200544251914",
+                "category": "AXE",
+                "tier": "HT5",
+                "timestamp": 1774434177409
             }
         ]
     },
@@ -1969,13 +2095,13 @@
                 "user_id": "1398168786955407432",
                 "category": "NETHPOT",
                 "tier": "ht5",
-                "timestamp": 1773919916812
+                "timestamp": 1774434179619
             },
             {
                 "user_id": "1398168786955407432",
                 "category": "Npot",
                 "tier": "LT5",
-                "timestamp": 1773919915993
+                "timestamp": 1774434178618
             }
         ]
     },
@@ -1991,49 +2117,61 @@
                 "user_id": "1308792860052819998",
                 "category": "crystal pvp",
                 "tier": "ht5",
-                "timestamp": 1773919916064
+                "timestamp": 1774434179607
             },
             {
                 "user_id": "1308792860052819998",
                 "category": "NETHPOT",
                 "tier": "lt5",
-                "timestamp": 1773919916067
+                "timestamp": 1774434179611
             },
             {
                 "user_id": "1308792860052819998",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919915978
+                "timestamp": 1774434178606
             },
             {
                 "user_id": "1308792860052819998",
                 "category": "cpvp",
                 "tier": "lt4",
-                "timestamp": 1773919915274
+                "timestamp": 1774434178603
             },
             {
                 "user_id": "1308792860052819998",
                 "category": "Nethpot",
                 "tier": "HT5",
-                "timestamp": 1773919915246
+                "timestamp": 1774434178584
             },
             {
                 "user_id": "1308792860052819998",
                 "category": "sword",
                 "tier": "ht5",
-                "timestamp": 1773919915210
+                "timestamp": 1774434178533
             },
             {
                 "user_id": "1308792860052819998",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915181
+                "timestamp": 1774434177428
             },
             {
                 "user_id": "1308792860052819998",
                 "category": "nethpot",
                 "tier": "ht5",
-                "timestamp": 1773919915213
+                "timestamp": 1774434178536
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "crystal",
+                "tier": "lt4",
+                "timestamp": 1774434177390
+            },
+            {
+                "user_id": "1308792860052819998",
+                "category": "SWORD",
+                "tier": "LT4",
+                "timestamp": 1774434177394
             }
         ]
     },
@@ -2049,25 +2187,25 @@
                 "user_id": "1443554474126999613",
                 "category": "Crystal",
                 "tier": "LT3",
-                "timestamp": 1773919916065
+                "timestamp": 1774434179608
             },
             {
                 "user_id": "1443554474126999613",
                 "category": "UHC",
                 "tier": "HT4",
-                "timestamp": 1773919916066
+                "timestamp": 1774434179610
             },
             {
                 "user_id": "1443554474126999613",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919916834
+                "timestamp": 1774434180575
             },
             {
                 "user_id": "1443554474126999613",
                 "category": "CPVP",
                 "tier": "HT4",
-                "timestamp": 1773919915225
+                "timestamp": 1774434178556
             }
         ]
     },
@@ -2083,19 +2221,31 @@
                 "user_id": "1469948925246046386",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919916832
+                "timestamp": 1774434180573
             },
             {
                 "user_id": "1469948925246046386",
                 "category": "Npot",
                 "tier": "LT4",
-                "timestamp": 1773919916002
+                "timestamp": 1774434179543
             },
             {
                 "user_id": "1469948925246046386",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915218
+                "timestamp": 1774434178545
+            },
+            {
+                "user_id": "1469948925246046386",
+                "category": "SWORD",
+                "tier": "LT4",
+                "timestamp": 1774434177400
+            },
+            {
+                "user_id": "1469948925246046386",
+                "category": "AXE",
+                "tier": "HT5",
+                "timestamp": 1774434177407
             }
         ]
     },
@@ -2111,13 +2261,13 @@
                 "user_id": "1213365047401644062",
                 "category": "Axe",
                 "tier": "HT5",
-                "timestamp": 1773919916800
+                "timestamp": 1774434179612
             },
             {
                 "user_id": "1213365047401644062",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919916802
+                "timestamp": 1774434179613
             }
         ]
     },
@@ -2133,19 +2283,19 @@
                 "user_id": "1118816404418871346",
                 "category": "Axe",
                 "tier": "LT4",
-                "timestamp": 1773919916805
+                "timestamp": 1774434179615
             },
             {
                 "user_id": "1118816404418871346",
                 "category": "NETHPOT",
                 "tier": "HT4",
-                "timestamp": 1773919916808
+                "timestamp": 1774434179617
             },
             {
                 "user_id": "1118816404418871346",
                 "category": "sword",
                 "tier": "ht5",
-                "timestamp": 1773919915196
+                "timestamp": 1774434178505
             }
         ]
     },
@@ -2161,7 +2311,7 @@
                 "user_id": "1288784540751499318",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919916827
+                "timestamp": 1774434179629
             }
         ]
     },
@@ -2177,7 +2327,7 @@
                 "user_id": "1339121180967174215",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916841
+                "timestamp": 1774434180580
             }
         ]
     },
@@ -2193,13 +2343,13 @@
                 "user_id": "1450401629189967915",
                 "category": "Sword",
                 "tier": "Lt4",
-                "timestamp": 1773919916014
+                "timestamp": 1774434179554
             },
             {
                 "user_id": "1450401629189967915",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919915243
+                "timestamp": 1774434178578
             }
         ]
     },
@@ -2215,13 +2365,13 @@
                 "user_id": "995589476103508029",
                 "category": "NPot",
                 "tier": "HT4",
-                "timestamp": 1773919916003
+                "timestamp": 1774434179543
             },
             {
                 "user_id": "995589476103508029",
                 "category": "NETHPOT",
                 "tier": "LT3",
-                "timestamp": 1773919915209
+                "timestamp": 1774434178531
             }
         ]
     },
@@ -2237,19 +2387,19 @@
                 "user_id": "850940549253824512",
                 "category": "Npot",
                 "tier": "LT4",
-                "timestamp": 1773919915997
+                "timestamp": 1774434178621
             },
             {
                 "user_id": "850940549253824512",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919916004
+                "timestamp": 1774434179544
             },
             {
                 "user_id": "850940549253824512",
                 "category": "Crystal",
                 "tier": "HT4",
-                "timestamp": 1773919915217
+                "timestamp": 1774434178543
             }
         ]
     },
@@ -2265,25 +2415,25 @@
                 "user_id": "1406585711888568394",
                 "category": "Npot",
                 "tier": "LT3",
-                "timestamp": 1773919915996
+                "timestamp": 1774434178620
             },
             {
                 "user_id": "1406585711888568394",
                 "category": "Smp",
                 "tier": "HT4",
-                "timestamp": 1773919915252
+                "timestamp": 1774434178590
             },
             {
                 "user_id": "1406585711888568394",
                 "category": "Crystal",
                 "tier": "LT3",
-                "timestamp": 1773919915216
+                "timestamp": 1774434178541
             },
             {
                 "user_id": "1406585711888568394",
                 "category": "sword",
                 "tier": "lt4",
-                "timestamp": 1773919915207
+                "timestamp": 1774434178529
             }
         ]
     },
@@ -2299,7 +2449,13 @@
                 "user_id": "834444670955814963",
                 "category": "NPot\\",
                 "tier": "HT5",
-                "timestamp": 1773919915994
+                "timestamp": 1774434178618
+            },
+            {
+                "user_id": "834444670955814963",
+                "category": "SWORD",
+                "tier": "LT5",
+                "timestamp": 1774434177364
             }
         ]
     },
@@ -2315,7 +2471,7 @@
                 "user_id": "1375099499579441166",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919915988
+                "timestamp": 1774434178615
             }
         ]
     },
@@ -2331,7 +2487,7 @@
                 "user_id": "1216933678614183977",
                 "category": "NETHPOT",
                 "tier": "LT3",
-                "timestamp": 1773919915985
+                "timestamp": 1774434178614
             }
         ]
     },
@@ -2347,13 +2503,13 @@
                 "user_id": "1306664963816816661",
                 "category": "NETHPOT",
                 "tier": "LT5",
-                "timestamp": 1773919915984
+                "timestamp": 1774434178613
             },
             {
                 "user_id": "1306664963816816661",
                 "category": "Crystal",
                 "tier": "LT4",
-                "timestamp": 1773919915213
+                "timestamp": 1774434178539
             }
         ]
     },
@@ -2369,7 +2525,7 @@
                 "user_id": "1246862900002422854",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919915982
+                "timestamp": 1774434178611
             }
         ]
     },
@@ -2385,7 +2541,7 @@
                 "user_id": "1292097197453742144",
                 "category": "cpvp",
                 "tier": "lt4",
-                "timestamp": 1773919915976
+                "timestamp": 1774434178605
             }
         ]
     },
@@ -2401,7 +2557,13 @@
                 "user_id": "1239838753367920694",
                 "category": "Npot",
                 "tier": "LT3",
-                "timestamp": 1773919915272
+                "timestamp": 1774434178602
+            },
+            {
+                "user_id": "1239838753367920694",
+                "category": "SWORD",
+                "tier": "LT4",
+                "timestamp": 1774434177376
             }
         ]
     },
@@ -2417,7 +2579,7 @@
                 "user_id": "748252438947168356",
                 "category": "cpvp",
                 "tier": "lt4",
-                "timestamp": 1773919915270
+                "timestamp": 1774434178601
             }
         ]
     },
@@ -2433,7 +2595,13 @@
                 "user_id": "1431540507644919821",
                 "category": "Npot",
                 "tier": "LT4",
-                "timestamp": 1773919915231
+                "timestamp": 1774434178564
+            },
+            {
+                "user_id": "1431540507644919821",
+                "category": "NETHPOT",
+                "tier": "LT3",
+                "timestamp": 1774434177402
             }
         ]
     },
@@ -2449,25 +2617,25 @@
                 "user_id": "1375294814714855494",
                 "category": "Npot",
                 "tier": "HT5",
-                "timestamp": 1773919915232
+                "timestamp": 1774434178565
             },
             {
                 "user_id": "1375294814714855494",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915182
+                "timestamp": 1774434177429
             },
             {
                 "user_id": "1375294814714855494",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915194
+                "timestamp": 1774434178481
             },
             {
                 "user_id": "1375294814714855494",
                 "category": "SWOED",
                 "tier": "LT5",
-                "timestamp": 1773919915195
+                "timestamp": 1774434178496
             }
         ]
     },
@@ -2483,13 +2651,25 @@
                 "user_id": "1286285320177975348",
                 "category": "NETHPOT",
                 "tier": "HT4",
-                "timestamp": 1773919915234
+                "timestamp": 1774434178567
             },
             {
                 "user_id": "1286285320177975348",
                 "category": "crystal",
                 "tier": "lt3",
-                "timestamp": 1773919915180
+                "timestamp": 1774434177427
+            },
+            {
+                "user_id": "1286285320177975348",
+                "category": "AXE",
+                "tier": "LT3",
+                "timestamp": 1774434177369
+            },
+            {
+                "user_id": "1286285320177975348",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1774434177380
             }
         ]
     },
@@ -2505,13 +2685,13 @@
                 "user_id": "1070322534106529812",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919915235
+                "timestamp": 1774434178568
             },
             {
                 "user_id": "1070322534106529812",
                 "category": "sword",
                 "tier": "ht4",
-                "timestamp": 1773919915205
+                "timestamp": 1774434178526
             }
         ]
     },
@@ -2527,7 +2707,7 @@
                 "user_id": "1474765545860632658",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915236
+                "timestamp": 1774434178569
             }
         ]
     },
@@ -2543,7 +2723,13 @@
                 "user_id": "1464857968268017668",
                 "category": "cpvp",
                 "tier": "lt5",
-                "timestamp": 1773919915238
+                "timestamp": 1774434178573
+            },
+            {
+                "user_id": "1464857968268017668",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1774434177381
             }
         ]
     },
@@ -2559,7 +2745,7 @@
                 "user_id": "1294327684696113203",
                 "category": "Smp",
                 "tier": "Ht4",
-                "timestamp": 1773919915244
+                "timestamp": 1774434178582
             }
         ]
     },
@@ -2575,7 +2761,7 @@
                 "user_id": "1074961653843623946",
                 "category": "Smp Kit",
                 "tier": "LT3",
-                "timestamp": 1773919915245
+                "timestamp": 1774434178583
             }
         ]
     },
@@ -2591,7 +2777,7 @@
                 "user_id": "931587832294830151",
                 "category": "Nethpot",
                 "tier": "LT3",
-                "timestamp": 1773919915247
+                "timestamp": 1774434178586
             }
         ]
     },
@@ -2607,7 +2793,7 @@
                 "user_id": "1189226222778060973",
                 "category": "Smp",
                 "tier": "Ht4",
-                "timestamp": 1773919915250
+                "timestamp": 1774434178589
             }
         ]
     },
@@ -2623,13 +2809,31 @@
                 "user_id": "1335972893766455396",
                 "category": "NethPOT",
                 "tier": "HT4",
-                "timestamp": 1773919915256
+                "timestamp": 1774434178593
             },
             {
                 "user_id": "1335972893766455396",
                 "category": "Crystal",
                 "tier": "HT4",
-                "timestamp": 1773919915184
+                "timestamp": 1774434177431
+            },
+            {
+                "user_id": "1335972893766455396",
+                "category": "CRYSTAL",
+                "tier": "LT4",
+                "timestamp": 1774434177405
+            },
+            {
+                "user_id": "1335972893766455396",
+                "category": "AXE",
+                "tier": "LT4",
+                "timestamp": 1774434177403
+            },
+            {
+                "user_id": "1335972893766455396",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1774434177406
             }
         ]
     },
@@ -2645,14 +2849,14 @@
                 "user_id": "1140550197324296223",
                 "category": "Netherite POT",
                 "tier": "LT3",
-                "timestamp": 1773919915258
+                "timestamp": 1774434178593
             }
         ]
     },
     {
         "user_id": "1165321478112288899",
         "minecraft_ign": "adityasingh24",
-        "region": "as",
+        "region": "AS",
         "total_points": 0,
         "account_type": "Premium",
         "last_waitlist_timestamp": 0,
@@ -2661,19 +2865,31 @@
                 "user_id": "1165321478112288899",
                 "category": "Smp",
                 "tier": "Ht5",
-                "timestamp": 1773919915260
+                "timestamp": 1774434178596
             },
             {
                 "user_id": "1165321478112288899",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919915268
+                "timestamp": 1774434178600
             },
             {
                 "user_id": "1165321478112288899",
                 "category": "Sword",
                 "tier": "HT5",
-                "timestamp": 1773921173922
+                "timestamp": 1774434177415
+            },
+            {
+                "user_id": "1165321478112288899",
+                "category": "AXE",
+                "tier": "LT3",
+                "timestamp": 1774434177377
+            },
+            {
+                "user_id": "1165321478112288899",
+                "category": "SWORD",
+                "tier": "LT3",
+                "timestamp": 1774434177412
             }
         ]
     },
@@ -2689,7 +2905,7 @@
                 "user_id": "1314554205952020502",
                 "category": "cpvp",
                 "tier": "ht5",
-                "timestamp": 1773919915264
+                "timestamp": 1774434178597
             }
         ]
     },
@@ -2705,7 +2921,7 @@
                 "user_id": "1272488980046155868",
                 "category": "NETHPOT",
                 "tier": "LT4",
-                "timestamp": 1773919915266
+                "timestamp": 1774434178598
             }
         ]
     },
@@ -2721,13 +2937,13 @@
                 "user_id": "1329823261235875841",
                 "category": "cpvp",
                 "tier": "Ht5",
-                "timestamp": 1773919916005
+                "timestamp": 1774434179545
             },
             {
                 "user_id": "1329823261235875841",
                 "category": "NETHPOT",
                 "tier": "HT5",
-                "timestamp": 1773919916020
+                "timestamp": 1774434179560
             }
         ]
     },
@@ -2743,7 +2959,7 @@
                 "user_id": "1454813045904642150",
                 "category": "NETHPOT",
                 "tier": "Lt4",
-                "timestamp": 1773919916006
+                "timestamp": 1774434179546
             }
         ]
     },
@@ -2759,7 +2975,7 @@
                 "user_id": "1480565513460519182",
                 "category": "NETHPOT",
                 "tier": "HT4",
-                "timestamp": 1773919916008
+                "timestamp": 1774434179547
             }
         ]
     },
@@ -2775,13 +2991,13 @@
                 "user_id": "817691193382141962",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915219
+                "timestamp": 1774434178546
             },
             {
                 "user_id": "817691193382141962",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915169
+                "timestamp": 1774434177416
             }
         ]
     },
@@ -2797,13 +3013,25 @@
                 "user_id": "1165569875754889216",
                 "category": "Crystal",
                 "tier": "HT5",
-                "timestamp": 1773919915220
+                "timestamp": 1774434178547
             },
             {
                 "user_id": "1165569875754889216",
                 "category": "sword",
                 "tier": "ht4",
-                "timestamp": 1773919915199
+                "timestamp": 1774434178513
+            },
+            {
+                "user_id": "1165569875754889216",
+                "category": "AXE",
+                "tier": "LT5",
+                "timestamp": 1774434177411
+            },
+            {
+                "user_id": "1165569875754889216",
+                "category": "SWORD",
+                "tier": "LT3",
+                "timestamp": 1774434177383
             }
         ]
     },
@@ -2819,7 +3047,7 @@
                 "user_id": "1161800111496646746",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915220
+                "timestamp": 1774434178548
             }
         ]
     },
@@ -2835,7 +3063,7 @@
                 "user_id": "1463507986746966121",
                 "category": "Crystal",
                 "tier": "LT4",
-                "timestamp": 1773919915221
+                "timestamp": 1774434178549
             }
         ]
     },
@@ -2851,7 +3079,7 @@
                 "user_id": "1373628015384461373",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915223
+                "timestamp": 1774434178550
             }
         ]
     },
@@ -2867,7 +3095,13 @@
                 "user_id": "1279790915388575919",
                 "category": "CPVP",
                 "tier": "HT5",
-                "timestamp": 1773919915226
+                "timestamp": 1774434178558
+            },
+            {
+                "user_id": "1279790915388575919",
+                "category": "crystal",
+                "tier": "ht4",
+                "timestamp": 1774434177388
             }
         ]
     },
@@ -2883,7 +3117,7 @@
                 "user_id": "1305839477272608769",
                 "category": "CPVP",
                 "tier": "HT5",
-                "timestamp": 1773919915227
+                "timestamp": 1774434178559
             }
         ]
     },
@@ -2899,7 +3133,7 @@
                 "user_id": "1472890308093018154",
                 "category": "crystal pvp",
                 "tier": "lt3",
-                "timestamp": 1773919915230
+                "timestamp": 1774434178563
             }
         ]
     },
@@ -2915,7 +3149,7 @@
                 "user_id": "1460964777647145158",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915174
+                "timestamp": 1774434177422
             }
         ]
     },
@@ -2931,7 +3165,7 @@
                 "user_id": "1452883567234514986",
                 "category": "Crystal",
                 "tier": "HT5",
-                "timestamp": 1773919915176
+                "timestamp": 1774434177423
             }
         ]
     },
@@ -2947,7 +3181,19 @@
                 "user_id": "1141264314028806154",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915177
+                "timestamp": 1774434177424
+            },
+            {
+                "user_id": "1141264314028806154",
+                "category": "sword",
+                "tier": "lt5",
+                "timestamp": 1774434177391
+            },
+            {
+                "user_id": "1141264314028806154",
+                "category": "SWORD",
+                "tier": "HT4",
+                "timestamp": 1774434177397
             }
         ]
     },
@@ -2963,7 +3209,13 @@
                 "user_id": "1466007420441460945",
                 "category": "Crystal",
                 "tier": "HT5",
-                "timestamp": 1773919915201
+                "timestamp": 1774434178522
+            },
+            {
+                "user_id": "1466007420441460945",
+                "category": "AXE",
+                "tier": "HT5",
+                "timestamp": 1774434177346
             }
         ]
     },
@@ -2979,7 +3231,7 @@
                 "user_id": "1289562682432819230",
                 "category": "Crystal",
                 "tier": "LT5",
-                "timestamp": 1773919915180
+                "timestamp": 1774434177428
             }
         ]
     },
@@ -2995,7 +3247,7 @@
                 "user_id": "868446024392404992",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915183
+                "timestamp": 1774434177430
             }
         ]
     },
@@ -3011,13 +3263,13 @@
                 "user_id": "1171378460070006865",
                 "category": "SSWORD",
                 "tier": "LT3",
-                "timestamp": 1773919915187
+                "timestamp": 1774434178439
             },
             {
                 "user_id": "1171378460070006865",
                 "category": "sword",
                 "tier": "ht4",
-                "timestamp": 1773919915197
+                "timestamp": 1774434178510
             }
         ]
     },
@@ -3033,7 +3285,19 @@
                 "user_id": "1405560425403387919",
                 "category": "SWORD",
                 "tier": "LT4",
-                "timestamp": 1773919915188
+                "timestamp": 1774434178441
+            },
+            {
+                "user_id": "1405560425403387919",
+                "category": "AXE",
+                "tier": "HT4",
+                "timestamp": 1774434177368
+            },
+            {
+                "user_id": "1405560425403387919",
+                "category": "Cpvp",
+                "tier": "LT5",
+                "timestamp": 1774434177375
             }
         ]
     },
@@ -3049,7 +3313,13 @@
                 "user_id": "1418966196073795725",
                 "category": "SWORD",
                 "tier": "HT5",
-                "timestamp": 1773919915192
+                "timestamp": 1774434178454
+            },
+            {
+                "user_id": "1418966196073795725",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1774434177378
             }
         ]
     },
@@ -3065,7 +3335,7 @@
                 "user_id": "1447611901218525376",
                 "category": "sword",
                 "tier": "lt3",
-                "timestamp": 1773919915199
+                "timestamp": 1774434178519
             }
         ]
     },
@@ -3081,7 +3351,7 @@
                 "user_id": "1392681414398447698",
                 "category": "sword",
                 "tier": "lt5",
-                "timestamp": 1773919915200
+                "timestamp": 1774434178519
             }
         ]
     },
@@ -3097,7 +3367,7 @@
                 "user_id": "1309109487931621390",
                 "category": "sword",
                 "tier": "lt5",
-                "timestamp": 1773919915202
+                "timestamp": 1774434178523
             }
         ]
     },
@@ -3113,7 +3383,13 @@
                 "user_id": "1466422788507308124",
                 "category": "sword",
                 "tier": "lt5",
-                "timestamp": 1773919915208
+                "timestamp": 1774434178530
+            },
+            {
+                "user_id": "1466422788507308124",
+                "category": "SWORD",
+                "tier": "LT5",
+                "timestamp": 1774434177365
             }
         ]
     },
@@ -3129,7 +3405,13 @@
                 "user_id": "1042671997232087053",
                 "category": "sword",
                 "tier": "lt4",
-                "timestamp": 1773919915211
+                "timestamp": 1774434178535
+            },
+            {
+                "user_id": "1042671997232087053",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1774434177354
             }
         ]
     },
@@ -3145,7 +3427,7 @@
                 "user_id": "1079384487986741309",
                 "category": "SWORD",
                 "tier": "LT4",
-                "timestamp": 1773921192209
+                "timestamp": 1774434177413
             }
         ]
     },
@@ -3161,11 +3443,18 @@
     {
         "user_id": "1380105827561640050",
         "minecraft_ign": "BOTIZSPIREX",
-        "region": "AS/AU",
+        "region": "AS",
         "total_points": 0,
         "account_type": "Cracked",
         "last_waitlist_timestamp": 0,
-        "tiers": []
+        "tiers": [
+            {
+                "user_id": "1380105827561640050",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1774434177406
+            }
+        ]
     },
     {
         "user_id": "1431576430017253461",
@@ -3175,5 +3464,241 @@
         "account_type": "Cracked",
         "last_waitlist_timestamp": 0,
         "tiers": []
+    },
+    {
+        "user_id": "995320194085957722",
+        "minecraft_ign": "ZORRO_GAMER",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "995320194085957722",
+                "category": "AXE",
+                "tier": "LT5",
+                "timestamp": 1774434177343
+            }
+        ]
+    },
+    {
+        "user_id": "1255427988732776478",
+        "minecraft_ign": "alu_op",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1255427988732776478",
+                "category": "AXE",
+                "tier": "LT5",
+                "timestamp": 1774434177347
+            }
+        ]
+    },
+    {
+        "user_id": "1339231466684420138",
+        "minecraft_ign": "IntelCorei7_",
+        "region": "as",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1339231466684420138",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1774434177356
+            },
+            {
+                "user_id": "1339231466684420138",
+                "category": "crysatl",
+                "tier": "ht5",
+                "timestamp": 1774434177387
+            }
+        ]
+    },
+    {
+        "user_id": "1454168611303198946",
+        "minecraft_ign": "Sneaker_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1454168611303198946",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1774434177358
+            }
+        ]
+    },
+    {
+        "user_id": "1191263406582411336",
+        "minecraft_ign": "Virgin30303",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1191263406582411336",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1774434177361
+            }
+        ]
+    },
+    {
+        "user_id": "841986110188158987",
+        "minecraft_ign": "goatedht3",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "841986110188158987",
+                "category": "NETHPOT",
+                "tier": "HT4",
+                "timestamp": 1774434177366
+            }
+        ]
+    },
+    {
+        "user_id": "1323288553194651712",
+        "minecraft_ign": "HARAZEEZPRO",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1323288553194651712",
+                "category": "SWORF",
+                "tier": "HT5",
+                "timestamp": 1774434177367
+            }
+        ]
+    },
+    {
+        "user_id": "886159683415588965",
+        "minecraft_ign": "frostygirl",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "886159683415588965",
+                "category": "Crystal",
+                "tier": "LT5",
+                "timestamp": 1774434177370
+            }
+        ]
+    },
+    {
+        "user_id": "1458442176496406736",
+        "minecraft_ign": "Rip_Riptide_X",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1458442176496406736",
+                "category": "Crystal",
+                "tier": "HT5",
+                "timestamp": 1774434177372
+            }
+        ]
+    },
+    {
+        "user_id": "1160288412016857229",
+        "minecraft_ign": "onlydarku_",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1160288412016857229",
+                "category": "Cpvp",
+                "tier": "LT5",
+                "timestamp": 1774434177374
+            }
+        ]
+    },
+    {
+        "user_id": "1469736025663213671",
+        "minecraft_ign": "Glitchium",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1469736025663213671",
+                "category": "NETHPOT",
+                "tier": "HT5",
+                "timestamp": 1774434177378
+            }
+        ]
+    },
+    {
+        "user_id": "1123262108285538346",
+        "minecraft_ign": "Tbot_user",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1123262108285538346",
+                "category": "NETHPOT",
+                "tier": "LT4",
+                "timestamp": 1774434177381
+            },
+            {
+                "user_id": "1123262108285538346",
+                "category": "SWORD",
+                "tier": "HT5",
+                "timestamp": 1774434177395
+            }
+        ]
+    },
+    {
+        "user_id": "1015848805616328734",
+        "minecraft_ign": "VARUN77",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1015848805616328734",
+                "category": "SWORD",
+                "tier": "LT4",
+                "timestamp": 1774434177382
+            }
+        ]
+    },
+    {
+        "user_id": "1309492924106407998",
+        "minecraft_ign": "Frostyy_xD",
+        "region": "AS",
+        "total_points": 0,
+        "account_type": "Premium",
+        "last_waitlist_timestamp": 0,
+        "tiers": [
+            {
+                "user_id": "1309492924106407998",
+                "category": "sword",
+                "tier": "ht5",
+                "timestamp": 1774434177392
+            }
+        ]
     }
 ]

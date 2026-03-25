@@ -7,7 +7,7 @@ const playersJsonPath = path.join(__dirname, '../website/public/players.json');
 const queueJsonPath = path.join(__dirname, '../website/public/queue.json');
 
 const config = require('../utils/config');
-const GIST_ID = '0583dadbe079dbae6e0a5ac18bcac33b';
+const GIST_ID = '62dcff9fb06d470d2b7bf5c1bdc63cf2';
 const GITHUB_TOKEN = config.GITHUB_TOKEN;
 
 const saveJson = () => {

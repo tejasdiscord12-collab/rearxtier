@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
-    const GIST_RAW_BASE = 'https://gist.githubusercontent.com/tejasdiscord12-collab/0583dadbe079dbae6e0a5ac18bcac33b/raw/';
+    const GIST_ID = '62dcff9fb06d470d2b7bf5c1bdc63cf2';
+const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/${GIST_ID}/raw/`;
     const API_BASE = 'http://eu1i7.hexonode.com:26113';
     let ADMIN_TOKEN = localStorage.getItem('adminToken') || null;
 
