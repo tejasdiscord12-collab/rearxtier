@@ -7,8 +7,8 @@
     <title>RearMC | Tier Rankings</title>
     <meta name="description"
         content="Official Minecraft PvP Tier List for RearMC Network. View ranked players, categories, and live queue.">
-    <link rel="stylesheet" href="style.css?v=2.0">
-    <script src="script.js?v=2.0" defer></script>
+    <link rel="stylesheet" href="style.css?v=2.5">
+    <script src="script.js?v=2.5" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -21,11 +21,7 @@
     <!-- NAVIGATION -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">
-                <img src="logo.png" alt="RearMC" class="logo-img">
-                <span class="logo-text">Rear<span class="logo-x">MC</span></span>
-            </a>
-            <div class="nav-links">
+            <div class="nav-links side-nav">
                 <a href="index.html" class="nav-item">
                     <i class="fa-solid fa-house"></i>
                     Home
@@ -34,19 +30,18 @@
                     <i class="fa-solid fa-trophy"></i>
                     Rankings
                 </a>
-                <a href="#" class="nav-item" id="navQueue">
+            </div>
+            <a href="index.html" class="logo centered-logo">
+                <img src="logo.png" alt="RearMC" class="logo-img">
+            </a>
+            <div class="nav-right">
+                <a href="#" class="nav-item" id="navQueue" style="margin-right: 20px;">
                     <i class="fa-solid fa-clock-rotate-left"></i>
                     Queue
                 </a>
-            </div>
-            <div class="nav-right">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
                     <input type="text" id="playerSearch" placeholder="Search player...">
-                </div>
-                <div class="live-pill">
-                    <span class="live-dot"></span>
-                    LIVE
                 </div>
                 <button id="adminLoginBtn" class="admin-btn-nav">
                     <i class="fa-solid fa-lock"></i>

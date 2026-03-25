@@ -1,37 +1,37 @@
 /* ─── RESET & ROOT ──────────────────────────────────────────────────── */
 :root {
-    --bg: #080b12;
-    --bg-card: #0d1018;
-    --bg-item: #111520;
-    --bg-row: #0f1219;
-    --bg-hover: #141824;
-    --primary: #ff4d4d;
-    --primary-dim: rgba(255, 77, 77, 0.1);
-    --accent: #6366f1;
-    --text: #e8ecf5;
-    --text-sub: #8892a4;
-    --text-muted: #4a5265;
+    --bg: #05070a;
+    --bg-card: #080b12;
+    --bg-item: rgba(255, 255, 255, 0.03);
+    --bg-row: rgba(15, 18, 25, 0.5);
+    --bg-hover: rgba(225, 29, 72, 0.1);
+    --primary: #e11d48;
+    --primary-dim: rgba(225, 29, 72, 0.1);
+    --accent: #fbbf24;
+    --text: #ffffff;
+    --text-sub: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.3);
     --border: rgba(255, 255, 255, 0.05);
-    --border-hover: rgba(255, 77, 77, 0.3);
-    --glow: rgba(255, 77, 77, 0.4);
-    --radius: 12px;
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --border-hover: rgba(225, 29, 72, 0.4);
+    --glow: rgba(225, 29, 72, 0.4);
+    --radius: 18px;
+    --shadow: 0 12px 48px rgba(0, 0, 0, 0.6);
 
     /* Tier colors */
-    --t-ht1: #ffd700;
-    --t-lt1: #ffe87a;
-    --t-ht2: #ff9d00;
-    --t-lt2: #ffbc52;
-    --t-ht3: #ff6b00;
-    --t-lt3: #ff9c52;
+    --t-ht1: #e11d48;
+    --t-lt1: #fb7185;
+    --t-ht2: #fbbf24;
+    --t-lt2: #fcd34d;
+    --t-ht3: #3b82f6;
+    --t-lt3: #60a5fa;
     --t-ht4: #a855f7;
     --t-lt4: #c084fc;
-    --t-ht5: #3b82f6;
-    --t-lt5: #60a5fa;
+    --t-ht5: #10b981;
+    --t-lt5: #34d399;
 
-    --gold: #ffd700;
-    --silver: #b0bec5;
-    --bronze: #cd7f32;
+    --gold: #fbbf24;
+    --silver: #94a3b8;
+    --bronze: #92400e;
 }
 
 *,
@@ -60,12 +60,53 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    height: 64px;
-    background: rgba(8, 11, 18, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    height: 72px;
+    background: rgba(5, 7, 10, 0.8);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
     border-bottom: 1px solid var(--border);
-    transition: background 0.3s, box-shadow 0.3s;
+    transition: all 0.4s ease;
+}
+
+.nav-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.side-nav {
+    flex: 1;
+    display: flex;
+    gap: 24px;
+}
+
+.centered-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-logo .logo-img {
+    height: 54px;
+    filter: drop-shadow(0 0 20px var(--primary-glow));
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.centered-logo:hover .logo-img {
+    transform: scale(1.1) rotate(3deg);
+    filter: drop-shadow(0 0 30px var(--primary-glow));
+}
+
+.nav-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
 }
 
 #navbar.scrolled {
@@ -231,14 +272,18 @@ body {
 /* ─── HERO ───────────────────────────────────────────────────────────── */
 .hero-section {
     position: relative;
-    min-height: 420px;
+    min-height: 480px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 120px 40px 80px;
+    padding: 140px 40px 100px;
     overflow: hidden;
+    background-image: linear-gradient(rgba(5, 7, 10, 0.4), rgba(5, 7, 10, 0.9)), url('hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 .hero-bg-gradient {

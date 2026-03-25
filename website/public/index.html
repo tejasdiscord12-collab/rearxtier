@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RearMC Network | Home</title>
-    <link rel="stylesheet" href="style.css?v=2.1">
+    <title>RearMC Network | Elite Practice</title>
+    <link rel="stylesheet" href="style.css?v=2.5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;500;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #e11d48;
+            --primary-glow: rgba(225, 29, 72, 0.4);
+            --gold: #fbbf24;
+            --bg-dark: #080b12;
+        }
+
         body {
-            background: radial-gradient(circle at 50% 0%, #151c2d 0%, #080b12 80%);
+            background-color: var(--bg-dark);
+            background-image: linear-gradient(rgba(8, 11, 18, 0.8), rgba(8, 11, 18, 0.95)), url('hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -18,194 +29,258 @@
             overflow: hidden;
             color: #fff;
             font-family: 'Outfit', sans-serif;
+            margin: 0;
         }
 
         .home-container {
-            max-width: 1200px;
-            width: 90%;
+            max-width: 1100px;
+            width: 95%;
             text-align: center;
-            animation: fadeIn 1s ease;
+            animation: eliteIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+            z-index: 10;
+        }
+
+        @keyframes eliteIn {
+            0% { opacity: 0; transform: translateY(40px) scale(1.05); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
         }
 
         .server-logo-main {
-            width: 120px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 30px rgba(255, 77, 77, 0.4));
+            width: 220px;
+            margin-bottom: -10px;
+            filter: drop-shadow(0 0 40px rgba(225, 29, 72, 0.4));
+            transition: all 0.6s ease;
+            cursor: pointer;
+        }
+
+        .server-logo-main:hover {
+            transform: scale(1.08) rotate(2deg);
+            filter: drop-shadow(0 0 60px rgba(225, 29, 72, 0.6));
+        }
+
+        .hero-text-wrap {
+            margin-bottom: 60px;
         }
 
         .home-title {
-            font-size: 4rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, #fff 0%, #ff4d4d 100%);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 4.8rem;
+            font-weight: 800;
+            letter-spacing: -3px;
+            margin: 0;
+            text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff, #999);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .home-sub {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 50px;
-            letter-spacing: 2px;
+            font-size: 0.95rem;
+            color: var(--gold);
+            font-weight: 800;
+            letter-spacing: 6px;
             text-transform: uppercase;
+            margin-top: -5px;
+            text-shadow: 0 0 15px rgba(251, 191, 36, 0.3);
         }
 
         .nav-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 40px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            perspective: 1000px;
         }
 
         .nav-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            padding: 40px 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 45px 20px;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
             text-decoration: none;
             color: inherit;
             position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         .nav-card:hover {
-            background: rgba(255, 77, 77, 0.08);
-            border-color: rgba(255, 77, 77, 0.3);
-            transform: translateY(-12px);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            transform: translateY(-15px) rotateX(10deg);
+            background: rgba(225, 29, 72, 0.08);
+            border-color: rgba(225, 29, 72, 0.4);
+            box-shadow: 0 25px 60px rgba(225, 29, 72, 0.2);
         }
 
-        .nav-card.active:hover {
-            border-color: #ff4d4d;
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
         }
 
         .card-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
         }
 
         .nav-card:hover .card-icon {
-            transform: scale(1.2);
+            transform: scale(1.1) translateY(-10px);
+            filter: drop-shadow(0 0 20px var(--primary-glow));
         }
 
         .card-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .card-status {
-            font-size: 0.75rem;
-            font-weight: 600;
+            font-size: 0.65rem;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 4px 12px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 2px;
+            padding: 6px 14px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .nav-card:hover .card-status {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 12px var(--primary-glow);
         }
 
         .active .card-status {
-            background: rgba(76, 175, 80, 0.1);
-            color: #4caf50;
+            background: rgba(225, 29, 72, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary-glow);
         }
 
-        .coming-soon .card-status {
-            background: rgba(255, 193, 7, 0.1);
-            color: #ffc107;
+        @media (max-width: 900px) {
+            .nav-grid { grid-template-columns: repeat(2, 1fr); }
+            .home-title { font-size: 3.2rem; }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        @media (max-width: 480px) {
+            .nav-grid { grid-template-columns: 1fr; }
+            .home-title { font-size: 2.4rem; }
         }
 
-        .particles {
+        /* Ambient Glow Particles */
+        .ambient-glow {
             position: absolute;
-            inset: 0;
-            z-index: -1;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 77, 77, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 77, 77, 0.05) 0%, transparent 40%);
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        /* Coming Soon Modal */
+        .glow-circle {
+            position: absolute;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.3;
+            animation: pulse 8s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.4) translate(100px, 50px); }
+        }
+
         .toast {
             position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 24px;
+            top: 40px;
+            right: 40px;
+            background: rgba(225, 29, 72, 0.1);
+            backdrop-filter: blur(15px);
+            border-left: 4px solid var(--primary);
+            padding: 20px 30px;
             border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.4s ease;
-            opacity: 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            transform: translateX(400px);
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1000;
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
+        .toast.show { transform: translateX(0); }
     </style>
 </head>
 <body>
-    <div class="particles"></div>
+    <div class="ambient-glow">
+        <div class="glow-circle" style="width: 600px; height: 600px; top: -200px; left: -200px;"></div>
+        <div class="glow-circle" style="width: 500px; height: 500px; bottom: -150px; right: -150px; animation-delay: -2s;"></div>
+    </div>
 
     <div class="home-container">
-        <img src="https://minecraft-avatar.com/avatar/steve/120.png" alt="Logo" class="server-logo-main">
-        <h1 class="home-title">REARMC NETWORK</h1>
-        <p class="home-sub">Elite PvP Experience</p>
+        <img src="logo.png" alt="RearMC Logo" class="server-logo-main">
+        <div class="hero-text-wrap">
+            <h1 class="home-title">REARMC NETWORK</h1>
+            <p class="home-sub">The Apex Practice Environment</p>
+        </div>
 
         <div class="nav-grid">
-            <div class="nav-card coming-soon" onclick="showSoon('Store')">
+            <div class="nav-card" onclick="showSoon('The Store')">
                 <div class="card-icon">🛒</div>
                 <div class="card-title">STORE</div>
-                <div class="card-status">Coming Soon</div>
+                <div class="card-status">Soon</div>
             </div>
 
             <a href="tiers.html" class="nav-card active">
                 <div class="card-icon">🏆</div>
-                <div class="card-title">TIERLIST</div>
-                <div class="card-status">Live Now</div>
+                <div class="card-title">TIERS</div>
+                <div class="card-status">LIVE</div>
             </a>
 
-            <div class="nav-card coming-soon" onclick="showSoon('Discord')">
+            <div class="nav-card" onclick="showSoon('Discord Community')">
                 <div class="card-icon">💬</div>
                 <div class="card-title">DISCORD</div>
-                <div class="card-status">Coming Soon</div>
+                <div class="card-status">Soon</div>
             </div>
 
-            <div class="nav-card coming-soon" onclick="showSoon('More')">
-                <div class="card-icon">✨</div>
-                <div class="card-title">MORE</div>
-                <div class="card-status">Coming Soon</div>
+            <div class="nav-card" onclick="showSoon('The Gallery')">
+                <div class="card-icon">📸</div>
+                <div class="card-title">CLIPS</div>
+                <div class="card-status">Soon</div>
             </div>
         </div>
     </div>
 
-    <div id="toast" class="toast">This section is coming soon! ✨</div>
+    <div id="toast" class="toast">
+        <h4 style="margin: 0; color: var(--primary); font-size: 0.9rem; letter-spacing: 1px;">SYSTEM NOTIFICATION</h4>
+        <p id="toastMessage" style="margin: 5px 0 0; font-size: 0.85rem; color: rgba(255,255,255,0.7);">Section is currently under maintenance.</p>
+    </div>
 
     <script>
         function showSoon(name) {
             const toast = document.getElementById('toast');
-            toast.textContent = `${name} is coming soon! ✨`;
+            const msg = document.getElementById('toastMessage');
+            msg.textContent = `${name} arrives in the next update.`;
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3000);
+            }, 4000);
         }
     </script>
 </body>
