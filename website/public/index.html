@@ -1,315 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RearMC | Tier Rankings</title>
-    <meta name="description"
-        content="Official Minecraft PvP Tier List for RearMC Network. View ranked players, categories, and live queue.">
-    <link rel="stylesheet" href="style.css?v=2.0">
-    <script src="script.js?v=2.0" defer></script>
+    <title>RearMC Network | Home</title>
+    <link rel="stylesheet" href="style.css?v=2.1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: radial-gradient(circle at 50% 0%, #151c2d 0%, #080b12 80%);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #fff;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .home-container {
+            max-width: 1200px;
+            width: 90%;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        .server-logo-main {
+            width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 30px rgba(255, 77, 77, 0.4));
+        }
+
+        .home-title {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, #ff4d4d 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .home-sub {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 50px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .nav-card:hover {
+            background: rgba(255, 77, 77, 0.08);
+            border-color: rgba(255, 77, 77, 0.3);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-card.active:hover {
+            border-color: #ff4d4d;
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-card:hover .card-icon {
+            transform: scale(1.2);
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .card-status {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .active .card-status {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4caf50;
+        }
+
+        .coming-soon .card-status {
+            background: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .particles {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 77, 77, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 77, 77, 0.05) 0%, transparent 40%);
+        }
+
+        /* Coming Soon Modal */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            opacity: 0;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
 </head>
-
 <body>
-    <!-- NAVIGATION -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <img src="logo.png" alt="RearMC" class="logo-img">
-                <span class="logo-text">Rear<span class="logo-x">MC</span></span>
+    <div class="particles"></div>
+
+    <div class="home-container">
+        <img src="https://minecraft-avatar.com/avatar/steve/120.png" alt="Logo" class="server-logo-main">
+        <h1 class="home-title">REARMC NETWORK</h1>
+        <p class="home-sub">Elite PvP Experience</p>
+
+        <div class="nav-grid">
+            <div class="nav-card coming-soon" onclick="showSoon('Store')">
+                <div class="card-icon">🛒</div>
+                <div class="card-title">STORE</div>
+                <div class="card-status">Coming Soon</div>
             </div>
-            <div class="nav-links">
-                <a href="#" class="nav-item active" id="navRankings">
-                    <i class="fa-solid fa-trophy"></i>
-                    Rankings
-                </a>
-                <a href="#" class="nav-item" id="navQueue">
-                    <i class="fa-solid fa-clock-rotate-left"></i>
-                    Queue
-                </a>
+
+            <a href="tiers.html" class="nav-card active">
+                <div class="card-icon">🏆</div>
+                <div class="card-title">TIERLIST</div>
+                <div class="card-status">Live Now</div>
+            </a>
+
+            <div class="nav-card coming-soon" onclick="showSoon('Discord')">
+                <div class="card-icon">💬</div>
+                <div class="card-title">DISCORD</div>
+                <div class="card-status">Coming Soon</div>
             </div>
-            <div class="nav-right">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                    <input type="text" id="playerSearch" placeholder="Search player...">
-                </div>
-                <div class="live-pill">
-                    <span class="live-dot"></span>
-                    LIVE
-                </div>
-                <button id="adminLoginBtn" class="admin-btn-nav">
-                    <i class="fa-solid fa-lock"></i>
-                </button>
-                <button id="mobileMenuBtn" class="mobile-menu-btn">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- HERO SECTION -->
-    <div class="hero-section" id="heroSection">
-        <div class="hero-bg-gradient"></div>
-        <div class="hero-particles" id="heroParticles"></div>
-        <div class="hero-content">
-            <div class="hero-badge">🏆 Official Tier List</div>
-            <h1 class="hero-title">Rear<span class="hero-x">MC</span> TIERS</h1>
-            <p class="hero-sub">The Ultimate Practice Experience • IP: <span class="ip-highlight">Play.rearmc.fun</span></p>
-            <div class="hero-stats" id="heroStats">
-                <div class="stat-card">
-                    <span class="stat-num" id="statPlayers">—</span>
-                    <span class="stat-label">PLAYERS RANKED</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-card">
-                    <span class="stat-num" id="statKits">8</span>
-                    <span class="stat-label">GAMEMODES</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-card">
-                    <span class="stat-num" id="statQueueCount">0</span>
-                    <span class="stat-label">IN QUEUE</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat-card">
-                    <span class="stat-num">LIVE</span>
-                    <span class="stat-label">STATUS</span>
-                </div>
-            </div>
-        </div>
-        <div class="hero-scroll-hint">
-            <i class="fa-solid fa-chevron-down"></i>
-        </div>
-    </div>
-
-    <main class="container">
-
-        <!-- KIT FILTER SIDEBAR + CONTENT AREA -->
-        <div class="page-layout">
-
-            <!-- SIDEBAR -->
-            <aside class="sidebar">
-                <div class="sidebar-section">
-                    <div class="sidebar-title">GAMEMODE</div>
-                    <div class="kit-list">
-                        <button class="kit-btn active" data-category="all">
-                            <div class="kit-btn-icon"><i class="fa-solid fa-trophy kit-svg-icon"
-                                    style="color:#ff4d4d"></i></div>
-                            <span>Overall</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="Nethpot">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/netherite_chestplate.png"
-                                    alt="Nethpot"></div>
-                            <span>Nethpot</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="Sword">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_sword.png"
-                                    alt="Sword"></div>
-                            <span>Sword</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="Axe">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_axe.png"
-                                    alt="Axe"></div>
-                            <span>Axe</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="Diapot">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_chestplate.png"
-                                    alt="Diapot"></div>
-                            <span>Diapot</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="UHC">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/golden_apple.png"
-                                    alt="UHC"></div>
-                            <span>UHC</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="SmpKit">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/ender_pearl.png"
-                                    alt="SmpKit"></div>
-                            <span>SmpKit</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="Crystal">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/end_crystal.png"
-                                    alt="Crystal"></div>
-                            <span>Crystal</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                        <button class="kit-btn" data-category="Mace">
-                            <div class="kit-btn-icon"><img
-                                    src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21/assets/minecraft/textures/item/mace.png"
-                                    alt="Mace"></div>
-                            <span>Mace</span>
-                            <div class="kit-btn-active-bar"></div>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-title">SERVER</div>
-                    <div class="server-card">
-                        <img src="logo.png" alt="Server Logo" class="server-card-logo">
-                        <div class="server-info">
-                            <div class="server-name">RearMC</div>
-                            <div class="server-ip">play.rearmc.fun</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <div class="sidebar-title">TIER GUIDE</div>
-                    <div class="tier-guide">
-                        <div class="tg-row"><span class="tg-badge" style="background:#ffd700;color:#000">HT1</span><span
-                                class="tg-label">High Tier 1</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#ffe87a;color:#000">LT1</span><span
-                                class="tg-label">Low Tier 1</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#ff9d00;color:#000">HT2</span><span
-                                class="tg-label">High Tier 2</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#ffbc52;color:#000">LT2</span><span
-                                class="tg-label">Low Tier 2</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#ff6b00;color:#fff">HT3</span><span
-                                class="tg-label">High Tier 3</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#ff9c52;color:#000">LT3</span><span
-                                class="tg-label">Low Tier 3</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#a855f7;color:#fff">HT4</span><span
-                                class="tg-label">High Tier 4</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#c084fc;color:#000">LT4</span><span
-                                class="tg-label">Low Tier 4</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#3b82f6;color:#fff">HT5</span><span
-                                class="tg-label">High Tier 5</span></div>
-                        <div class="tg-row"><span class="tg-badge" style="background:#60a5fa;color:#000">LT5</span><span
-                                class="tg-label">Low Tier 5</span></div>
-                    </div>
-                </div>
-            </aside>
-
-            <!-- MAIN CONTENT -->
-            <div class="content-area">
-
-                <!-- RANKINGS VIEW -->
-                <div id="rankingsContainer">
-                    <div class="content-toolbar">
-                        <div class="content-title" id="contentTitle">
-                            <i class="fa-solid fa-trophy" style="color:#ff4d4d"></i>
-                            Overall Rankings
-                        </div>
-                    </div>
-
-                    <div id="tableHeader" class="table-header-row">
-                        <div class="th-rank">#</div>
-                        <div class="th-player">PLAYER</div>
-                        <div class="th-region">REGION</div>
-                        <div class="th-tiers">KITS</div>
-                    </div>
-
-                    <div id="rankingsList">
-                        <div class="loading-state">
-                            <div class="loading-spinner"></div>
-                            <span>Loading rankings...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- QUEUE VIEW -->
-                <div id="queueContainer" style="display: none;">
-                    <div class="queue-header-banner" id="queueStatusBanner">
-                        <div class="qb-indicator">
-                            <span class="status-dot"></span>
-                            <span id="queueStatusText">LOADING...</span>
-                        </div>
-                        <p class="qb-sub">The official testing queue for RearMC. Join via Discord to get ranked.</p>
-                    </div>
-
-                    <div class="content-toolbar">
-                        <div class="content-title">
-                            <i class="fa-solid fa-clock-rotate-left" style="color:#ff4d4d"></i>
-                            Live Waiting List
-                        </div>
-                    </div>
-
-                    <div id="queueList">
-                        <div class="loading-state">
-                            <div class="loading-spinner"></div>
-                            <span>Loading queue...</span>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-        </div>
-    </main>
-
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <span class="footer-brand">Rear<span style="color:#ff4d4d">MC</span> TIERS</span>
-            <span class="footer-sep">·</span>
-            <span class="footer-copy">© 2026 RearMC Network. All rights reserved.</span>
-        </div>
-    </footer>
-
-    <!-- Player Detail Modal -->
-    <div id="playerModal" class="player-modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-card">
-            <button class="modal-close" id="playerModalClose"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-body">
-                <div class="modal-avatar-wrap">
-                    <img id="modalAvatar" src="" alt="Player Avatar">
-                </div>
-                <h2 id="modalName" class="modal-name">Player Name</h2>
-                <p id="modalTitle" class="modal-subtitle">Combat Initiate</p>
-                <div class="modal-tags">
-                    <span id="modalRegion" class="modal-tag">AS</span>
-                    <span id="modalType" class="modal-tag">Premium</span>
-                </div>
-                <div class="modal-divider"></div>
-                <div class="modal-stats-grid" id="modalTiers">
-                    <!-- Dynamic Tier Items -->
-                </div>
+            <div class="nav-card coming-soon" onclick="showSoon('More')">
+                <div class="card-icon">✨</div>
+                <div class="card-title">MORE</div>
+                <div class="card-status">Coming Soon</div>
             </div>
         </div>
     </div>
 
-    <!-- Admin Login Modal -->
-    <div id="adminModal" class="player-modal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-card admin-modal-card">
-            <button class="modal-close" id="adminModalClose"><i class="fa-solid fa-xmark"></i></button>
-            <div class="modal-body">
-                <div class="admin-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h2 class="modal-name">Admin Login</h2>
-                <p class="modal-subtitle">Access restricted to authorized testers.</p>
-                <div class="modal-divider"></div>
-                <div class="admin-form">
-                    <input type="password" id="adminPassword" placeholder="Enter Admin Password..." class="admin-input">
-                    <button id="adminLoginSubmit" class="admin-submit-btn">Login</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="toast" class="toast">This section is coming soon! ✨</div>
 
-
+    <script>
+        function showSoon(name) {
+            const toast = document.getElementById('toast');
+            toast.textContent = `${name} is coming soon! ✨`;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
 </body>
-
 </html>
