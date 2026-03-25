@@ -3,368 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RearMC | The Apex Experience</title>
-    <link rel="stylesheet" href="style.css?v=2.9">
+    <title>REARMC | ELITE PORTAL</title>
+    <link rel="stylesheet" href="style.css?v=3.5">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@300;500;700;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@200;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --primary: #e11d48;
-            --primary-glow: rgba(225, 29, 72, 0.5);
+            --neon: #ff003c;
+            --neon-dim: rgba(255, 0, 60, 0.4);
             --gold: #fbbf24;
-            --gold-glow: rgba(251, 191, 36, 0.4);
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --bg-deep: #020305;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; }
 
         body {
-            background: #05070a;
+            background-color: var(--bg-deep);
             color: #fff;
-            font-family: 'Outfit', sans-serif;
-            overflow: hidden;
             height: 100vh;
             width: 100vw;
+            overflow: hidden;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Immersive Background with Ken Burns Effect */
-        .bg-layer {
+        /* Cinematic ULTRA Background */
+        .viewport-bg {
             position: fixed;
             inset: 0;
             z-index: -2;
-            background-image: linear-gradient(rgba(5, 7, 10, 0.4), rgba(5, 7, 10, 0.95)), url('hero-bg.png');
+            background-image: linear-gradient(rgba(2, 3, 5, 0.2), rgba(2, 3, 5, 0.9)), url('hero-bg.png');
             background-size: cover;
             background-position: center;
-            animation: kenBurns 40s linear infinite alternate;
+            filter: saturate(1.2) contrast(1.1);
+            animation: kenFlow 60s linear infinite alternate;
         }
 
-        @keyframes kenBurns {
-            0% { transform: scale(1) translate(0, 0); }
-            100% { transform: scale(1.15) translate(-2%, -2%); }
+        @keyframes kenFlow {
+            0% { transform: scale(1) translate(0,0); }
+            100% { transform: scale(1.1) translate(-2%, -1%); }
         }
 
-        .overlay-vignette {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background: radial-gradient(circle at center, transparent 0%, rgba(5, 7, 10, 0.8) 100%);
-        }
-
-        /* Floating Particles */
-        .particles-layer {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 50%;
-            filter: blur(2px);
-            opacity: 0.3;
-            animation: float 20s linear infinite;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-            50% { opacity: 0.5; }
-            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
-        }
-
-        /* Main Layout */
-        main {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            padding: 40px;
-        }
-
-        /* Branding Section */
-        .branding {
-            text-align: center;
-            margin-bottom: 80px;
-            animation: revealHero 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-
-        .main-logo {
-            width: 280px;
-            margin-bottom: -30px;
-            filter: drop-shadow(0 0 50px var(--primary-glow));
-            transition: all 0.5s ease;
-        }
-
-        .main-logo:hover {
-            transform: scale(1.05) translateY(-5px);
-            filter: drop-shadow(0 0 80px var(--primary-glow));
-        }
-
-        .server-title {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 5rem;
-            font-weight: 700;
-            letter-spacing: -6px;
-            margin: 0;
-            text-transform: uppercase;
-            background: linear-gradient(180deg, #fff 0%, #999 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .server-status-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(225, 29, 72, 0.1);
-            border: 1px solid rgba(225, 29, 72, 0.3);
-            padding: 8px 18px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--primary);
-            margin-top: 15px;
-            box-shadow: 0 0 20px rgba(225, 29, 72, 0.15);
-        }
-
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--primary);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--primary);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* Elite Navigation Grid */
-        .elite-grid {
-            display: flex;
-            gap: 30px;
-            perspective: 2000px;
-            animation: revealNav 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
-        }
-
-        @keyframes revealHero {
-            from { opacity: 0; transform: translateY(40px) scale(0.95); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        @keyframes revealNav {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .elite-card {
-            position: relative;
-            background: var(--glass);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            width: 240px;
-            height: 320px;
-            border-radius: 30px;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
-            overflow: hidden;
-            overflow: visible; /* To allow glow hover to leak */
-        }
-
-        .elite-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 30px;
-            background: radial-gradient(circle at var(--x) var(--y), rgba(225, 29, 72, 0.15), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .elite-card:hover::before { opacity: 1; }
-
-        .elite-card:hover {
-            transform: translateY(-25px) rotateX(15deg) rotateY(-5deg);
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(225, 29, 72, 0.5);
-            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 30px var(--primary-glow);
-        }
-
-        .card-illu {
-            height: 100px;
-            margin-bottom: 40px;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            filter: drop-shadow(0 15px 15px rgba(0,0,0,0.4));
-        }
-
-        .elite-card:hover .card-illu {
-            transform: scale(1.25) rotateY(180deg);
-            filter: drop-shadow(0 25px 25px var(--primary-glow));
-        }
-
-        .card-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .card-detail {
-            font-size: 0.7rem;
-            color: rgba(255, 255, 255, 0.3);
-            letter-spacing: 3px;
-            margin-top: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .elite-card.active .card-detail { color: var(--gold); }
-
-        /* Floating Background Accent */
-        .bg-accent {
+        /* Abstract Glow Effects */
+        .bloom {
             position: fixed;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            background: radial-gradient(circle, var(--neon-dim) 0%, transparent 65%);
             border-radius: 50%;
-            top: -300px;
-            right: -300px;
-            filter: blur(100px);
-            opacity: 0.15;
-            z-index: -1;
             pointer-events: none;
+            filter: blur(120px);
+            opacity: 0.2;
+            z-index: -1;
+            animation: breathe 10s ease-in-out infinite alternate;
         }
 
-        /* Toast Modern */
-        .modern-toast {
+        @keyframes breathe {
+            from { transform: scale(1); opacity: 0.15; }
+            to { transform: scale(1.3); opacity: 0.25; }
+        }
+
+        /* Portal Content Core */
+        .portal-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1300px;
+            padding: 40px;
+            text-align: center;
+            perspective: 1500px;
+            z-index: 100;
+        }
+
+        .portal-logo-wrap {
+            margin-bottom: 80px;
+            animation: heroicEntry 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .hero-logo {
+            width: 380px;
+            filter: drop-shadow(0 0 50px rgba(0,0,0,0.8)) drop-shadow(0 0 20px var(--neon-dim));
+            transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+        }
+
+        .hero-logo:hover {
+            transform: scale(1.05) translateZ(50px);
+            filter: drop-shadow(0 0 80px var(--neon-dim));
+        }
+
+        .title-display {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 6rem;
+            font-weight: 700;
+            line-height: 0.8;
+            letter-spacing: -12px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.4));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.9;
+        }
+
+        .hero-tag {
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 12px;
+            text-transform: uppercase;
+            color: var(--neon);
+            margin-bottom: 60px;
+            text-shadow: 0 0 20px var(--neon-dim);
+        }
+
+        /* ELITE ACTION MENU */
+        .action-menu {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            animation: menuReveal 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+            animation-delay: 0.4s;
+        }
+
+        .action-btn {
+            position: relative;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .action-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--neon);
+            transform: scaleX(0);
+            transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+            box-shadow: 0 -10px 20px var(--neon-dim);
+        }
+
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--neon-dim);
+            transform: translateY(-20px) rotateX(10deg);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+        }
+
+        .action-btn:hover::after { transform: scaleX(1); }
+
+        .btn-label {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            transition: all 0.4s ease;
+        }
+
+        .action-btn:hover .btn-label { letter-spacing: 6px; color: var(--neon); }
+
+        .btn-desc {
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.3);
+        }
+
+        .action-btn i {
+            display: none; /* User hates "L emojis", hiding icons to stay minimalist-Elite */
+        }
+
+        /* SPECIFIC FOR TIERS */
+        .tier-btn {
+            background: rgba(225, 0, 60, 0.05);
+            border-color: rgba(225, 0, 60, 0.2);
+        }
+        .tier-btn .btn-desc { color: var(--gold); }
+
+        /* Animations */
+        @keyframes heroicEntry {
+            from { opacity: 0; transform: scale(1.1) rotateX(-20deg) translateY(-40px); }
+            to { opacity: 1; transform: scale(1) rotateX(0) translateY(0); }
+        }
+
+        @keyframes menuReveal {
+            from { opacity: 0; transform: translateY(100px) rotateX(15deg); }
+            to { opacity: 1; transform: translateY(0) rotateX(0); }
+        }
+
+        /* Systems */
+        #portalNotice {
             position: fixed;
             bottom: 40px;
-            background: rgba(8, 11, 18, 0.95);
+            left: 50%;
+            transform: translateX(-50%) translateY(150px);
+            background: rgba(0,0,0,0.8);
             backdrop-filter: blur(20px);
-            padding: 15px 30px;
+            padding: 18px 40px;
             border-radius: 100px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transform: translateY(150px);
+            border: 1px solid var(--neon-dim);
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--neon);
             transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
             z-index: 1000;
+            white-space: nowrap;
         }
 
-        .modern-toast.show { transform: translateY(0); }
+        #portalNotice.show { transform: translateX(-50%) translateY(0); }
 
-        .toast-loader {
-            width: 14px;
-            height: 14px;
-            border: 2px solid var(--primary);
-            border-right-color: transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
+        @media (max-width: 900px) {
+            .action-menu { grid-template-columns: 1fr 1fr; }
+            .title-display { font-size: 4rem; letter-spacing: -6px; }
+            .hero-logo { width: 260px; }
         }
-
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-    <div class="bg-layer"></div>
-    <div class="overlay-vignette"></div>
-    <div class="bg-accent"></div>
-    <div class="particles-layer" id="particles"></div>
+    <div class="viewport-bg"></div>
+    <div class="bloom" style="top: -200px; left: -200px;"></div>
+    <div class="bloom" style="bottom: -150px; right: -150px; animation-delay: -2s;"></div>
 
-    <main>
-        <div class="branding">
-            <img src="logo.png" alt="RearMC Elite" class="main-logo">
-            <h1 class="server-title">REARMC</h1>
-            <div class="server-status-pill">
-                <span class="status-dot"></span>
-                The Apex Practice Network
-            </div>
+    <div class="portal-wrapper">
+        <div class="portal-logo-wrap">
+            <img src="logo.png" alt="RearMC Logo" class="hero-logo">
+            <p class="hero-tag">Professional Practice Network</p>
         </div>
 
-        <nav class="elite-grid">
-            <div class="elite-card" onmousemove="handleMove(event)" onclick="showToast('Store')">
-                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/gold_ingot.png" class="card-illu" alt="Store">
-                <span class="card-label">Store</span>
-                <span class="card-detail">Maintenance</span>
+        <div class="action-menu">
+            <div class="action-btn" onclick="openSystem('Store')">
+                <span class="btn-label">STORE</span>
+                <span class="btn-desc">OFFLINE</span>
             </div>
 
-            <a href="tiers.html" class="elite-card active" onmousemove="handleMove(event)">
-                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/netherite_sword.png" class="card-illu" alt="Tiers">
-                <span class="card-label">Tiers</span>
-                <span class="card-detail" style="color:var(--gold)">Online</span>
+            <a href="tiers.html" class="action-btn tier-btn">
+                <span class="btn-label">TIERS</span>
+                <span class="btn-desc">LIVE ACCESS</span>
             </a>
 
-            <div class="elite-card" onmousemove="handleMove(event)" onclick="showToast('Discord')">
-                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/enchanted_book.png" class="card-illu" alt="Discord">
-                <span class="card-label">Discord</span>
-                <span class="card-detail">Locked</span>
+            <div class="action-btn" onclick="openSystem('Discord')">
+                <span class="btn-label">DISCORD</span>
+                <span class="btn-desc">RESTRICTED</span>
             </div>
 
-            <div class="elite-card" onmousemove="handleMove(event)" onclick="showToast('Clips')">
-                <img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/spyglass.png" class="card-illu" alt="Clips">
-                <span class="card-label">Clips</span>
-                <span class="card-detail">Soon</span>
+            <div class="action-btn" onclick="openSystem('Clips')">
+                <span class="btn-label">CLIPS</span>
+                <span class="btn-desc">COMING SOON</span>
             </div>
-        </nav>
-    </main>
-
-    <div id="toast" class="modern-toast">
-        <div class="toast-loader"></div>
-        <span id="toastMsg" style="font-size: 0.8rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;">Awaiting Access Card...</span>
+        </div>
     </div>
 
+    <div id="portalNotice">Authorization required for this node.</div>
+
     <script>
-        // Particle Generation
-        const container = document.getElementById('particles');
-        for(let i=0; i<25; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.animationDelay = Math.random() * 15 + 's';
-            p.style.animationDuration = (10 + Math.random() * 20) + 's';
-            container.appendChild(p);
+        function openSystem(name) {
+            const notice = document.getElementById('portalNotice');
+            notice.textContent = `CRITICAL: ${name.toUpperCase()} DATA NODE IS CURRENTLY OFFLINE.`;
+            notice.classList.add('show');
+            setTimeout(() => notice.classList.remove('show'), 3500);
         }
 
-        // Card Spotlight Effect
-        function handleMove(e) {
-            const card = e.currentTarget;
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            card.style.setProperty('--x', x + 'px');
-            card.style.setProperty('--y', y + 'px');
-        }
-
-        function showToast(section) {
-            const toast = document.getElementById('toast');
-            const msg = document.getElementById('toastMsg');
-            msg.textContent = `Access to ${section} is currently restricted.`;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3500);
-        }
+        // Parallax Logo
+        document.addEventListener('mousemove', (e) => {
+            const logo = document.querySelector('.hero-logo');
+            const x = (window.innerWidth / 2 - e.pageX) / 45;
+            const y = (window.innerHeight / 2 - e.pageY) / 45;
+            logo.style.transform = `translateX(${x}px) translateY(${y}px) rotateX(${-y}px) rotateY(${x}px)`;
+        });
     </script>
 </body>
 </html>
