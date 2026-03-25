@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RearMC | The Final Apex</title>
-    <link rel="stylesheet" href="style.css?v=5.5">
+    <link rel="stylesheet" href="style.css?v=6.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
@@ -16,77 +16,63 @@
         @keyframes kenburns { 0%{transform:scale(1);} 100%{transform:scale(1.1);} }
         .pixel-mask { position:fixed; top:0; left:0; width:100%; height:100%; background:radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.9) 100%); z-index:0; }
 
-        .top-nav { position:fixed; top:30px; left:0; width:100%; z-index:100; display:flex; justify-content:center; gap:50px; }
-        .nav-link { text-decoration:none; color:#fff; font-weight:800; text-transform:uppercase; letter-spacing:3px; font-size:0.8rem; opacity:0.6; transition:0.3s; }
-        .nav-link:hover { opacity:1; color:var(--fire); }
+        .hero-main { height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; z-index:10; }
+        .hero-logo { width:350px; filter:drop-shadow(0 0 30px var(--fire-glow)); margin-bottom:20px; transition:0.3s; }
+        .hero-title { font-family:'Syncopate', sans-serif; font-size:6rem; margin:0; letter-spacing:-3px; font-weight:700; }
+        .hero-tag { font-size:1rem; letter-spacing:10px; color:var(--fire); font-weight:300; text-transform:uppercase; margin-bottom:40px; }
 
-        .hero-main { height:100vh; display:flex; align-items:center; justify-content:center; position:relative; z-index:10; }
-        .hero-logo-box { position:relative; transition:0.1s; }
-        .hero-logo { width:420px; filter:drop-shadow(0 0 30px var(--fire-glow)); }
-        .logo-island { position:absolute; bottom:-50px; left:50%; transform:translateX(-50%); width:500px; height:120px; background:radial-gradient(ellipse at center, rgba(255,0,60,0.1) 0%, transparent 70%); z-index:1; }
+        .grid-nav { display:flex; gap:20px; margin-top:50px; }
+        .nav-card { padding:30px 60px; background:rgba(255,255,255,0.03); backdrop-filter:blur(20px); border:1px solid var(--border); border-radius:12px; cursor:pointer; transition:0.4s; text-decoration:none; color:#fff; text-align:center; min-width:180px; }
+        .nav-card:hover { transform:translateY(-10px); border-color:var(--fire); box-shadow:0 15px 40px var(--fire-glow); background:rgba(255,0,60,0.05); }
+        .nav-card.active { border-color:var(--fire); background:rgba(255,0,60,0.1); }
+        .card-main { display:block; font-size:1.8rem; font-weight:900; letter-spacing:2px; }
+        .card-sub { display:block; font-size:0.7rem; font-weight:800; letter-spacing:1px; color:#888; margin-top:5px; }
 
-        .side-stats { position:absolute; width:100%; top:50%; transform:translateY(-50%); display:flex; justify-content:space-between; padding:0 8%; pointer-events:none; }
-        .stat-node { text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px; }
-        .stat-val { color:var(--fire); font-family:'Syncopate', sans-serif; font-weight:700; font-size:1.4rem; letter-spacing:1px; }
-        .stat-label { font-weight:800; letter-spacing:4px; font-size:0.7rem; opacity:0.4; text-transform:uppercase; }
-        .stat-icon { width:56px; height:56px; background:rgba(255,255,255,0.05); border:1px solid var(--border); color:#fff; display:flex; align-items:center; justify-content:center; border-radius:50%; box-shadow:0 0 20px rgba(0,0,0,0.5); pointer-events:auto; cursor:pointer; font-size:1.2rem; transition:0.3s; }
-        .stat-icon:hover { background:var(--fire); box-shadow:0 0 30px var(--fire-glow); border-color:transparent; }
-
-        .bottom-cta { position:fixed; bottom:50px; left:50%; transform:translateX(-50%); display:flex; gap:25px; }
-        .btn-cta { padding:20px 50px; border-radius:8px; border:none; font-family:'Outfit', sans-serif; font-weight:900; letter-spacing:3px; text-transform:uppercase; cursor:pointer; transition:0.3s; border: 1px solid transparent; }
-        .btn-primary { background:var(--fire); color:#fff; box-shadow:0 10px 30px var(--fire-glow); }
-        .btn-outline { background:rgba(255,255,255,0.02); color:#fff; border:1px solid rgba(255,255,255,0.1); }
-        .btn-cta:hover { transform:translateY(-8px); filter:brightness(1.2); }
+        #alertBox { position:fixed; bottom:40px; background:rgba(255,0,60,0.9); padding:15px 30px; font-weight:900; letter-spacing:2px; border-radius:10px; opacity:0; transform:translateY(20px); transition:0.5s; }
+        #alertBox.show { opacity:1; transform:translateY(0); }
     </style>
 </head>
 <body>
     <div class="hero-bg"></div>
     <div class="pixel-mask"></div>
 
-    <nav class="top-nav">
-        <a href="#" class="nav-link">Home</a>
-        <a href="tiers.html" class="nav-link">Tiers</a>
-        <a href="#" class="nav-link">Discord</a>
-        <a href="#" class="nav-link">Store</a>
-    </nav>
-
     <main class="hero-main">
-        <div class="side-stats">
-            <div class="stat-node">
-                <span class="stat-val">342 ONLINE</span>
-                <span class="stat-label">PLAY.REARMC.FUN</span>
-                <div class="stat-icon" onclick="copyIP()"><i class="fa-solid fa-play"></i></div>
-            </div>
-            
-            <div class="stat-node">
-                <span class="stat-val">2,104 USERS</span>
-                <span class="stat-label">COMMUNITY NODE</span>
-                <div class="stat-icon"><i class="fa-brands fa-discord"></i></div>
-            </div>
-        </div>
+        <img src="logo.png" alt="RearMC Logo" class="hero-logo" id="mainLogo">
+        <h1 class="hero-title">REARMC</h1>
+        <p class="hero-tag">THE FINAL APEX</p>
 
-        <div class="hero-logo-box" id="logoBox">
-            <img src="logo.png" alt="RearMC Logo" class="hero-logo">
-            <div class="logo-island"></div>
+        <div class="grid-nav">
+            <div class="nav-card" onclick="openNode('Store')">
+                <span class="card-main">STORE</span>
+                <span class="card-sub">Maintenance</span>
+            </div>
+            <a href="tiers.html" class="nav-card active">
+                <span class="card-main">TIERS</span>
+                <span class="card-sub" style="color:#00ff88">LIVE ENTRY</span>
+            </a>
+            <div class="nav-card" onclick="openNode('Discord')">
+                <span class="card-main">SOCIAL</span>
+                <span class="card-sub">Encrypted</span>
+            </div>
         </div>
     </main>
 
-    <div class="bottom-cta">
-        <button class="btn-cta btn-primary" onclick="window.location.href='tiers.html'">VIEW TIERS</button>
-        <button class="btn-cta btn-outline">NETWORK MAP</button>
-    </div>
+    <div id="alertBox">NODE UNAVAILABLE</div>
 
     <script>
-        const logoBox = document.getElementById('logoBox');
+        const logo = document.getElementById('mainLogo');
         document.addEventListener('mousemove', (e) => {
-            const dx = (window.innerWidth / 2 - e.pageX) / 45;
-            const dy = (window.innerHeight / 2 - e.pageY) / 45;
-            logoBox.style.transform = `translateX(${-dx}px) translateY(${-dy}px)`;
+            const x = (window.innerWidth / 2 - e.pageX) / 45;
+            const y = (window.innerHeight / 2 - e.pageY) / 45;
+            logo.style.transform = `translateX(${-x}px) translateY(${-y}px) rotateX(${-y}px) rotateY(${x}px)`;
         });
 
-        function copyIP() {
-            navigator.clipboard.writeText('play.rearmc.fun');
-            alert('IP Copied: play.rearmc.fun');
+        function openNode(node) {
+            const box = document.getElementById('alertBox');
+            box.textContent = `${node.toUpperCase()} SYSTEM NODE IS CURRENTLY ENCRYPTED.`;
+            box.show();
+            box.classList.add('show');
+            setTimeout(() => box.classList.remove('show'), 3500);
         }
     </script>
 </body>

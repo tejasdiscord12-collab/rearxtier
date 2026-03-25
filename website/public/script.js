@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ─── CONFIGURATION (v5.5) ────────────────────────────────────────────────
+    // ─── CONFIGURATION (v6.0) ────────────────────────────────────────────────
     const GIST_ID = '62dcff9fb06d470d2b7bf5c1bdc63cf2';
     const GIST_RAW_BASE = `https://gist.githubusercontent.com/tejasdiscord12-collab/${GIST_ID}/raw/`;
 
@@ -10,18 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const kitList = document.getElementById('kitList');
     const podiumContainer = document.getElementById('podiumContainer');
     const statPlayers = document.getElementById('statPlayers');
+    const statQueueCount = document.getElementById('statQueueCount');
+    
+    // Modals
     const playerModal = document.getElementById('playerModal');
-    const playerModalClose = document.getElementById('playerModalClose');
     const modalAvatar = document.getElementById('modalAvatar');
     const modalName = document.getElementById('modalName');
     const modalTitle = document.getElementById('modalTitle');
     const modalRegion = document.getElementById('modalRegion');
     const modalTiers = document.getElementById('modalTiers');
+    const playerModalClose = document.getElementById('playerModalClose');
 
     const TIER_VALUES = {
-        'HT1': 100, 'LT1': 90, 'HT2': 80, 'LT2': 70,
-        'HT3': 60, 'LT3': 50, 'HT4': 40, 'LT4': 30,
-        'HT5': 20, 'LT5': 10
+        'HT1': 100, 'LT1': 95, 'HT2': 90, 'LT2': 85,
+        'HT3': 80, 'LT3': 75, 'HT4': 70, 'LT4': 65,
+        'HT5': 60, 'LT5': 55
     };
 
     let allData = [];
@@ -58,12 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch(`${GIST_RAW_BASE}players.json?v=${Date.now()}`, { cache: 'no-store' });
             if (!res.ok) throw new Error(`Fetch Error ${res.status}`);
             allData = await res.json();
+            
+            // Sync Stats
             if (statPlayers) statPlayers.textContent = allData.length;
+            
             detectKits(allData);
             renderRankings(allData);
         } catch (e) {
             console.error('Fetch Failed:', e);
-            if (rankingsList) rankingsList.innerHTML = `<div class="loading-state"><span>Failed to load: ${e.message}</span></div>`;
+            if (rankingsList) rankingsList.innerHTML = `<div class="loading-state"><span>System Failure: ${e.message}</span></div>`;
         }
     }
 
@@ -84,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
             kitList.querySelectorAll('.kit-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             renderRankings(allData);
+            window.scrollTo({ top: 400, behavior: 'smooth' });
         });
     }
 
@@ -101,27 +108,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
                 .sort((a,b) => b.tierVal - a.tierVal);
 
-        renderPodium(filtered.slice(0, 3));
+        if (normalizedCurrent === 'all') renderPodium(filtered.slice(0, 3));
+        else if (podiumContainer) podiumContainer.innerHTML = '';
 
         filtered.forEach((player, index) => {
             const row = document.createElement('div');
             row.className = 'player-row';
             const rank = index + 1;
-            const medals = ['🥇', '🥈', '🥉'];
-            const rankStamp = rank <= 3 ? medals[rank - 1] : rank;
+            const rankStamp = rank <= 3 ? ['🥇', '🥈', '🥉'][rank-1] : rank;
 
             row.innerHTML = `
                 <div class="col-rank">${rankStamp}</div>
                 <div class="col-player">
-                    <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42">
+                    <img src="https://mc-heads.net/avatar/${player.minecraft_ign}/42" class="player-head">
                     <div>
                         <div class="player-name">${player.minecraft_ign}</div>
-                        <div class="player-tier-sub">${player.title}</div>
+                        <div class="player-subtitle"><i class="fa-solid fa-medal"></i> ${player.title}</div>
                     </div>
                 </div>
                 <div class="col-region">${player.region || 'AS'}</div>
                 <div class="col-tiers">
-                    ${(player.tiers || []).slice(0, 5).map(t => `<span class="tier-badge ${t.tier.toLowerCase().replace(';', '')}">${t.category}: ${t.tier}</span>`).join('')}
+                    ${(player.tiers || []).slice(0, 6).map(t => `
+                        <div class="tier-chip ${t.tier.toLowerCase().replace(';', '')}" data-tooltip="${t.category}: ${t.tier}">
+                            <img src="${getIcon(t.category)}" style="width:14px;">
+                            <span>${t.tier}</span>
+                        </div>
+                    `).join('')}
                 </div>
             `;
             row.onclick = () => openPlayerModal(player);
@@ -129,16 +141,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function getIcon(cat) {
+        const c = normalizeCategory(cat);
+        const icons = {
+            'sword': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_sword.png',
+            'nethpot': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/netherite_chestplate.png',
+            'axe': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_axe.png',
+            'uhc': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/golden_apple.png',
+            'crystal': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/end_crystal.png',
+            'smpkit': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/ender_pearl.png',
+            'mace': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.21/assets/minecraft/textures/item/mace.png',
+            'diapot': 'https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.1/assets/minecraft/textures/item/diamond_chestplate.png'
+        };
+        return icons[c] || icons['sword'];
+    }
+
     function renderPodium(top3) {
-        if (!podiumContainer || currentCategory !== 'all') {
-            if (podiumContainer) podiumContainer.innerHTML = '';
-            return;
-        }
+        if (!podiumContainer) return;
         podiumContainer.innerHTML = `
-            <div class="podium-stage">
-                ${top3[1] ? `<div class="podium-spot spot-2"><img src="https://mc-heads.net/body/${top3[1].minecraft_ign}/100" class="podium-avatar"><div>${top3[1].minecraft_ign}</div><div class="player-tier-sub">🥈 #${top3[1].bestVal}</div></div>` : ''}
-                ${top3[0] ? `<div class="podium-spot spot-1"><img src="https://mc-heads.net/body/${top3[0].minecraft_ign}/120" class="podium-avatar"><div>${top3[0].minecraft_ign}</div><div class="player-tier-sub">🥇 #${top3[0].bestVal}</div></div>` : ''}
-                ${top3[2] ? `<div class="podium-spot spot-3"><img src="https://mc-heads.net/body/${top3[2].minecraft_ign}/100" class="podium-avatar"><div>${top3[2].minecraft_ign}</div><div class="player-tier-sub">🥉 #${top3[2].bestVal}</div></div>` : ''}
+            <div class="podium-grid">
+                ${top3[1] ? `<div class="podium-node spot-2"><img src="https://mc-heads.net/body/${top3[1].minecraft_ign}/100" class="podium-body"><h3>${top3[1].minecraft_ign}</h3><p>🥈 #${top3[1].bestVal}</p><div class="podium-base"></div></div>` : ''}
+                ${top3[0] ? `<div class="podium-node spot-1"><img src="https://mc-heads.net/body/${top3[0].minecraft_ign}/120" class="podium-body"><h3>${top3[0].minecraft_ign}</h3><p>🥇 #${top3[0].bestVal}</p><div class="podium-base"></div></div>` : ''}
+                ${top3[2] ? `<div class="podium-node spot-3"><img src="https://mc-heads.net/body/${top3[2].minecraft_ign}/100" class="podium-body"><h3>${top3[2].minecraft_ign}</h3><p>🥉 #${top3[2].bestVal}</p><div class="podium-base"></div></div>` : ''}
             </div>
         `;
     }
@@ -150,12 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
         modalRegion.textContent = player.region || 'AS';
         modalTitle.textContent = getTitle(getBestTierValue(player.tiers));
         modalTiers.innerHTML = (player.tiers || []).map(t => `
-            <div class="modal-stat-card" style="background:rgba(255,255,255,0.03); padding:15px; border-radius:10px; border:1px solid var(--border);">
-                <div style="font-weight:900; color:var(--primary); font-size:1.1rem;">${t.tier}</div>
-                <div style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:5px;">${t.category}</div>
+            <div class="modal-tier-card">
+                <div class="mtc-val">${t.tier}</div>
+                <div class="mtc-cat">${t.category}</div>
             </div>
         `).join('');
-        playerModal.classList.add('modal-open');
+        playerModal.classList.add('active');
     }
 
     playerSearch?.addEventListener('input', (e) => {
@@ -164,8 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
         renderRankings(filtered);
     });
 
-    playerModalClose?.addEventListener('click', () => playerModal.classList.remove('modal-open'));
-    window.addEventListener('click', (e) => { if (e.target === playerModal) playerModal.classList.remove('modal-open'); });
+    playerModalClose?.onclick = () => playerModal.classList.remove('active');
+    window.onclick = (e) => { if (e.target === playerModal) playerModal.classList.remove('active'); };
 
     fetchRankings();
     setInterval(fetchRankings, 60000);
